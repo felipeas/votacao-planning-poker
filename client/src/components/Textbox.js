@@ -73,4 +73,4 @@ TextBox.propTypes = {
     onChange: PropTypes.func
 };
 
-export default TextBox;
+export default Textbox;

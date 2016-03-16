@@ -49,8 +49,8 @@ export class List extends Component {
 
 function mapStateToProps(state) {
     return {
-        items: state.items,
+        Items: state.items,
     };
 }
 
-export default connect(mapStateToProps)(items);
+export default connect(mapStateToProps)(Items);

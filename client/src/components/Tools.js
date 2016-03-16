@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 import { styles } from '../styles/Tools.scss';
 
 export class Tools extends Component {
-  render() {
-    return (
-      <section className={`${styles}`}>
+    render() {
+        return (
+            <section className={`${styles}`}>
 
-      </section>
-    );
-  }
+            </section>
+        );
+    }
 }

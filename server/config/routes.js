@@ -19,6 +19,6 @@ module.exports = function(app, io) {
     });
 
     app.get('/teste', function() {
-        console.log('lolol');
+        console.log('teste funcionou');
     });
 };;

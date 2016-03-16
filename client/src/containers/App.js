@@ -1,25 +1,20 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+
 import '../styles/App.scss';
 
 class App extends Component {
-   handleLoginClick() {
-
-  }
-
-  handleLogoutClick() {
-
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="container">
-          {this.props.children}
-        </div>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <section>
+                <Header/>
+                {this.props.children}
+                <Footer/>
+            </section>
+        );
+    }
 }
 
 export default App;

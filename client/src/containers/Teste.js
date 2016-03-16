@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-class Card extends Component {
+class Teste extends Component {
     constructor(props) {
         super(props);
     }
@@ -11,11 +11,11 @@ class Card extends Component {
 
     render() {
         return (
-            <div className={this.props.className ? this.props.className : ''}>
+            <div>
                 <span>TESTE</span>
             </div>
         )
     }
 }
 
-export default TextBox;
+export default Teste;

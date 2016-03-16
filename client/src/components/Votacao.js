@@ -18,4 +18,4 @@ class Card extends Component {
     }
 }
 
-export default TextBox;
+export default Votacao;
