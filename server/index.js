@@ -16,6 +16,7 @@ var mongoConnect = function() {
     }
   });
 };
+
 mongoConnect();
 
 mongoose.connection.on('error', console.log);
@@ -23,7 +24,7 @@ mongoose.connection.on('disconnected', mongoConnect);
 
 //Importacao de models
 fs.readdirSync(__dirname + '/models').forEach(function(file) {
-  if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
+    if(~file.indexOf('.js')) require(__dirname + '/models/' + file);
 });
 
 // Configuracoes / rotas
@@ -31,5 +32,4 @@ require('./config/express')(app);
 require('./config/routes')(app, io);
 
 server.listen(app.get('port'));
-
-console.log('It\'s Happening! on port: ' + app.get('port'));
+console.log('It\'s Happening! ' + app.get('port'));

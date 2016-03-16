@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 import { reduxReactRouter } from 'redux-router';
 import { createHistory } from 'history';
 import routes from './routes';
-import reducers from './reducers';
+import red from './reducers';
 
 const finalCreateStore = compose(
   applyMiddleware(
@@ -15,6 +15,6 @@ const finalCreateStore = compose(
   })
 )(createStore);
 
-const store = finalCreateStore(reducers);
+const store = finalCreateStore(red);
 
 export default store;

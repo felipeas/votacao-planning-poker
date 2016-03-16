@@ -1,30 +1,12 @@
-import App from './containers/App';
-import Account from './containers/Account';
-import Feed from './containers/Feed';
-import Game from './containers/Game';
+/* containers */
+import { App } from './containers/App';
+import { Home } from './containers/Home';
+import { List } from './containers/List';
 
-function checkLoggedIn(nextState, replaceState) {
-    if (!localStorage.getItem('credentials')) {
-        replaceState(null, '/');
-    }
-}
-
-const routes = [
-    {
-        path: '/',
-        component: App,
-        indexRoute: { component: Feed },
-        childRoutes: [
-            { path: 'teste', component: Votacao, onEnter: checkLoggedIn },
-            { path: 'sprints', component: Sprints, onEnter: checkLoggedIn },
-            { path: 'sprint(/:id)', component: Sprint, onEnter: checkLoggedIn }
-            { path: 'votacao(/:id)', component: Votacao, onEnter: checkLoggedIn }
-        ]
-    },
-    {
-        path: '/register',
-        component: Account
-    }
-];
-
-export default routes;
+export default (
+  <Route path="/" component={App}>
+    <IndexRoute component={Home} />
+    <Route path="list" component={List} />
+    <Route status={404} path="*" component={Home} />
+  </Route>
+);
