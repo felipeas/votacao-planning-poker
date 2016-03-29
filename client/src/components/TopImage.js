@@ -24,11 +24,16 @@ export class TopImage extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
                 <h1 className="title">
-                  Votacao PP
+                    Votação Planning Poker
                 </h1>
-                <p>
-                  O que era bom, ficou ainda melhor
-                </p>
+                <div col-sm-12 text-center>
+                    <blockquote>
+                        <p>
+                        "It hurts more if you think about it."
+                        <cite><small> Hooks, Cabal torturer</small></cite>
+                        </p>
+                    </blockquote>
+                </div>
             </div>
           </div>
         </div>

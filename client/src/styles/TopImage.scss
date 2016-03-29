@@ -1,19 +1,16 @@
 :local(.styles) {
   position: relative;
-
-  background: linear-gradient(gray, white);
   background-size: 100% auto;
 
   height: 500px;
 
   h1.title {
-    color: #FFF;
+    color: #000;
     font-size: 60px;
-
     margin-top: 20%;
   }
 
   p {
-    color: #FFF;
+    color: #000;
   }
 }

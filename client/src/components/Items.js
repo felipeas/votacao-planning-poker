@@ -21,7 +21,6 @@ export class Items extends Component {
 
   render() {
     const { items } = this.props;
-
     return (
       <div className={styles}>
         {!items.length && <span>Array is empty</span>}

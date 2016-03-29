@@ -7,6 +7,15 @@ import { AddItem } from '../components/AddItem';
 /* actions */
 import * as actionCreators from '../actions/items';
 
+function mapStateToProps(state) {
+    debugger;
+  return { items: state.items };
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actionCreators, dispatch) };
+}
+
 export class List extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +25,11 @@ export class List extends Component {
     return (
       <section>
         <div className="container">
-
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
               <h1>
-                Redux
+                Estórias
               </h1>
             </div>
           </div>
@@ -30,7 +38,7 @@ export class List extends Component {
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
               <h2>
-                Boilerplate contains:
+                ----
               </h2>
               <Items {...this.props} />
             </div>
@@ -46,11 +54,4 @@ export class List extends Component {
   }
 }
 
-
-function mapStateToProps(state) {
-    return {
-        Items: state.items,
-    };
-}
-
-export default connect(mapStateToProps)(Items);
+export default connect(mapStateToProps, mapDispatchToProps)(List);

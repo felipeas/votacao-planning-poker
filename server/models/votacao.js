@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var Voto = new mongoose.Schema({
     usuario_id: String,
+    tarefa_id: String,
     voto: {type: Number, default: 0}
 });
 

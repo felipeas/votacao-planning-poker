@@ -6,4 +6,4 @@ var UsuarioSchema = new mongoose.Schema({
     criacao: { type: Date, default: Date.now }
 });
 
-Votacao = mongoose.model('Usuario', UsuarioSchema);
+Usuario = mongoose.model('Usuario', UsuarioSchema);

@@ -1,14 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
-class Teste extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount () {
-
-    }
-
+export class Teste extends Component {
     render() {
         return (
             <div>
@@ -17,5 +9,3 @@ class Teste extends Component {
         )
     }
 }
-
-export default Teste;

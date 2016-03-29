@@ -11,16 +11,9 @@ export class Footer extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a className="github-button"
-              href="https://github.com/felipeas/votacao-planning-poker"
-              data-icon="octicon-star"
-              data-count-href="/felipeas/votacao-planning-poker"
-              data-count-api="/repos/felipeas/votacao-planning-poke#stargazers_count"
-              data-count-aria-label="# stargazers on GitHub"
-              aria-label="Star /felipeas/votacao-planning-poker on GitHub"
-            >
-              Star
-            </a>
+                <span>
+                  Footer
+                </span>
             </div>
           </div>
         </div>

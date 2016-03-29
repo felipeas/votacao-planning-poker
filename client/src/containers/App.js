@@ -5,7 +5,7 @@ import { Footer } from '../components/Footer';
 
 import '../styles/App.scss';
 
-class App extends Component {
+export class App extends Component {
     render() {
         return (
             <section>
@@ -16,5 +16,9 @@ class App extends Component {
         );
     }
 }
+
+App.propTypes = {
+    children: React.PropTypes.any
+};
 
 export default App;

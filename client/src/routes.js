@@ -11,7 +11,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="list" component={List} />
+    <Route path="home" component={Home} />
     <Route path="teste" component={Teste} />
-    <Route status={404} path="*" component={Home} />
   </Route>
 );
