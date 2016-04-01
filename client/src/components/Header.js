@@ -28,9 +28,9 @@ export class Header extends Component {
             </div>
 
             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 hidden-xs text-right">
-              <a href="https://github.com/felipeas/votacao-planning-poker">
-                Fork me on GitHub
-              </a>
+                <Link to="/login">
+                  Login
+                </Link>
             </div>
           </div>
         </div>

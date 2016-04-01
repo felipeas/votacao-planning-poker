@@ -6,6 +6,9 @@ import { App } from './containers/App';
 import { Home } from './containers/Home';
 import { List } from './containers/List';
 import { Teste } from './containers/Teste';
+import { Login } from './containers/Login';
+import { Conta } from './containers/Conta';
+
 
 export default (
   <Route path="/" component={App}>
@@ -13,5 +16,7 @@ export default (
     <Route path="list" component={List} />
     <Route path="home" component={Home} />
     <Route path="teste" component={Teste} />
+    <Route path="login" component={Login} />
+    <Route path="conta" component={Conta} />
   </Route>
 );

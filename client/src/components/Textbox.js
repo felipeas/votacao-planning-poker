@@ -1,76 +1,37 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
-class Textbox extends Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
 
-    componentDidMount () {
-        if (this.props.autoFocus) {
-            this.refs.input.focus();
-        }
-    }
+class Testbox extends Component {
+  static propTypes : {
+    label: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    field: PropTypes.object.isRequired
+  }
 
-    handleChange(e) {
-        e.preventDefault();
+  render() {
+    const {
+      label,
+      type,
+      autoFocus,
+      field
+    } = this.props;
 
-        if (this.props.onChange) {
-            this.props.onChange(val, this.props.name);
-        }
-    }
-
-    handleKeyPress(e) {
-        this.handleChange(e);
-    }
-
-    handleBlur(e) {
-      this.handleChange(e);
-    }
-
-    render() {
-        return (
-            <div className={this.props.className ? this.props.className : ''}>
-                {this.renderLabel()}
-                {this.renderInput()}
-            </div>
-        )
-    }
-
-    renderInput() {
-        return (
-            <input
-                ref="input"
-                name={this.props.name}
-                id={this.props.name}
-                type='text'
-                value={this.props.value}
-                onChange={this.handleChange.bind(this)}
-                maxLength={this.props.maxLength}
-                onKeyPress={this.handleKeyPress.bind(this)}
-                onBlur={this.handleBlur.bind(this)}
-                style={{ width: this.props.width }}
-                disabled={this.props.disabled}
-            />
-        );
-    }
-
-    renderLabel() {
-        if (!this.props.label) {return};
-        return (
-            <label htmlFor={this.props.name}>
-                {this.traduzir(this.props.label)}
-            </label>
-        );
-    }
+    return (
+      <div className="form-row">
+        <label htmlFor={field.name}>{label}</label>
+        <input
+          id={field.name}
+          type={type || 'text'}
+          autoFocus={autoFocus}
+          className='form-control'
+          {...field}
+        />
+        {field.touched && field.error && <span className="error-message">{field.error}</span>}
+      </div>
+    );
+  }
 }
 
-TextBox.propTypes = {
-    name: PropTypes.string,
-    className: PropTypes.string,
-    maxLength: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    onChange: PropTypes.func
-};
-
-export default Textbox;
+export default Testbox;

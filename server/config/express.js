@@ -11,7 +11,7 @@ var secrets = require('./secrets');
 var Iso = require('iso');
 
 module.exports = function (app) {
-    app.set('port', (process.env.PORT || 3000));
+    app.set('port', (process.env.PORT || 1138));
 
     app.use(compression());
     app.use(express.static('client/dist'));
