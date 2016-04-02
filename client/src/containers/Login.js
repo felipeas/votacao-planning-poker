@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Textbox from '../components/Textbox';
 import { Link } from 'react-router';
 import { fazerLogin } from '../actions/login';
@@ -8,67 +8,64 @@ import { setLoginVisible } from '../actions/app';
 
 import { styles } from '../styles/Login.scss';
 
-function mapStateToProps() {
-    return { fields: this.items };
-}
-
 const form = reduxForm({
     form: 'login',
     fields: ['login', 'senha']
 })
 
+@connect(
+  null,
+  { setLoginVisible, fazerLogin }
+)
+@reduxForm({
+  form: 'login',
+  fields: ['login', 'senha']
+})
 export class Login extends Component {
-    static propTypes : {
+    static propTypes = {
       fields: PropTypes.object.isRequired,
       handleSubmit: PropTypes.func.isRequired
     }
 
-  handleSubmit(values, dispatch) {
-    return this.props.fazerLogin(values.login, values.senha);
-  }
+    handleSubmit(values, dispatch) {
+        return this.props.fazerLogin(values.login, values.senha);
+    }
 
-  handleCloseClick(e) {
-    e.preventDefault();
-    this.props.setLoginVisible(false);
-  }
+    handleCloseClick(e) {
+        e.preventDefault();
+        this.props.setLoginVisible(false);
+    }
 
-  render() {
-    const {
-        fields: { login, senha },
-        handleSubmit
-    } = this.props;
-    debugger;
+    render() {
+        const {
+            fields: { login, senha },
+            handleSubmit
+        } = this.props;
+
     return (
         <section className={`${styles}`}>
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="container">
-                  <div className="col-xs-12 col-md-6
-                                  col-md-offset-3 col-lg-offset-3">
+                    <div className="col-xs-12 col-md-6
+                      col-md-offset-3 col-lg-offset-3">
                         <h2 className="form-signin-heading">Login</h2>
                         <Textbox label="Usuário" field={login} className='form-control' autoFocus />
                         <Textbox label="Senha" field={senha} className='form-control' type="password" />
                         <span className="error-message">
-                          {this.props.error}
+                            {this.props.error}
                         </span>
                         <label/>
                         <button type="submit" className="btn btn-primary">Login</button>
                         <Link className="btn" to="/conta" tabIndex="-1">
-                            <button type="button"className="btn">
-                                Cadastrar
-                            </button>
+                        <button type="button"className="btn">
+                            Cadastrar
+                        </button>
                         </Link>
                     </div>
                 </div>
             </form>
         </section>
     );
-  }
-}
-
-export default connect(
-    mapStateToProps,
-    {
-        setLoginVisible,
-        fazerLogin
     }
-)(form(Login));
+}
+export default Login;
