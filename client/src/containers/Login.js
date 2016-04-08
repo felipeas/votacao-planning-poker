@@ -6,12 +6,7 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { setLoginVisible } from '../actions/app';
 
-import { styles } from '../styles/Login.scss';
-
-const form = reduxForm({
-    form: 'login',
-    fields: ['login', 'senha']
-})
+import { styles } from '../styles/Conta.scss';
 
 @connect(
   null,
@@ -42,30 +37,30 @@ export class Login extends Component {
             handleSubmit
         } = this.props;
 
-    return (
-        <section className={`${styles}`}>
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                <div className="container">
-                    <div className="col-xs-12 col-md-6
-                      col-md-offset-3 col-lg-offset-3">
-                        <h2 className="form-signin-heading">Login</h2>
-                        <Textbox label="Usuário" field={login} className='form-control' autoFocus />
-                        <Textbox label="Senha" field={senha} className='form-control' type="password" />
-                        <span className="error-message">
-                            {this.props.error}
-                        </span>
-                        <label/>
-                        <button type="submit" className="btn btn-primary">Login</button>
-                        <Link className="btn" to="/conta" tabIndex="-1">
-                        <button type="button"className="btn">
-                            Cadastrar
-                        </button>
-                        </Link>
+        return (
+            <section className={`${styles}`}>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="container">
+                        <div className="col-xs-12 col-md-6
+                          col-md-offset-3 col-lg-offset-3">
+                            <h2 className="form-signin-heading">Login</h2>
+                            <Textbox label="Usuário" field={login} className='form-control' autoFocus />
+                            <Textbox label="Senha" field={senha} className='form-control' type="password" />
+                            <span className="error-message">
+                                {this.props.error}
+                            </span>
+                            <label/>
+                            <button type="submit" className="btn btn-primary">Login</button>
+                            <Link className="btn" to="/conta" tabIndex="-1">
+                                <button type="button"className="btn">
+                                    Cadastrar
+                                </button>
+                            </Link>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </section>
-    );
+                </form>
+            </section>
+        );
     }
 }
 export default Login;

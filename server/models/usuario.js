@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var UsuarioSchema = new mongoose.Schema({
-    id: String,
+    id:  { type: String, unique: true, index: true },
+    email: String,
+    nome: String,
     senha: String,
     criacao: { type: Date, default: Date.now }
 });

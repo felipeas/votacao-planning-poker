@@ -1,35 +1,68 @@
 import React, { Component, PropTypes } from 'react';
+import Textbox from '../components/Textbox';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import validate from '../modules/validate';
 import { criarConta } from '../actions/conta';
 
-class Conta extends Component {
-  static propTypes : {
-    fields: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired
-  }
+import { styles } from '../styles/Conta.scss';
 
-  handleSubmit(values, dispatch) {
-    return this.props.criarConta(values);
-  }
+@connect(
+  null,
+  { criarConta }
+)
+@reduxForm({
+  form: 'conta',
+  fields: ['nome', 'login', 'senha'],
+  validate: values => validate(values, {
+   nome: { presence: true },
+   login: { presence: true },
+   senha: { presence: true },
+ })
+})
+export class Conta extends Component {
+    static propTypes = {
+      fields: PropTypes.object.isRequired,
+      handleSubmit: PropTypes.func.isRequired
+    }
 
-  render() {
-    const {
-      fields: { nome, login, senha },
-      handleSubmit
-    } = this.props;
+    handleSubmit(values, dispatch) {
+        return this.props.criarConta(values);
+    }
 
-    return (
-      <form className="criar-conta" onSubmit={this.handleSubmit.bind(this)}>
-        <h2>Criar Conta</h2>
-        <TextBox label="Nome" field={nome} autoFocus />
-        <TextBox label="Login" field={login} />
-        <TextBox label="Senha" field={senha} type="password" />
-        <Button type="submit">Criar Conta</Button>
-      </form>
-    );
-  }
+    handleCloseClick(e) {
+        e.preventDefault();
+        this.props.setLoginVisible(false);
+    }
+
+    render() {
+        const {
+            fields: { login, senha, nome },
+            handleSubmit
+        } = this.props;
+
+        return (
+            <section className={`${styles}`}>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                    <div className="container">
+                        <div className="col-xs-12 col-md-6
+                          col-md-offset-3 col-lg-offset-3">
+                            <h2 className="form-signin-heading">Criar conta</h2>
+                            <Textbox label="Nome" field={nome} className='form-control' autoFocus />
+                            <Textbox label="Usuário" field={login} className='form-control' />
+                            <Textbox label="Senha" field={senha} className='form-control' type="password" />
+                            <span className="error-message">
+                                {this.props.error}
+                            </span>
+                            <label/>
+                            <label/>
+                            <button type="submit" className="btn btn-primary">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        );
+    }
 }
 
 export default Conta;
