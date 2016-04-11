@@ -3,6 +3,7 @@ import { post } from '../modules/api';
 import { setLoginVisible, setUsuarioLogado } from './app';
 
 export function fazerLogin(login, senha) {
+    debugger;
     return dispatch => post('login', { login, senha }).then(usuario => {
         localStorage.setItem('credentials', btoa(`${login}:${senha}`));
         dispatch(setUsuarioLogado(usuario));

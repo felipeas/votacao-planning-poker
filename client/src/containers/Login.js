@@ -4,13 +4,12 @@ import { Link } from 'react-router';
 import { fazerLogin } from '../actions/login';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { setLoginVisible } from '../actions/app';
 
 import { styles } from '../styles/Conta.scss';
 
 @connect(
   null,
-  { setLoginVisible, fazerLogin }
+  { fazerLogin }
 )
 @reduxForm({
   form: 'login',
@@ -23,6 +22,7 @@ export class Login extends Component {
     }
 
     handleSubmit(values, dispatch) {
+        debugger;
         return this.props.fazerLogin(values.login, values.senha);
     }
 
@@ -36,7 +36,7 @@ export class Login extends Component {
             fields: { login, senha },
             handleSubmit
         } = this.props;
-
+        debugger;
         return (
             <section className={`${styles}`}>
                 <form onSubmit={this.handleSubmit.bind(this)}>

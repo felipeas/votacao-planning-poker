@@ -13,7 +13,11 @@ import '../styles/App.scss';
   { fazerLogout }
 )
 export class App extends Component {
-    handleLogoutClick() {
+    constructor(props) {
+        super(props);
+    }
+
+    handleLogout() {
        this.props.fazerLogout();
     }
 
@@ -22,7 +26,7 @@ export class App extends Component {
             <section>
                 <Header
                     usuarioLogado={this.props.usuarioLogado}
-                    onLogoutClick={this.props.handleLogoutClick}/>
+                    onLogoutClick={this.handleLogout.bind(this)}/>
                     {this.props.children}
                 <Footer/>
             </section>

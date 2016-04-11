@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
-
-class Testbox extends Component {
-  static propTypes : {
+class Textbox extends Component {
+  static propTypes = {
     label: PropTypes.string.isRequired,
     type: PropTypes.string,
     autoFocus: PropTypes.bool,
@@ -28,10 +27,14 @@ class Testbox extends Component {
           className='form-control'
           {...field}
         />
-        {field.touched && field.error && <span className="error-message">{field.error}</span>}
+        {field.touched && field.error &&
+            <div class="alert alert-danger" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              {field.error}
+            </div>}
       </div>
     );
   }
 }
 
-export default Testbox;
+export default Textbox;
