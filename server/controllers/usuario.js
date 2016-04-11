@@ -3,10 +3,10 @@ var _ = require('lodash');
 var Usuario = mongoose.model('Usuario');
 
 exports.login = function(req, res) {
-    console.log('Tentativa de login');
+    const usuarioTry = req.body.email;
     Usuario.findOne({email: req.body.email, senha: req.body.senha}, function(err, logou) {
         if(logou) {
-            console.log('logado');
+            console.log('usuario: ' + usuarioTry + ' - logado');
             res.redirect('/');
         }
     });
@@ -44,7 +44,7 @@ exports.add = function(req, res) {
 exports.remove = function(req, res) {
     var query = { id: req.body.id };
     Usuario.findOneAndRemove(query, function(err, data) {
-        
+
     if(err) console.log('Erro excluir Usuario');
         res.status(200).send('Usuário Excluído');
     });

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Textbox from '../components/Textbox';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { reduxForm } from 'redux-form';
 import validate from '../modules/validate';
 import { criarConta } from '../actions/conta';
@@ -51,12 +52,17 @@ export class Conta extends Component {
                             <Textbox label="Nome" field={nome} className='form-control' autoFocus />
                             <Textbox label="Usuário" field={login} className='form-control' />
                             <Textbox label="Senha" field={senha} className='form-control' type="password" />
+
                             <span className="error-message">
                                 {this.props.error}
                             </span>
-                            <label/>
-                            <label/>
+
                             <button type="submit" className="btn btn-primary">Cadastrar</button>
+                            <Link className="btn" to="/login" tabIndex="-1">
+                                <button type="button"className="btn">
+                                    Voltar
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </form>
