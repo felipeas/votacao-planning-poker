@@ -52,8 +52,6 @@ export function makePromise(options) {
       body: JSON.stringify(options.body)
     };
 
-    debugger;
-
     const query = qs.stringify(options.query);
     const url = basePath + options.endpoint + (query ? '?' + query : '');
 

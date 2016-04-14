@@ -3,49 +3,39 @@ var _ = require('lodash');
 var Usuario = mongoose.model('Usuario');
 
 exports.login = function(req, res) {
-    const usuarioTry = req.body.email;
+    console.log(req.body.email);
     Usuario.findOne({email: req.body.email, senha: req.body.senha}, function(err, logou) {
-        if(logou) {
-            console.log('usuario: ' + usuarioTry + ' - logado');
-            res.redirect('/');
+        if (err) {
+            console.log(err);
+            return res.status(500).send(err);
+        }
+        if (logou) {
+            console.log('usuario: ' + req.body.email + ' - logado');
+            res.json(logou);
+            return res.status(200).send('logado com sucesso');
         }
     });
-};
-
-exports.all = function(req, res) {
-  Usuario.find({}).exec(function(err, usuarios) {
-    if(!err) {
-      res.json(usuarios);
-    } else {
-      console.log('Erro localizar usuario');
-    }
-  });
 };
 
 exports.add = function(req, res) {
+    console.log(req.body.email);
+
     Usuario.findOne({email: req.body.email}, function(err, existente) {
-        if(existente) {
-            console.log('existente ');
-            res.status(400).send(err);
-            res.redirect('/');
-        }
-    });
-
-
-    Usuario.create(req.body, function (err) {
         if (err) {
-            console.log(err);
-            res.status(400).send(err);
-        }
-        res.status(200).send('Usuário cadastrado');
-    });
-};
+            console.log('erro incluir usuario');
+            return res.status(500).send(err);
+        };
+        if(existente) {
+            console.log('existente');
+            return res.status(400).send(err);
+        };
 
-exports.remove = function(req, res) {
-    var query = { id: req.body.id };
-    Usuario.findOneAndRemove(query, function(err, data) {
-
-    if(err) console.log('Erro excluir Usuario');
-        res.status(200).send('Usuário Excluído');
+        Usuario.create(req.body, function (err) {
+            if (err) {
+                console.log(err);
+                return res.status(400).send(err);
+            }
+            return res.status(200).send('Usuário cadastrado');
+        });
     });
 };

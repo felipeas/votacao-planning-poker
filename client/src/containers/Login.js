@@ -1,29 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import Textbox from '../components/Textbox';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { fazerLogin } from '../actions/login';
 import { reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
 
 import { styles } from '../styles/Conta.scss';
 
 @connect(
-  null,
-  { fazerLogin }
+    null,
+    { fazerLogin }
 )
 @reduxForm({
-  form: 'login',
-  fields: ['login', 'senha']
+    form: 'login',
+    fields: ['email', 'senha'],
 })
 export class Login extends Component {
     static propTypes = {
-      fields: PropTypes.object.isRequired,
-      handleSubmit: PropTypes.func.isRequired
+        fields: PropTypes.object.isRequired,
+        handleSubmit: PropTypes.func.isRequired
     }
 
     handleSubmit(values, dispatch) {
-        debugger;
-        return this.props.fazerLogin(values.login, values.senha);
+        return this.props.fazerLogin(values.email, values.senha);
     }
 
     handleCloseClick(e) {
@@ -33,23 +32,24 @@ export class Login extends Component {
 
     render() {
         const {
-            fields: { login, senha },
+            fields: { email, senha },
             handleSubmit
         } = this.props;
-        debugger;
+
         return (
             <section className={`${styles}`}>
-                <form onSubmit={this.handleSubmit.bind(this)}>
+                <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
                     <div className="container">
                         <div className="col-xs-12 col-md-6
                           col-md-offset-3 col-lg-offset-3">
                             <h2 className="form-signin-heading">Login</h2>
-                            <Textbox label="Usuário" field={login} className='form-control' autoFocus />
+                            <Textbox label="Usuário" field={email} className='form-control' autoFocus />
                             <Textbox label="Senha" field={senha} className='form-control' type="password" />
+
                             <span className="error-message">
                                 {this.props.error}
                             </span>
-                            <label/>
+
                             <button type="submit" className="btn btn-primary">Login</button>
                             <Link className="btn" to="/conta" tabIndex="-1">
                                 <button type="button"className="btn">
