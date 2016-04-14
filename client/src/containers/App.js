@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fazerLogout } from '../actions/login';
 import { Header } from '../components/Header';
@@ -7,35 +7,33 @@ import { Footer } from '../components/Footer';
 import '../styles/App.scss';
 
 @connect(
-  state => ({
-    usuarioLogado: state.usuarioLogado
-  }),
-  { fazerLogout }
+    state => ({
+        usuario: state.usuario
+    }),
+    { fazerLogout }
 )
 export class App extends Component {
-    constructor(props) {
-        super(props);
+    static propTypes = {
+        children: PropTypes.object.isRequired,
     }
 
     handleLogout() {
-       this.props.fazerLogout();
+        this.props.fazerLogout();
     }
 
     render() {
+        const { usuario, children } = this.props;
+
         return (
             <section>
                 <Header
-                    usuarioLogado={this.props.usuarioLogado}
+                    usuario={usuario}
                     onLogoutClick={this.handleLogout.bind(this)}/>
-                    {this.props.children}
+                    {children}
                 <Footer/>
             </section>
         );
     }
 }
-
-App.propTypes = {
-    children: React.PropTypes.any
-};
 
 export default App;

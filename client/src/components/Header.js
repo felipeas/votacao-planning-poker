@@ -5,7 +5,7 @@ import { styles } from '../styles/Header.scss';
 export class Header extends Component {
     static propTypes = {
         onLogoutClick: PropTypes.func.isRequired,
-        usuarioLogado: PropTypes.shape({
+        usuario: PropTypes.shape({
             nome: PropTypes.string
         })
     }
@@ -36,7 +36,7 @@ export class Header extends Component {
                     </Link>
                   </nav>
                 </div>
-                {this.props.usuarioLogado ? this.renderToolbarLogado() : this.renderToolbarDeslogado()}
+                {this.props.usuario ? this.renderToolbarLogado() : this.renderToolbarDeslogado()}
 
               </div>
             </div>
@@ -47,7 +47,7 @@ export class Header extends Component {
         return(
             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 hidden-xs text-right">
                 <span onClick={this.handleLogoutClick.bind(this)}>
-                    {this.props.usuarioLogado.name}
+                    {this.props.usuario.name}
                 </span>
             </div>
         );

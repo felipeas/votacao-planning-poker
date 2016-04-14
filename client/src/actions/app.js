@@ -1,8 +1,8 @@
-export const APP_SET_USUARIO_LOGADO = 'APP_SET_USUARIO_LOGADO';
+export const APP_SET_USUARIO = 'APP_SET_USUARIO';
 
-export function setUsuarioLogado(usuario) {
-  return {
-    type: APP_SET_USUARIO_LOGADO,
-    usuario
-  }
+export function setUsuario(usuario) {
+    return {
+        type: APP_SET_USUARIO,
+        usuario
+    }
 }

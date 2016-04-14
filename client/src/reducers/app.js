@@ -1,20 +1,19 @@
 import {
-  APP_SET_USUARIO_LOGADO
+  APP_SET_USUARIO
 } from '../actions/app';
 
 const initialState = {
-  usuarioLogado: null
+    usuario: null
 };
 
 export default function (state = initialState, action) {
-  switch (action.type) {
-    case APP_SET_USUARIO_LOGADO:
-        debugger;
-      return Object.assign({}, state, {
-        usuarioLogado: action.usuario
-
-      });
-    default:
-      return state;
-  }
+    debugger;
+    switch (action.type) {
+        case APP_SET_USUARIO:
+            return {
+                usuario: action.usuario
+            };
+        default:
+            return state;
+        }
 }

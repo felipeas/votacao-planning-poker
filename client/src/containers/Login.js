@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Textbox from '../components/Textbox';
 import { connect } from 'react-redux';
+
 import { Link } from 'react-router';
 import { fazerLogin } from '../actions/login';
 import { reduxForm } from 'redux-form';
@@ -27,7 +28,6 @@ export class Login extends Component {
 
     handleCloseClick(e) {
         e.preventDefault();
-        this.props.setLoginVisible(false);
     }
 
     render() {

@@ -8,7 +8,7 @@ import { AddItem } from '../components/AddItem';
 import * as actionCreators from '../actions/items';
 
 function mapStateToProps(state) {
-    debugger;
+  debugger;
   return { items: state.items };
 }
 

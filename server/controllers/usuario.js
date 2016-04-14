@@ -11,8 +11,7 @@ exports.login = function(req, res) {
         }
         if (logou) {
             console.log('usuario: ' + req.body.email + ' - logado');
-            res.json(logou);
-            return res.status(200).send('logado com sucesso');
+            return res.status(200).send(logou);
         }
     });
 };
