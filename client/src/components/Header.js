@@ -31,8 +31,8 @@ export class Header extends Component {
                     <Link to="/home" activeClassName="active">
                       Home
                     </Link>
-                    <Link to="/list" activeClassName="active">
-                      Lista
+                    <Link to="/sprints" activeClassName="active">
+                      Sprints
                     </Link>
                   </nav>
                 </div>
@@ -46,9 +46,13 @@ export class Header extends Component {
     renderToolbarLogado () {
         return(
             <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 hidden-xs text-right">
-                <span onClick={this.handleLogoutClick.bind(this)}>
-                    {this.props.usuario.name}
+                <span>
+                    {this.props.usuario.nome} |&nbsp;
                 </span>
+
+                <a onClick={this.handleLogoutClick.bind(this)}>
+                    Logout
+                </a>
             </div>
         );
     }

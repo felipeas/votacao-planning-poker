@@ -5,8 +5,7 @@ import { reset } from 'redux-form';
 /* component styles */
 import { styles } from '../styles/Items.scss';
 
-export class AddItem extends Component {
-
+export class AddSprint extends Component {
   constructor(props) {
     super(props);
   }
@@ -51,7 +50,7 @@ export class AddItem extends Component {
   }
 }
 
-AddItem = reduxForm({
+AddSprint = reduxForm({
   fields: ['name'],
   form: 'addItem',
   destroyOnUnmount: false,
@@ -61,6 +60,6 @@ AddItem = reduxForm({
       items: React.PropTypes.array,
       addItem: React.PropTypes.func,
   }
-})(AddItem);
+})(AddSprint);
 
-export default AddItem;
+export default AddSprint;

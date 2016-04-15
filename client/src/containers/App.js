@@ -8,7 +8,7 @@ import '../styles/App.scss';
 
 @connect(
     state => ({
-        usuario: state.usuario
+        usuario: state.app.usuario
     }),
     { fazerLogout }
 )
@@ -23,7 +23,7 @@ export class App extends Component {
 
     render() {
         const { usuario, children } = this.props;
-
+        
         return (
             <section>
                 <Header

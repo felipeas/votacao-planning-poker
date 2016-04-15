@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Items } from '../components/Items';
-import { AddItem } from '../components/AddItem';
+import { SprintList } from '../components/SprintList';
+import { AddSprint } from '../components/AddSprint';
 
 /* actions */
 import * as actionCreators from '../actions/items';
@@ -16,11 +16,7 @@ function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(actionCreators, dispatch) };
 }
 
-export class List extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+export class Sprints extends Component {
   render() {
     return (
       <section>
@@ -40,12 +36,12 @@ export class List extends Component {
               <h2>
                 ----
               </h2>
-              <Items {...this.props} />
+              <SprintList {...this.props} />
             </div>
 
             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                             col-md-offset-3 col-lg-offset-3">
-              <AddItem {...this.props} />
+              <AddSprint {...this.props} />
             </div>
           </div>
         </div>
@@ -54,4 +50,4 @@ export class List extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(List);
+export default connect(mapStateToProps, mapDispatchToProps)(Sprints);

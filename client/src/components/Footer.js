@@ -12,7 +12,7 @@ export class Footer extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <span>
-                                "When its power is threatened the concil speaks with a unified voice."                            
+                                [Footer]
                             </span>
                         </div>
                     </div>

@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 
 /* component styles */
-import { styles } from '../styles/Items.scss';
+import { styles } from '../styles/SprintList.scss';
 
-export class Items extends Component {
-
-    propTypes: {
-        items: React.PropTypes.array,
+export class SprintList extends Component {
+    static propTypes = {
+        sprints: React.PropTypes.array,
         delItem: React.PropTypes.func
     }
 
-    constructor(props) {
-        super(props);
-    }
-
-    /*componentDidMount(){
+    componentDidMount(){
       window.addEventListener('onDelete', this.handleOnDelete);
     }
-    */
+
     handleonDelete(event) {
         event.preventDefault();
         const index = event.currentTarget.dataset.index;
@@ -52,4 +47,4 @@ export class Items extends Component {
     }
 }
 
-export default Items;
+export default SprintList;

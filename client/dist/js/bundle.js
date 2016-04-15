@@ -12702,12 +12702,27 @@ webpackJsonp([0],{
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _routes = __webpack_require__(326);
+	var _routes = __webpack_require__(325);
 
 	var _routes2 = _interopRequireDefault(_routes);
 
+	var _actionsLogin = __webpack_require__(327);
+
 	var history = _reactRouter.useRouterHistory(_history.createHashHistory)({ queryKey: false });
 	var store = _store2['default']();
+
+	var credentials = localStorage.getItem('credentials');
+
+	if (credentials) {
+	    debugger;
+
+	    var _atob$split = atob(credentials).split(':');
+
+	    var email = _atob$split[0];
+	    var senha = _atob$split[1];
+
+	    store.dispatch(_actionsLogin.fazerLogin(email, senha));
+	}
 
 	_reactDom2['default'].render(_react2['default'].createElement(
 	    _reactRedux.Provider,
@@ -12965,6 +12980,8 @@ webpackJsonp([0],{
 
 	exports.__esModule = true;
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	var _redux = __webpack_require__(191);
 
 	var _reduxRouter = __webpack_require__(270);
@@ -12973,12 +12990,14 @@ webpackJsonp([0],{
 
 	//import { items } from './items';
 
-	var _app = __webpack_require__(324);
+	var _app = __webpack_require__(323);
+
+	var _app2 = _interopRequireDefault(_app);
 
 	var rootReducer = _redux.combineReducers({
-	  router: _reduxRouter.routerStateReducer,
-	  form: _reduxForm.reducer,
-	  app: _app.app
+	    router: _reduxRouter.routerStateReducer,
+	    form: _reduxForm.reducer,
+	    app: _app2['default']
 	});
 
 	exports['default'] = rootReducer;
@@ -12986,14 +13005,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 324:
+/***/ 323:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _actionsApp = __webpack_require__(325);
+	var _actionsApp = __webpack_require__(324);
 
 	var initialState = {
 	    usuario: null
@@ -13002,7 +13021,6 @@ webpackJsonp([0],{
 	exports['default'] = function (state, action) {
 	    if (state === undefined) state = initialState;
 
-	    debugger;
 	    switch (action.type) {
 	        case _actionsApp.APP_SET_USUARIO:
 	            return {
@@ -13017,7 +13035,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 325:
+/***/ 324:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13037,7 +13055,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 326:
+/***/ 325:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13054,17 +13072,17 @@ webpackJsonp([0],{
 
 	/* containers */
 
-	var _containersApp = __webpack_require__(327);
+	var _containersApp = __webpack_require__(326);
 
-	var _containersHome = __webpack_require__(341);
+	var _containersHome = __webpack_require__(340);
 
-	var _containersList = __webpack_require__(348);
+	var _containersList = __webpack_require__(347);
 
-	var _containersTeste = __webpack_require__(354);
+	var _containersTeste = __webpack_require__(353);
 
-	var _containersLogin = __webpack_require__(357);
+	var _containersLogin = __webpack_require__(356);
 
-	var _containersConta = __webpack_require__(362);
+	var _containersConta = __webpack_require__(361);
 
 	exports['default'] = _react2['default'].createElement(
 	  _reactRouter.Route,
@@ -13080,7 +13098,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 327:
+/***/ 326:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13101,13 +13119,13 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _actionsLogin = __webpack_require__(328);
+	var _actionsLogin = __webpack_require__(327);
 
-	var _componentsHeader = __webpack_require__(333);
+	var _componentsHeader = __webpack_require__(332);
 
-	var _componentsFooter = __webpack_require__(336);
+	var _componentsFooter = __webpack_require__(335);
 
-	__webpack_require__(339);
+	__webpack_require__(338);
 
 	var App = (function (_Component) {
 	    _inherits(App, _Component);
@@ -13149,7 +13167,7 @@ webpackJsonp([0],{
 	    var _App = App;
 	    App = _reactRedux.connect(function (state) {
 	        return {
-	            usuario: state.usuario
+	            usuario: state.app.usuario
 	        };
 	    }, { fazerLogout: _actionsLogin.fazerLogout })(App) || App;
 	    return App;
@@ -13160,7 +13178,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 328:
+/***/ 327:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13171,9 +13189,9 @@ webpackJsonp([0],{
 
 	var _reduxRouter = __webpack_require__(270);
 
-	var _modulesApi = __webpack_require__(329);
+	var _modulesApi = __webpack_require__(328);
 
-	var _app = __webpack_require__(325);
+	var _app = __webpack_require__(324);
 
 	function fazerLogin(email, senha) {
 	    return function (dispatch) {
@@ -13194,7 +13212,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 329:
+/***/ 328:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13208,11 +13226,11 @@ webpackJsonp([0],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _isomorphicFetch = __webpack_require__(330);
+	var _isomorphicFetch = __webpack_require__(329);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
-	var _qsDistQs = __webpack_require__(332);
+	var _qsDistQs = __webpack_require__(331);
 
 	var _qsDistQs2 = _interopRequireDefault(_qsDistQs);
 
@@ -13304,7 +13322,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 333:
+/***/ 332:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13325,7 +13343,7 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _stylesHeaderScss = __webpack_require__(334);
+	var _stylesHeaderScss = __webpack_require__(333);
 
 	var Header = (function (_Component) {
 	    _inherits(Header, _Component);
@@ -13373,8 +13391,8 @@ webpackJsonp([0],{
 	                            ),
 	                            _react2['default'].createElement(
 	                                _reactRouter.Link,
-	                                { to: '/list', activeClassName: 'active' },
-	                                'Lista'
+	                                { to: '/sprints', activeClassName: 'active' },
+	                                'Sprints'
 	                            )
 	                        )
 	                    ),
@@ -13390,8 +13408,14 @@ webpackJsonp([0],{
 	            { className: 'col-xs-12 col-sm-4 col-md-4 col-lg-4 hidden-xs text-right' },
 	            _react2['default'].createElement(
 	                'span',
+	                null,
+	                this.props.usuario.nome,
+	                ' | '
+	            ),
+	            _react2['default'].createElement(
+	                'a',
 	                { onClick: this.handleLogoutClick.bind(this) },
-	                this.props.usuario.name
+	                'Logout'
 	            )
 	        );
 	    };
@@ -13427,13 +13451,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 334:
+/***/ 333:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(335);
+	var content = __webpack_require__(334);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13454,18 +13478,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 335:
+/***/ 334:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
 	exports.locals = {
 	  "styles": "VnDXy7JKkfMtsZ_KUZotx"
 	};
-	exports.push([module.id, ".VnDXy7JKkfMtsZ_KUZotx {\n  position: fixed;\n  z-index: 1;\n  width: 100%;\n  padding: 20px 0;\n  opacity: 1;\n  background: rgba(0, 0, 0, 0.8); }\n  .VnDXy7JKkfMtsZ_KUZotx a, .VnDXy7JKkfMtsZ_KUZotx a:hover {\n    color: #FFF; }\n  .VnDXy7JKkfMtsZ_KUZotx .logo a {\n    font-weight: bold; }\n  .VnDXy7JKkfMtsZ_KUZotx nav a {\n    margin-right: 20px; }\n    .VnDXy7JKkfMtsZ_KUZotx nav a.active {\n      font-weight: bold; }\n", ""]);
+	exports.push([module.id, ".VnDXy7JKkfMtsZ_KUZotx {\n  position: fixed;\n  z-index: 1;\n  width: 100%;\n  padding: 20px 0;\n  opacity: 1;\n  background: rgba(0, 0, 0, 0.8); }\n  .VnDXy7JKkfMtsZ_KUZotx a, .VnDXy7JKkfMtsZ_KUZotx a:hover, .VnDXy7JKkfMtsZ_KUZotx span, .VnDXy7JKkfMtsZ_KUZotx span:hover {\n    color: #FFF; }\n  .VnDXy7JKkfMtsZ_KUZotx .logo a {\n    font-weight: bold; }\n  .VnDXy7JKkfMtsZ_KUZotx nav a {\n    margin-right: 20px; }\n    .VnDXy7JKkfMtsZ_KUZotx nav a.active {\n      font-weight: bold; }\n", ""]);
 
 /***/ },
 
-/***/ 336:
+/***/ 335:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13484,7 +13508,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesFooterScss = __webpack_require__(337);
+	var _stylesFooterScss = __webpack_require__(336);
 
 	var Footer = (function (_Component) {
 	    _inherits(Footer, _Component);
@@ -13511,7 +13535,7 @@ webpackJsonp([0],{
 	                        _react2['default'].createElement(
 	                            'span',
 	                            null,
-	                            '"When its power is threatened the concil speaks with a unified voice."'
+	                            '[Footer]'
 	                        )
 	                    )
 	                )
@@ -13526,13 +13550,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 337:
+/***/ 336:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(338);
+	var content = __webpack_require__(337);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13553,7 +13577,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 338:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13561,13 +13585,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 339:
+/***/ 338:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(340);
+	var content = __webpack_require__(339);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13588,7 +13612,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 340:
+/***/ 339:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13596,7 +13620,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 341:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13615,9 +13639,9 @@ webpackJsonp([0],{
 
 	/* components */
 
-	var _componentsTopImage = __webpack_require__(342);
+	var _componentsTopImage = __webpack_require__(341);
 
-	var _componentsTools = __webpack_require__(345);
+	var _componentsTools = __webpack_require__(344);
 
 	var Home = (function (_Component) {
 	    _inherits(Home, _Component);
@@ -13644,7 +13668,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 342:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13663,7 +13687,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesTopImageScss = __webpack_require__(343);
+	var _stylesTopImageScss = __webpack_require__(342);
 
 	var TopImage = (function (_Component) {
 	  _inherits(TopImage, _Component);
@@ -13731,13 +13755,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 343:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(344);
+	var content = __webpack_require__(343);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13758,7 +13782,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 344:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13769,7 +13793,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 345:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13788,7 +13812,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesToolsScss = __webpack_require__(346);
+	var _stylesToolsScss = __webpack_require__(345);
 
 	var Tools = (function (_Component) {
 	    _inherits(Tools, _Component);
@@ -13810,13 +13834,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 346:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(347);
+	var content = __webpack_require__(346);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13837,7 +13861,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 347:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13845,7 +13869,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 348:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13868,13 +13892,13 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _componentsItems = __webpack_require__(349);
+	var _componentsItems = __webpack_require__(348);
 
-	var _componentsAddItem = __webpack_require__(352);
+	var _componentsAddItem = __webpack_require__(351);
 
 	/* actions */
 
-	var _actionsItems = __webpack_require__(353);
+	var _actionsItems = __webpack_require__(352);
 
 	var actionCreators = _interopRequireWildcard(_actionsItems);
 
@@ -13947,7 +13971,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 349:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13966,7 +13990,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesItemsScss = __webpack_require__(350);
+	var _stylesItemsScss = __webpack_require__(349);
 
 	var Items = (function (_Component) {
 	    _inherits(Items, _Component);
@@ -14034,13 +14058,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 350:
+/***/ 349:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(351);
+	var content = __webpack_require__(350);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14061,7 +14085,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 351:
+/***/ 350:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14072,7 +14096,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 352:
+/***/ 351:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14095,7 +14119,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesItemsScss = __webpack_require__(350);
+	var _stylesItemsScss = __webpack_require__(349);
 
 	var AddItem = (function (_Component) {
 	  _inherits(AddItem, _Component);
@@ -14169,7 +14193,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 353:
+/***/ 352:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14194,7 +14218,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 354:
+/***/ 353:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14213,7 +14237,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesTesteScss = __webpack_require__(355);
+	var _stylesTesteScss = __webpack_require__(354);
 
 	var Teste = (function (_Component) {
 	    _inherits(Teste, _Component);
@@ -14255,13 +14279,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 355:
+/***/ 354:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(356);
+	var content = __webpack_require__(355);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14282,7 +14306,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 356:
+/***/ 355:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14293,7 +14317,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 357:
+/***/ 356:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14312,7 +14336,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTextbox = __webpack_require__(358);
+	var _componentsTextbox = __webpack_require__(357);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -14320,11 +14344,11 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _actionsLogin = __webpack_require__(328);
+	var _actionsLogin = __webpack_require__(327);
 
 	var _reduxForm = __webpack_require__(283);
 
-	var _stylesContaScss = __webpack_require__(360);
+	var _stylesContaScss = __webpack_require__(359);
 
 	var Login = (function (_Component) {
 	    _inherits(Login, _Component);
@@ -14417,7 +14441,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 358:
+/***/ 357:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14438,7 +14462,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(359);
+	var _classnames = __webpack_require__(358);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -14500,13 +14524,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 360:
+/***/ 359:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(361);
+	var content = __webpack_require__(360);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14527,7 +14551,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 361:
+/***/ 360:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14538,7 +14562,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 362:
+/***/ 361:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14557,7 +14581,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTextbox = __webpack_require__(358);
+	var _componentsTextbox = __webpack_require__(357);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -14565,15 +14589,15 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _actionsConta = __webpack_require__(363);
+	var _actionsConta = __webpack_require__(362);
 
 	var _reduxForm = __webpack_require__(283);
 
-	var _modulesValidate = __webpack_require__(364);
+	var _modulesValidate = __webpack_require__(363);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _stylesContaScss = __webpack_require__(360);
+	var _stylesContaScss = __webpack_require__(359);
 
 	var Conta = (function (_Component) {
 	    _inherits(Conta, _Component);
@@ -14676,7 +14700,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 363:
+/***/ 362:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14686,9 +14710,9 @@ webpackJsonp([0],{
 
 	var _reduxRouter = __webpack_require__(270);
 
-	var _modulesApi = __webpack_require__(329);
+	var _modulesApi = __webpack_require__(328);
 
-	var _login = __webpack_require__(328);
+	var _login = __webpack_require__(327);
 
 	function criarConta(dados) {
 	    return function (dispatch) {
@@ -14701,14 +14725,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 364:
+/***/ 363:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _validateJs = __webpack_require__(365);
+	var _validateJs = __webpack_require__(364);
 
 	_validateJs.validate.options = { fullMessages: false };
 	_validateJs.validate.validators.presence.options = { message: 'Campo obrigatório.' };
