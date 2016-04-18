@@ -5,33 +5,26 @@ import {
 } from '../actions/sprint';
 
 const initialState = {
-    sprints: [{
-        nome: 'React',
-    }, {
-        nome: 'Redux',
-    }, {
-        nome: 'React router',
-    }],
+    lista: [],
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
         case SPRINT_LIST_SET:
-            return {
-                sprints: action.lista
-            };
-        case SPRINT_ADD:
-            DEBUGGER;
             return Object.assign({}, state, {
-                sprints: [...state.sprints, action.sprint]
+                lista: action.lista
+              });
+        case SPRINT_ADD:
+            return Object.assign({}, state, {
+                lista: [...state.lista, action.sprint]
             });
 
         case SPRINT_DEL:
             return {
                 ...state,
-                sprints: [
-                    ...state.sprints.slice(0, action.index),
-                    ...state.sprints.slice(+action.index + 1),
+                lista: [
+                    ...state.lista.slice(0, action.index),
+                    ...state.lista.slice(+action.index + 1),
                 ],
             };
 

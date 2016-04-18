@@ -16,8 +16,7 @@ exports.all = function(req, res) {
 }
 
 exports.add = function(req, res) {
-    console.log(req.body.nome);
-
+    console.log('incluindo sprint: ' + req.body.nome);
     Sprints.findOne({nome: req.body.nome}, function(err, existente) {
         if (err) {
             console.log('erro incluir sprint');
@@ -33,7 +32,7 @@ exports.add = function(req, res) {
                 console.log(err);
                 return res.status(400).send(err);
             }
-            return res.status(200).send('Sprint incluida');
+            return res.status(200).send('sprint incluida');
         });
     });
 };

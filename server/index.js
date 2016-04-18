@@ -8,13 +8,13 @@ var secrets = require('./config/secrets');
 
 //Conexão com o Mongo
 var mongoConnect = function() {
-  mongoose.connect(secrets.db.mongo, function(err, res) {
-    if(err) {
-        console.log('Erro ao conectar: ' + secrets.db.mongo + '. ' + err);
-    }else {
-        console.log('Conectado: ' + secrets.db.mongo);
-    }
-  });
+    mongoose.connect(secrets.db.mongo, function(err, res) {
+        if(err) {
+            console.log('Erro ao conectar: ' + secrets.db.mongo + '. ' + err);
+        }else {
+            console.log('Conectado: ' + secrets.db.mongo);
+        }
+    });
 };
 
 mongoConnect();

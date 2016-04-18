@@ -1,5 +1,5 @@
 :local(.styles) {
-    position: fixed;
+    position: relative;
     z-index: 1;
 
     width: 100%;
@@ -11,6 +11,7 @@
 
     a, a:hover, span, span:hover {
         color: #FFF;
+        vertical-align: middle;
     }
 
     .logo {

@@ -5,7 +5,7 @@ var votacao = require('../controllers/votacao');
 var auth = require('../auth');
 var usuarios = require('../controllers/usuario');
 var sprints = require('../controllers/sprint');
-
+var api = express.Router();
 // var Voto = mongoose.model('Votacao');
 // var Usuario = mongoose.model('Usuario');
 
@@ -21,6 +21,7 @@ module.exports = function(app, io) {
     //     votacao.add(req, res);
     //     io.sockets.emit('votacao change');
     // });
+    app.use('/api', api);
 
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
@@ -30,12 +31,12 @@ module.exports = function(app, io) {
         console.log('teste');
     });
 
-    app.post('/api/login', usuarios.login);
-    app.post('/api/conta', usuarios.add);
+    app.post('/login', usuarios.login)(api);
+    app.post('/conta', usuarios.add)(api);
 
-    app.post('/api/sprint', auth(), sprints.add);
-    app.get('/api/sprints', auth(), sprints.all);
-    app.delete('/api/sprints/:id', auth(), sprints.remove);
+    app.post('/sprint', auth(), sprints.add)(api);
+    app.get('/sprints', auth(), sprints.all)(api);
+    app.delete('/sprints/:id', auth(), sprints.remove)(api);
 
     // app.get('/api/sprints', votacao.all);
     // app.get('/api/sprints', votacao.add);

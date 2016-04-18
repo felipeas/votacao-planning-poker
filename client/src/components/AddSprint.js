@@ -23,9 +23,6 @@ export class AddSprint extends Component {
 
     constructor(props){
         super(props);
-        debugger;
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // this.reset = this.resetForm.bind(this)
     }
 
     onAdd = (event) => {
@@ -44,19 +41,14 @@ export class AddSprint extends Component {
         return (
             <form onSubmit={this.onAdd}>
                 <Textbox
-                    label="Nome"
                     field={nome}
                     className='form-control'
+                    placeholder='Nome'
                     autoFocus
-                    placeholder='Cool Sprint huh'
                 />
                 <div className="form-group">
                     <button className="btn btn-primary" onClick={this.onAdd}>
-                        Incluir Sprint
-                    </button>
-
-                    <button className="btn btn-primary">
-                        sss Sprint
+                        Incluir
                     </button>
                 </div>
             </form>

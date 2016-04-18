@@ -3,27 +3,25 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SprintList } from '../components/SprintList';
 import { AddSprint } from '../components/AddSprint';
-
 import * as actionCreators from '../actions/sprint';
 
 import { styles } from '../styles/Sprint.scss';
 
 @connect(
     state => ({
-        sprints: state.app.sprints
+        sprints: state.sprints.lista
     }),
     dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Sprints extends Component {
     componentDidMount() {
-        this.props.dispatch(carregarLista());
+        this.props.carregarLista();
     }
     render() {
         const {
             sprints,
         } = this.props;
 
-        debugger;
         return (
             <section className={`${styles}`}>
                 <div className="container">
@@ -39,9 +37,6 @@ export class Sprints extends Component {
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
                                         col-md-offset-3 col-lg-offset-3">
-                            <h2>
-                                ----
-                            </h2>
                             <SprintList
                                 sprints={sprints}
                             />

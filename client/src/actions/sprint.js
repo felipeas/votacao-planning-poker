@@ -11,9 +11,8 @@ export function carregarLista() {
 }
 
 export function addSprint(dados) {
-    debugger;
     return dispatch => post('sprint', dados).then(() => {
-       carregarLista();
+       addSprintLista(dados);
     });
 }
 
@@ -28,5 +27,12 @@ function setarSprints(lista) {
     return {
         type: SPRINT_LIST_SET,
         lista
+    };
+}
+
+function addSprintLista(sprint) {
+    return {
+        type: SPRINT_ADD,
+        sprint
     };
 }

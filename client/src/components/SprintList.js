@@ -10,13 +10,13 @@ export class SprintList extends Component {
 
     render() {
         const { sprints } = this.props;
-        debugger;
+
         return (
             <div className={styles}>
                 {sprints.map((item, index) =>
-                    <div className="checkbox" key={index}>
+                    <div className="checkbox" key={index} defaultChecked={item.encerrada}>
                         <label>
-                            {`${item.name}`}
+                            {`${item.nome}`}
                         </label>
                     </div>
                 )}

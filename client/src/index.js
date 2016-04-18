@@ -18,9 +18,6 @@ if (credentials) {
     store.dispatch(fazerLogin(email, senha));
 }
 
-debugger;
-store.dispatch(carregarLista);
-
 ReactDOM.render(
     <Provider store={store}>
         <Router routes={routes} history={history} />

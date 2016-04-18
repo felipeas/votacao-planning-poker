@@ -12,6 +12,4 @@ const rootReducer = combineReducers({
     sprints,
 });
 
-debugger;
-
 export default rootReducer;
