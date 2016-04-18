@@ -6,7 +6,8 @@ class Textbox extends Component {
     label: PropTypes.string.isRequired,
     type: PropTypes.string,
     autoFocus: PropTypes.bool,
-    field: PropTypes.object.isRequired
+    field: PropTypes.object.isRequired,
+    placeholder: PropTypes.string,
   }
 
   render() {
@@ -14,7 +15,8 @@ class Textbox extends Component {
       label,
       type,
       autoFocus,
-      field
+      field,
+      placeholder
     } = this.props;
 
     return (
@@ -24,6 +26,7 @@ class Textbox extends Component {
           id={field.name}
           type={type || 'text'}
           autoFocus={autoFocus}
+          placeholder={placeholder}
           className='form-control'
           {...field}
         />

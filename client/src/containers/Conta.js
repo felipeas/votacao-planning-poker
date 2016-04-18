@@ -6,7 +6,6 @@ import { criarConta } from '../actions/conta';
 import { reduxForm } from 'redux-form';
 import validate from '../modules/validate';
 
-
 import { styles } from '../styles/Conta.scss';
 
 @connect(
@@ -34,7 +33,6 @@ export class Conta extends Component {
 
     handleCloseClick(e) {
         e.preventDefault();
-        this.props.setLoginVisible(false);
     }
 
     render() {

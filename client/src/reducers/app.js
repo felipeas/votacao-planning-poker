@@ -9,9 +9,9 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case APP_SET_USUARIO:
-            return {
+            return Object.assign({}, state, {
                 usuario: action.usuario
-            };
+            });
         default:
             return state;
         }

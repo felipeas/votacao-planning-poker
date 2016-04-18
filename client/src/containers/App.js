@@ -23,7 +23,7 @@ export class App extends Component {
 
     render() {
         const { usuario, children } = this.props;
-        
+
         return (
             <section>
                 <Header

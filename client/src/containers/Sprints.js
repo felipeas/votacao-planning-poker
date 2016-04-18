@@ -1,53 +1,61 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { SprintList } from '../components/SprintList';
 import { AddSprint } from '../components/AddSprint';
 
-/* actions */
-import * as actionCreators from '../actions/items';
+import * as actionCreators from '../actions/sprint';
 
-function mapStateToProps(state) {
-  debugger;
-  return { items: state.items };
-}
+import { styles } from '../styles/Sprint.scss';
 
-function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(actionCreators, dispatch) };
-}
-
+@connect(
+    state => ({
+        sprints: state.app.sprints
+    }),
+    dispatch => bindActionCreators(actionCreators, dispatch)
+)
 export class Sprints extends Component {
-  render() {
-    return (
-      <section>
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <h1>
-                Estórias
-              </h1>
-            </div>
-          </div>
+    componentDidMount() {
+        this.props.dispatch(carregarLista());
+    }
+    render() {
+        const {
+            sprints,
+        } = this.props;
 
-          <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <h2>
-                ----
-              </h2>
-              <SprintList {...this.props} />
-            </div>
+        debugger;
+        return (
+            <section className={`${styles}`}>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                                        col-md-offset-3 col-lg-offset-3">
+                            <h1>
+                                Sprints
+                            </h1>
+                        </div>
+                    </div>
 
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
-                            col-md-offset-3 col-lg-offset-3">
-              <AddSprint {...this.props} />
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+                    <div className="row">
+                        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                                        col-md-offset-3 col-lg-offset-3">
+                            <h2>
+                                ----
+                            </h2>
+                            <SprintList
+                                sprints={sprints}
+                            />
+                        </div>
+
+                        <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6
+                                        col-md-offset-3 col-lg-offset-3">
+                            <AddSprint {...this.props}/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sprints);
+export default Sprints;

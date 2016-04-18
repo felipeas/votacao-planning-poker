@@ -1,5 +1,7 @@
 var basicAuth = require('basic-auth');
 var db = require('./db');
+var mongoose = require('mongoose');
+var Usuario = mongoose.model('Usuario');
 
 module.exports = function (options) {
     options = options || {};
@@ -7,23 +9,24 @@ module.exports = function (options) {
     function auth(req, res, next) {
         var user = basicAuth(req);
 
+        console.log('auth');
+
         if (!user || !user.name || !user.pass) {
             return unauthorized(res, next);
         }
 
-        var query = 'SELECT * FROM usuarios WHERE login = $1 and senha = $2';
-
-        db.query(query, [user.name, user.pass], function (err, result) {
+        Usuario.findOne({email: user.name, senha: user.pass}, function(err, logou) {
             if (err) {
+                console.log(err);
                 return res.status(500).send(err);
             }
-
-            if (result.rowCount > 0) {
-                req.user = result.rows[0];
+            if (logou) {
+                console.log('usuario: ' + user.name + ' - autorizado');
+                req.user = logou
                 return next();
-            } else {
-                return unauthorized(res, next);
             }
+
+            return unauthorized(res, next);
         });
     }
 

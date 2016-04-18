@@ -22,7 +22,7 @@ export class Header extends Component {
               <div className="row">
                 <div className="col-xs-5 col-sm-3 col-md-3 col-lg-3 logo">
                   <Link to="/">
-                        Votação Planning Poker
+                    VPP
                   </Link>
                 </div>
 
@@ -51,7 +51,7 @@ export class Header extends Component {
                 </span>
 
                 <a onClick={this.handleLogoutClick.bind(this)}>
-                    Logout
+                    Sair
                 </a>
             </div>
         );
