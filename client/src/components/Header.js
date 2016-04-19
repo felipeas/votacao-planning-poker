@@ -16,51 +16,58 @@ export class Header extends Component {
     }
 
     render() {
-        return (
-          <header className={`${styles}`}>
-            <div className="container">
-              <div className="row">
-                <div className="col-xs-5 col-sm-3 col-md-3 col-lg-3 logo">
-                  <Link to="/home">
-                    <i className="nav-icon fa fa-linux pull-left fa-2x"></i>
-                    <span> Votação </span>
-                  </Link>
-                </div>
 
-                <div className="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-                  <nav>
-                    <Link to="/sprints" activeClassName="active">
-                      Sprints
-                    </Link>
-                  </nav>
+        return (
+            <header className={`${styles}`}>
+                <div className="container">
+                    <div className="row">
+                        <Link to="/home">
+                            <i className="nav-icon fa fa-space-shuttle pull-left"></i>
+                        </Link>
+                        <Link to="/home">
+                            <span className="titulo">Votacao</span>
+                        </Link>
+                        <div className="dropdown pull-right">
+                            <a type="button" id="menu1" data-toggle="dropdown">
+                                <i className="nav-icon fa fa-chevron-circle-down pull-right"></i>
+                            </a>
+                            <ul className="dropdown-menu pull-right">
+                                {this.props.usuario ? this.renderNomeLogado() : null}
+                                {this.props.usuario ? this.renderLogado() : this.renderDeslogado()}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                {this.props.usuario ? this.renderToolbarLogado() : this.renderToolbarDeslogado()}
-              </div>
-            </div>
           </header>
         );
     }
-    renderToolbarLogado () {
+    renderNomeLogado () {
         return(
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 hidden-xs text-right">
-                <span>
-                    {this.props.usuario.nome} |&nbsp;
-                </span>
-
-                <a onClick={this.handleLogoutClick.bind(this)}>
-                    Sair
-                </a>
-            </div>
+            <li>
+                <a>{this.props.usuario.nome}</a>
+            </li>
         );
     }
 
-    renderToolbarDeslogado () {
+    renderLogado () {
+        return(
+            <li>
+                <a onClick={this.handleLogoutClick.bind(this)}>
+                    <i className="fa fa-sign-out"></i>
+                    <span>Sair</span>
+                </a>
+            </li>
+        );
+    }
+
+    renderDeslogado () {
         return (
-            <div className="col-xs-12 col-sm-4 col-md-4 col-lg-4 hidden-xs text-right">
-              <Link to="/login">
-                Login
-              </Link>
-            </div>
+            <li>
+                <Link to="/login">
+                    <i className="fa fa-sign-in"></i>
+                    <a>Entrar</a>
+                </Link>
+            </li>
         );
     }
 }

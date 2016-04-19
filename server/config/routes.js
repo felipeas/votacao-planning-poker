@@ -21,22 +21,23 @@ module.exports = function(app, io) {
     //     votacao.add(req, res);
     //     io.sockets.emit('votacao change');
     // });
-    app.use('/api', api);
-
+    
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
 
-    app.get('/teste', function() {
-        console.log('teste');
-    });
+    // app.get('/teste', function() {
+    //     console.log('teste');
+    // });
 
-    app.post('/login', usuarios.login)(api);
-    app.post('/conta', usuarios.add)(api);
+    api.post('/login', usuarios.login);
+    api.post('/conta', usuarios.add);
 
-    app.post('/sprint', auth(), sprints.add)(api);
-    app.get('/sprints', auth(), sprints.all)(api);
-    app.delete('/sprints/:id', auth(), sprints.remove)(api);
+    api.post('/sprint', auth(), sprints.add);
+    api.get('/sprints', auth(), sprints.all);
+    api.delete('/sprints/:id', auth(), sprints.remove);
+
+    app.use('/api', api);
 
     // app.get('/api/sprints', votacao.all);
     // app.get('/api/sprints', votacao.add);

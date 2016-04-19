@@ -1,32 +1,25 @@
 :local(.styles) {
-    position: relative;
-    z-index: 1;
-
-    width: 100%;
-
-    padding: 20px 0;
-    opacity: 1;
-
-    background: rgba(0, 0, 0, .8);
+    margin-bottom: 0;
+    background-color: rgb(238, 238, 238);
+    color: rgb(68, 68, 68);
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+    border-bottom: 3px solid rgb(68, 68, 68);
 
     a, a:hover, span, span:hover {
-        color: #FFF;
-        vertical-align: middle;
+        color: rgb(60, 60, 60);
+        text-decoration: none;
+        cursor: pointer;
     }
 
-    .logo {
-        a {
-              font-weight: bold;
-        }
+    nav-icon {
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
 
-    nav {
-        a {
-              margin-right: 20px;
-
-              &.active {
-                font-weight: bold;
-              }
-        }
+    .dropdown ul {
+        font-size: 20px;
     }
 }
