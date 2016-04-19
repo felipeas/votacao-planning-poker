@@ -21,7 +21,7 @@ export class Sprints extends Component {
         const {
             sprints,
         } = this.props;
-
+        debugger;
         return (
             <section className={`${styles}`}>
                 <div className="container">

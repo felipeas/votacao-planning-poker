@@ -21,11 +21,8 @@ module.exports = function(app, io) {
     //     votacao.add(req, res);
     //     io.sockets.emit('votacao change');
     // });
-    
-    app.get('*', function (req, res) {
-      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
-    });
 
+    app.use('/api', api);
     // app.get('/teste', function() {
     //     console.log('teste');
     // });
@@ -33,11 +30,14 @@ module.exports = function(app, io) {
     api.post('/login', usuarios.login);
     api.post('/conta', usuarios.add);
 
-    api.post('/sprint', auth(), sprints.add);
     api.get('/sprints', auth(), sprints.all);
+    api.post('/sprints', auth(), sprints.add);
+
     api.delete('/sprints/:id', auth(), sprints.remove);
 
-    app.use('/api', api);
+    app.get('*', function (req, res) {
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+    });
 
     // app.get('/api/sprints', votacao.all);
     // app.get('/api/sprints', votacao.add);

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var _ = require('lodash');
 var Sprints = mongoose.model('Sprint');
 
 exports.all = function(req, res) {

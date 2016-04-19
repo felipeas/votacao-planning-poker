@@ -10,7 +10,7 @@ export class SprintList extends Component {
 
     render() {
         const { sprints } = this.props;
-
+        debugger;
         return (
             <div className={styles}>
                 {sprints.map((item, index) =>

@@ -5,13 +5,14 @@ export const SPRINT_LIST_SET = 'SPRINT_LIST_SET';
 import { get, post, put } from '../modules/api';
 
 export function carregarLista() {
+    debugger;
     return dispatch => get('sprints').then(lista => {
         dispatch(setarSprints(lista));
     });
 }
 
 export function addSprint(dados) {
-    return dispatch => post('sprint', dados).then(() => {
+    return dispatch => post('sprints', dados).then(() => {
        addSprintLista(dados);
     });
 }

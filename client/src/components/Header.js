@@ -22,7 +22,7 @@ export class Header extends Component {
                 <div className="container">
                     <div className="row">
                         <Link to="/home">
-                            <i className="nav-icon fa fa-space-shuttle pull-left"></i>
+                            <i className="nav-icon fa fa-bullseye pull-left"></i>
                         </Link>
                         <Link to="/home">
                             <span className="titulo">Votacao</span>
@@ -41,6 +41,7 @@ export class Header extends Component {
           </header>
         );
     }
+
     renderNomeLogado () {
         return(
             <li>
