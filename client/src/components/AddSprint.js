@@ -4,14 +4,10 @@ import { reset } from 'redux-form';
 import validate from '../modules/validate';
 import Textbox from '../components/Textbox';
 
-
 @reduxForm({
     form: 'addSprint',
     fields: ['nome'],
-    destroyOnUnmount: false,
-    validate: values => validate(values, {
-        nome: { presence: true },
-    })
+    destroyOnUnmount: false
 })
 export class AddSprint extends Component {
     static propTypes = {
@@ -40,19 +36,20 @@ export class AddSprint extends Component {
 
         return (
             <form onSubmit={this.onAdd}>
-                <Textbox
-                    field={nome}
-                    className='form-control'
-                    placeholder='Nome'
-                    autoFocus
-                />
-                <div className="form-group">
-                    <button className="btn btn-primary" onClick={this.onAdd}>
-                        Incluir
-                    </button>
+                <div className="input-group add-sprint">
+                    <Textbox
+                        field={nome}
+                        className='form-control'
+                        placeholder='Incluir nova sprint'
+                        autoFocus
+                    />
+                    <span className="input-group-btn">
+                        <a className="btn add-option" onClick={this.onAdd}>
+                            <i className="fa fa-plus"></i>
+                        </a>
+                    </span>
                 </div>
             </form>
-
         );
   }
 }

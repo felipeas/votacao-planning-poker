@@ -6,6 +6,7 @@ export function fazerLogin(email, senha) {
     return dispatch => post('login', { email, senha }).then(usuario => {
         localStorage.setItem('credentials', btoa(`${email}:${senha}`));
         dispatch(setUsuario(usuario));
+        dispatch(pushState(null, '/home'));
     });
 }
 

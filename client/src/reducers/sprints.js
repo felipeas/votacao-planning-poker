@@ -1,6 +1,6 @@
 import {
   SPRINT_ADD,
-  SPRINT_DEL,
+  SPRINT_END,
   SPRINT_LIST_SET,
 } from '../actions/sprint';
 
@@ -15,11 +15,12 @@ export default function(state = initialState, action) {
                 lista: action.lista
               });
         case SPRINT_ADD:
+            debugger;
             return Object.assign({}, state, {
                 lista: [...state.lista, action.sprint]
             });
 
-        case SPRINT_DEL:
+        case SPRINT_END:
             return {
                 ...state,
                 lista: [

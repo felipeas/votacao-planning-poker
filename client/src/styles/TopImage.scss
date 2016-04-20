@@ -1,16 +1,6 @@
 :local(.styles) {
-  position: relative;
-  background-size: 100% auto;
-
-  height: 500px;
-
-  h1.title {
-    color: #000;
-    font-size: 60px;
-    margin-top: 20%;
-  }
-
-  p {
-    color: #000;
-  }
+    vertical-align: middle;
+    padding: 40px;
+    text-align: center;
+    color: rgb(68, 68, 68);
 }

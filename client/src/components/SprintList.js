@@ -1,23 +1,34 @@
 import React, { Component } from 'react';
 
-/* component styles */
-import { styles } from '../styles/Sprint.scss';
-
 export class SprintList extends Component {
     static propTypes = {
         sprints: React.PropTypes.array,
     }
 
+    onEnd = (event) => {
+        if (this.props.values.nome) {
+          this.props.endSprint(this.props.values._);
+          this.props.dispatch(reset('endSprint'));
+        }
+        event.preventDefault();
+    };
+
     render() {
         const { sprints } = this.props;
-        debugger;
+        
         return (
-            <div className={styles}>
+            <div>
                 {sprints.map((item, index) =>
-                    <div className="checkbox" key={index} defaultChecked={item.encerrada}>
-                        <label>
-                            {`${item.nome}`}
-                        </label>
+                    <div className="row">
+                        <div className="sprint">
+                            <span>
+                                {`${item.nome}`}
+                            </span>
+                            <button className="btn add-option pull-right" onClick={this.onEnd}>
+                                <span>Encerrar&nbsp;</span>
+                                <i className="fa fa-close"></i>
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>

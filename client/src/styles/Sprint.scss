@@ -1,0 +1,17 @@
+:local(.styles) {
+    color: rgb(68, 68, 68);
+    padding: 10px;
+
+    h3 {
+        font-size: 24px;
+    }
+    .sprint {
+        padding:15px;
+        line-height: 30px;
+        width: 100%;
+        border-bottom: 2px dashed rgb(155, 155, 155);
+    }
+    .add-sprint {
+        margin-top: 15px;
+    }
+}

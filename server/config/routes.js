@@ -30,10 +30,11 @@ module.exports = function(app, io) {
     api.post('/login', usuarios.login);
     api.post('/conta', usuarios.add);
 
-    api.get('/sprints', auth(), sprints.all);
+    api.get('/sprints', auth(), sprints.get);
+    api.get('/sprints/all', auth(), sprints.all);
     api.post('/sprints', auth(), sprints.add);
 
-    api.delete('/sprints/:id', auth(), sprints.remove);
+    api.delete('/sprints/:id', auth(), sprints.encerrar);
 
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));

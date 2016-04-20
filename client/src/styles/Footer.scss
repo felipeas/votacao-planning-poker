@@ -1,0 +1,16 @@
+:local(.styles) {
+    span {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 25px;
+        background-color: #fff;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 40px;
+        color: rgb(68, 68, 68);
+        font-size: 18px;
+        border-top: 3px solid rgb(68, 68, 68);
+    }
+}

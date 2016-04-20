@@ -22,19 +22,11 @@ export class TopImage extends Component {
       <section className={`${styles}`}>
         <div className="container">
           <div className="row">
-            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                <h1 className="title">
-                    Votação Planning Poker
-                </h1>
-                <div col-sm-12 text-center>
-                    <blockquote>
-                        <p>
-                        "It hurts more if you think about it."
-                        <cite><small> Hooks, Cabal torturer</small></cite>
-                        </p>
-                    </blockquote>
-                </div>
-            </div>
+            <blockquote>
+                <p>
+                    "If there were such a thing as a soul, I think it would be behind the gallbladder but above the kidneys."
+                </p>
+            </blockquote>
           </div>
         </div>
       </section>
