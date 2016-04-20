@@ -8,7 +8,7 @@
     border-bottom: 3px solid rgb(68, 68, 68);
 
     a, a:hover, span, span:hover {
-        color: rgb(60, 60, 60);
+        color: rgb(9, 60, 60);
         text-decoration: none;
         cursor: pointer;
     }
@@ -21,5 +21,8 @@
 
     .dropdown ul {
         font-size: 20px;
+    }
+    fa-red {
+        color: red;
     }
 }

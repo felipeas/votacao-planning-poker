@@ -13,6 +13,6 @@ export function fazerLogout() {
     return dispatch => {
         localStorage.removeItem('credentials');
         dispatch(setUsuario(null));
-        dispatch(pushState(null, '/'));
+        dispatch(pushState(null, '/home'));
     };
 }

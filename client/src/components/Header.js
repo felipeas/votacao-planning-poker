@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link, pushState } from 'react-router';
 import { styles } from '../styles/Header.scss';
 
 export class Header extends Component {
@@ -65,8 +65,8 @@ export class Header extends Component {
         return (
             <li>
                 <Link to="/login">
-                    <i className="fa fa-sign-in"></i>
-                    <a>Entrar</a>
+                    <i className="fa fa-sign-in fa-red"></i>
+                    <span>&nbsp;Entrar</span>
                 </Link>
             </li>
         );
