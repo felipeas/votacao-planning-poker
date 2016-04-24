@@ -1,0 +1,38 @@
+:local(.styles) {
+    border-bottom: 2px solid rgb(68, 68, 68);
+    background-color: #f0f0f0;;
+    width:100%;
+    font-size: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+
+    a {
+        text-decoration: none !important;
+        text-transform: uppercase;
+        cursor:pointer;
+        color: rgb(68, 68, 68);
+    }
+    .nav-item {
+        text-align:center;
+        width: 120px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-left: 1px solid rgb(68, 68, 68);
+        border-right: 1px solid rgb(68, 68, 68);
+    }
+
+    .nav-item:first-of-type {
+        border-right: none;
+        border-left: none;
+    }
+
+    .nav-item:last-of-type {
+        border-left: none;
+        border-right: none;
+    }
+}

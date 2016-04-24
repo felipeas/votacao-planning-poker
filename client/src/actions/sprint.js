@@ -3,27 +3,28 @@ export const SPRINT_END = 'SPRINT_END';
 export const SPRINT_LIST_SET = 'SPRINT_LIST_SET';
 
 import { get, post, put, del } from '../modules/api';
+import { pushState } from 'redux-router';
 
 export function carregarLista() {
     return dispatch => get('sprints').then(lista => {
         dispatch(setarSprints(lista));
-        // dispatch(pushState(null, '/sprints'));
     });
 }
 
 export function addSprint(dados) {
     return dispatch => post('sprints', dados).then(() => {
-       addSprintLista(dados);
+        dispatch(pushState(null, '/sprints'));
     });
 }
 
 export function endSprint(id) {
     return dispatch => del(`sprints/${id}`).then(() => {
-       dispatch(setarSprints(lista));
+        dispatch(pushState(null, '/sprints'));
     });
 }
 
-export function endSprint(index) {
+export function removerSprintLista(index) {
+    debugger;
     return {
         type: SPRINT_END,
         index,
@@ -38,6 +39,7 @@ function setarSprints(lista) {
 }
 
 function addSprintLista(dados) {
+    debugger;
     return {
         type: SPRINT_ADD,
         dados

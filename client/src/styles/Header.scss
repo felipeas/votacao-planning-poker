@@ -3,9 +3,9 @@
     background-color: rgb(238, 238, 238);
     color: rgb(68, 68, 68);
     text-align: center;
-    font-size: 35px;
+    font-size: 30px;
     padding: 10px;
-    border-bottom: 3px solid rgb(68, 68, 68);
+    border-bottom: 2px solid rgb(68, 68, 68);
 
     a, a:hover, span, span:hover {
         color: rgb(9, 60, 60);
@@ -13,16 +13,25 @@
         cursor: pointer;
     }
 
-    nav-icon {
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-left: 10px;
+    .nav-icon {
+        padding-top: 5px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .logado {
+        colsor: green;
     }
 
     .dropdown ul {
         font-size: 20px;
     }
-    fa-red {
-        color: red;
+
+    .nav-items {
+        border-bottom: 2px solid rgb(68, 68, 68);
+        background-color: #fff;
+        font-size: 15px;
+        margin-left: 0;
+        margin-right: 0;
     }
 }

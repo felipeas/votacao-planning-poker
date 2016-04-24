@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link, pushState } from 'react-router';
 import { styles } from '../styles/Header.scss';
+import { Nav } from '../components/Header';
 
 export class Header extends Component {
     static propTypes = {
@@ -15,8 +16,21 @@ export class Header extends Component {
         this.props.onLogoutClick();
     }
 
-    render() {
+    handleEntrar(e){
+        this.pushState
+    }
 
+    iconeLogin(){
+        if (this.props.usuario){
+            return "nav-icon fa fa-user pull-right logado"
+        } else {
+            return "nav-icon fa fa-user pull-right"
+        }
+    }
+
+    render() {
+        const icone = this.iconeLogin();
+        const logado = this.props.usuario;
         return (
             <header className={`${styles}`}>
                 <div className="container">
@@ -25,15 +39,15 @@ export class Header extends Component {
                             <i className="nav-icon fa fa-bullseye pull-left"></i>
                         </Link>
                         <Link to="/home">
-                            <span className="titulo">Votacao</span>
+                            <span className="titulo">Planning Poker</span>
                         </Link>
                         <div className="dropdown pull-right">
                             <a type="button" id="menu1" data-toggle="dropdown">
-                                <i className="nav-icon fa fa-chevron-circle-down pull-right"></i>
+                                <i className={icone}></i>
                             </a>
                             <ul className="dropdown-menu pull-right">
-                                {this.props.usuario ? this.renderNomeLogado() : null}
-                                {this.props.usuario ? this.renderLogado() : this.renderDeslogado()}
+                                {logado ? this.renderNomeLogado() : null}
+                                {logado ? this.renderLogado() : this.renderDeslogado()}
                             </ul>
                         </div>
                     </div>
@@ -41,6 +55,8 @@ export class Header extends Component {
           </header>
         );
     }
+
+
 
     renderNomeLogado () {
         return(

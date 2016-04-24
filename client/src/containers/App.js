@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fazerLogout } from '../actions/login';
 import { Header } from '../components/Header';
+import { Nav } from '../components/Nav';
 import { Footer } from '../components/Footer';
 
 import '../styles/App.scss';
@@ -28,8 +29,10 @@ export class App extends Component {
             <section>
                 <Header
                     usuario={usuario}
-                    onLogoutClick={this.handleLogout.bind(this)}/>
-                    {children}
+                    onLogoutClick={this.handleLogout.bind(this)}
+                />
+                <Nav/>
+                {children}
                 <Footer/>
             </section>
         );

@@ -1,4 +1,9 @@
 body {
     margin: 0;
     font-family: 'Fira-sans', sans-serif;
+    display: flex;
+    height: 100%;
+    background-color:silver;
+    flex-direction: column;
+    flex: 1 0 auto; /* 2 */
 }

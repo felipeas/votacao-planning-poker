@@ -26,15 +26,7 @@ export class Sprints extends Component {
             <section className={`${styles}`}>
                 <div className="container">
                     <div className="row">
-                        <h3>
-                            Sprints Ativas
-                        </h3>
-                    </div>
-
-                    <div className="row">
-                        <SprintList
-                            sprints={sprints}
-                        />
+                        <SprintList {...this.props}/>
                         <AddSprint {...this.props}/>
                     </div>
                 </div>

@@ -3,10 +3,9 @@ var _ = require('lodash');
 var Sprints = mongoose.model('Sprint');
 
 exports.get = function(req, res) {
-    console.log('listar sprints');
     Sprints.find({encerrada: false}).exec(function(err, sprints) {
         if(!err) {
-            console.log('listou sprints');
+            console.log('sprints listadas');
             res.json(sprints);
         } else {
             console.log('deu pau');
@@ -16,10 +15,9 @@ exports.get = function(req, res) {
 }
 
 exports.all = function(req, res) {
-    console.log('listar sprints');
     Sprints.find({}).exec(function(err, sprints) {
         if(!err) {
-            console.log('listou sprints');
+            console.log('sprints listadas todas');
             res.json(sprints);
         } else {
             console.log('deu pau');
@@ -29,8 +27,7 @@ exports.all = function(req, res) {
 }
 
 exports.add = function(req, res) {
-    console.log('incluindo sprint: ' + req.body.nome);
-    Sprints.findOne({nome: req.body.nome}, function(err, existente) {
+    Sprints.findOne({nome: req.body.nome, encerrada: false}, function(err, existente) {
         if (err) {
             console.log('erro incluir sprint');
             return res.status(500).send(err);
@@ -45,22 +42,20 @@ exports.add = function(req, res) {
                 console.log(err);
                 return res.status(400).send(err);
             }
-            return res.status(200).send('sprint incluida');
+            console.log('incluida sprint: ' + req.body.nome);
+            return res.status(201).send();
         });
     });
 };
 
 exports.encerrar = function(req, res) {
-    var query = { id: req.body.id };
-    var dados = _.omit(req.body, omitKeys);
+    var query = { _id: req.params.id };
 
-    dados.encerrada = true;
-
-    Sprints.findOneAndUpdate(query, dados, function(err, data) {
+    Sprints.findOneAndUpdate(query, {$set:{encerrada:true}}, {new: true}, function(err, data) {
         if(err) {
-            console.log('deu pau')
+            console.log(err);
         };
 
-        res.status(200).send('sprint encerrada');
+        res.status(201).send();
     });
 };

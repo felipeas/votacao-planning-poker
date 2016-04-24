@@ -5,13 +5,9 @@ export class SprintList extends Component {
         sprints: React.PropTypes.array,
     }
 
-    onEnd = (event) => {
-        if (this.props.values.nome) {
-          this.props.endSprint(this.props.values._);
-          this.props.dispatch(reset('endSprint'));
-        }
-        event.preventDefault();
-    };
+    handleOnEnd(id) {
+        this.props.endSprint(id);
+    }
 
     render() {
         const { sprints } = this.props;
@@ -19,12 +15,12 @@ export class SprintList extends Component {
         return (
             <div>
                 {sprints.map((item, index) =>
-                    <div className="row">
+                    <div className="row" key={index}>
                         <div className="sprint">
                             <span>
                                 {`${item.nome}`}
                             </span>
-                            <button className="btn add-option pull-right" onClick={this.onEnd}>
+                            <button className="btn add-option pull-right" onClick={this.handleOnEnd.bind(this,item._id)}>
                                 <span>Encerrar&nbsp;</span>
                                 <i className="fa fa-close"></i>
                             </button>

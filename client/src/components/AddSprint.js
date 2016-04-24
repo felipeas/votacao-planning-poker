@@ -41,7 +41,7 @@ export class AddSprint extends Component {
                         field={nome}
                         className='form-control'
                         placeholder='Incluir nova sprint'
-                        autoFocus
+                        label=''
                     />
                     <span className="input-group-btn">
                         <a className="btn add-option" onClick={this.onAdd}>
@@ -51,7 +51,7 @@ export class AddSprint extends Component {
                 </div>
             </form>
         );
-  }
+    }
 }
 
 export default AddSprint;
