@@ -7,7 +7,6 @@ var Voto = new mongoose.Schema({
 });
 
 var VotacaoSchema = new mongoose.Schema({
-    id: String,
     criacao: { type: Date, default: Date.now },
     votos: [Voto],
 });

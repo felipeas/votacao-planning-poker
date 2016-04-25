@@ -13,12 +13,12 @@ export class Nav extends Component {
                 </div>
                 <div className="nav-item">
                     <Link to="/sprints">
-                        Sprints
+                        Estórias
                     </Link>
                 </div>
                 <div className="nav-item">
                     <Link to="/sprints">
-                        Sprints
+                        Votação
                     </Link>
                 </div>
             </nav>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 export class SprintList extends Component {
     static propTypes = {
@@ -11,16 +12,17 @@ export class SprintList extends Component {
 
     render() {
         const { sprints } = this.props;
-        
+
         return (
             <div>
                 {sprints.map((item, index) =>
                     <div className="row" key={index}>
                         <div className="sprint">
-                            <span>
+                            <Link to={`/sprint/${item._id}`}>
                                 {`${item.nome}`}
-                            </span>
-                            <button className="btn add-option pull-right" onClick={this.handleOnEnd.bind(this,item._id)}>
+                            </Link>
+                            
+                            <button className="btn btn-danger add-option pull-right" onClick={this.handleOnEnd.bind(this,item._id)}>
                                 <span>Encerrar&nbsp;</span>
                                 <i className="fa fa-close"></i>
                             </button>

@@ -12702,11 +12702,11 @@ webpackJsonp([0],{
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _routes = __webpack_require__(334);
+	var _routes = __webpack_require__(335);
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _actionsLogin = __webpack_require__(336);
+	var _actionsLogin = __webpack_require__(337);
 
 	var _actionsSprint = __webpack_require__(329);
 
@@ -12988,8 +12988,6 @@ webpackJsonp([0],{
 
 	var _reduxForm = __webpack_require__(286);
 
-	//import { items } from './items';
-
 	var _app = __webpack_require__(326);
 
 	var _app2 = _interopRequireDefault(_app);
@@ -12998,11 +12996,16 @@ webpackJsonp([0],{
 
 	var _sprints2 = _interopRequireDefault(_sprints);
 
+	var _votacao = __webpack_require__(334);
+
+	var _votacao2 = _interopRequireDefault(_votacao);
+
 	var rootReducer = _redux.combineReducers({
 	    router: _reduxRouter.routerStateReducer,
 	    form: _reduxForm.reducer,
 	    app: _app2['default'],
-	    sprints: _sprints2['default']
+	    sprints: _sprints2['default'],
+	    votacao: _votacao2['default']
 	});
 
 	exports['default'] = rootReducer;
@@ -13292,6 +13295,49 @@ webpackJsonp([0],{
 
 	exports.__esModule = true;
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _actionsSprint = __webpack_require__(329);
+
+	var initialState = {
+	    estorias: []
+	};
+
+	exports['default'] = function (state, action) {
+	    if (state === undefined) state = initialState;
+
+	    switch (action.type) {
+	        case _actionsSprint.SPRINT_LIST_SET:
+	            return Object.assign({}, state, {
+	                estorias: action.estorias
+	            });
+	        case _actionsSprint.SPRINT_ADD:
+	            debugger;
+	            return Object.assign({}, state, {
+	                estorias: [].concat(state.estorias, [action.sprint])
+	            });
+
+	        case _actionsSprint.SPRINT_END:
+	            return _extends({}, state, {
+	                estorias: [].concat(state.estorias.slice(0, action.index), state.estorias.slice(+action.index + 1))
+	            });
+
+	        default:
+	            return state;
+	    }
+	};
+
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 335:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var _react = __webpack_require__(27);
@@ -13302,23 +13348,26 @@ webpackJsonp([0],{
 
 	/* containers */
 
-	var _containersApp = __webpack_require__(335);
+	var _containersApp = __webpack_require__(336);
 
-	var _containersHome = __webpack_require__(348);
+	var _containersHome = __webpack_require__(349);
 
-	var _containersSprints = __webpack_require__(355);
+	var _containersSprints = __webpack_require__(356);
 
-	var _containersTeste = __webpack_require__(366);
+	var _containersVotacao = __webpack_require__(367);
 
-	var _containersLogin = __webpack_require__(369);
+	var _containersTeste = __webpack_require__(371);
 
-	var _containersConta = __webpack_require__(372);
+	var _containersLogin = __webpack_require__(374);
+
+	var _containersConta = __webpack_require__(377);
 
 	exports['default'] = _react2['default'].createElement(
 	  _reactRouter.Route,
 	  { path: '/', component: _containersApp.App },
 	  _react2['default'].createElement(_reactRouter.IndexRoute, { component: _containersHome.Home }),
 	  _react2['default'].createElement(_reactRouter.Route, { path: 'sprints', component: _containersSprints.Sprints }),
+	  _react2['default'].createElement(_reactRouter.Route, { path: '/sprint/:sprintId', component: _containersVotacao.Votacao }),
 	  _react2['default'].createElement(_reactRouter.Route, { path: 'home', component: _containersHome.Home }),
 	  _react2['default'].createElement(_reactRouter.Route, { path: 'teste', component: _containersTeste.Teste }),
 	  _react2['default'].createElement(_reactRouter.Route, { path: 'login', component: _containersLogin.Login }),
@@ -13328,7 +13377,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 335:
+/***/ 336:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13349,15 +13398,15 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _actionsLogin = __webpack_require__(336);
+	var _actionsLogin = __webpack_require__(337);
 
-	var _componentsHeader = __webpack_require__(337);
+	var _componentsHeader = __webpack_require__(338);
 
-	var _componentsNav = __webpack_require__(340);
+	var _componentsNav = __webpack_require__(341);
 
-	var _componentsFooter = __webpack_require__(343);
+	var _componentsFooter = __webpack_require__(344);
 
-	__webpack_require__(346);
+	__webpack_require__(347);
 
 	var App = (function (_Component) {
 	    _inherits(App, _Component);
@@ -13412,7 +13461,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 336:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13447,7 +13496,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 337:
+/***/ 338:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13468,9 +13517,9 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _stylesHeaderScss = __webpack_require__(338);
+	var _stylesHeaderScss = __webpack_require__(339);
 
-	var _componentsHeader = __webpack_require__(337);
+	var _componentsHeader = __webpack_require__(338);
 
 	var Header = (function (_Component) {
 	    _inherits(Header, _Component);
@@ -13609,13 +13658,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 338:
+/***/ 339:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(339);
+	var content = __webpack_require__(340);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13636,7 +13685,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 339:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13647,7 +13696,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 340:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13666,7 +13715,7 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _stylesNavScss = __webpack_require__(341);
+	var _stylesNavScss = __webpack_require__(342);
 
 	var Nav = (function (_Component) {
 	    _inherits(Nav, _Component);
@@ -13696,7 +13745,7 @@ webpackJsonp([0],{
 	                _react2['default'].createElement(
 	                    _reactRouter.Link,
 	                    { to: '/sprints' },
-	                    'Sprints'
+	                    'Estórias'
 	                )
 	            ),
 	            _react2['default'].createElement(
@@ -13705,7 +13754,7 @@ webpackJsonp([0],{
 	                _react2['default'].createElement(
 	                    _reactRouter.Link,
 	                    { to: '/sprints' },
-	                    'Sprints'
+	                    'Votação'
 	                )
 	            )
 	        );
@@ -13718,13 +13767,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 341:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(342);
+	var content = __webpack_require__(343);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13745,18 +13794,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 342:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
 	exports.locals = {
 	  "styles": "UATnktVRuA72ekaKRzU46"
 	};
-	exports.push([module.id, ".UATnktVRuA72ekaKRzU46 {\n  border-bottom: 2px solid #444444;\n  background-color: #f0f0f0;\n  width: 100%;\n  font-size: 15px;\n  margin-left: 0;\n  margin-right: 0;\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n  padding: 0;\n  margin: 0; }\n  .UATnktVRuA72ekaKRzU46 a {\n    text-decoration: none !important;\n    text-transform: uppercase;\n    cursor: pointer;\n    color: #444444; }\n  .UATnktVRuA72ekaKRzU46 .nav-item {\n    text-align: center;\n    width: 120px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    border-left: 1px solid #444444;\n    border-right: 1px solid #444444; }\n  .UATnktVRuA72ekaKRzU46 .nav-item:first-of-type {\n    border-right: none;\n    border-left: none; }\n  .UATnktVRuA72ekaKRzU46 .nav-item:last-of-type {\n    border-left: none;\n    border-right: none; }\n", ""]);
+	exports.push([module.id, ".UATnktVRuA72ekaKRzU46 {\n  border-bottom: 2px solid #444444;\n  background-color: #f0f0f0;\n  width: 100%;\n  font-size: 15px;\n  margin-left: 0;\n  margin-right: 0;\n  display: flex;\n  flex-flow: row wrap;\n  justify-content: center;\n  padding: 0;\n  margin: 0; }\n  .UATnktVRuA72ekaKRzU46 a {\n    text-decoration: none !important;\n    text-transform: uppercase;\n    font-weight: bold;\n    cursor: pointer;\n    color: #444444; }\n  .UATnktVRuA72ekaKRzU46 .nav-item {\n    text-align: center;\n    width: 120px;\n    padding-top: 10px;\n    padding-bottom: 10px;\n    border-left: 1px solid #444444;\n    border-right: 1px solid #444444; }\n  .UATnktVRuA72ekaKRzU46 .nav-item:first-of-type {\n    border-right: none;\n    border-left: none; }\n  .UATnktVRuA72ekaKRzU46 .nav-item:last-of-type {\n    border-left: none;\n    border-right: none; }\n", ""]);
 
 /***/ },
 
-/***/ 343:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13775,7 +13824,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesFooterScss = __webpack_require__(344);
+	var _stylesFooterScss = __webpack_require__(345);
 
 	var Footer = (function (_Component) {
 	    _inherits(Footer, _Component);
@@ -13805,13 +13854,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 344:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(345);
+	var content = __webpack_require__(346);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13832,7 +13881,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 345:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13843,13 +13892,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 346:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(347);
+	var content = __webpack_require__(348);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13870,15 +13919,15 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 347:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
-	exports.push([module.id, "body {\n  margin: 0;\n  font-family: 'Fira-sans', sans-serif;\n  display: flex;\n  height: 100%;\n  background-color: silver;\n  flex-direction: column;\n  flex: 1 0 auto;\n  /* 2 */ }\n", ""]);
+	exports.push([module.id, "body {\n  margin: 0;\n  font-family: 'Fira-sans', sans-serif;\n  display: flex;\n  height: 100%;\n  background-color: LightGray;\n  flex-direction: column;\n  flex: 1 0 auto;\n  /* 2 */ }\n", ""]);
 
 /***/ },
 
-/***/ 348:
+/***/ 349:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13897,9 +13946,9 @@ webpackJsonp([0],{
 
 	/* components */
 
-	var _componentsTopImage = __webpack_require__(349);
+	var _componentsTopImage = __webpack_require__(350);
 
-	var _componentsTools = __webpack_require__(352);
+	var _componentsTools = __webpack_require__(353);
 
 	var Home = (function (_Component) {
 	    _inherits(Home, _Component);
@@ -13926,7 +13975,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 349:
+/***/ 350:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13945,7 +13994,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesTopImageScss = __webpack_require__(350);
+	var _stylesTopImageScss = __webpack_require__(351);
 
 	var TopImage = (function (_Component) {
 	  _inherits(TopImage, _Component);
@@ -13991,13 +14040,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 350:
+/***/ 351:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(351);
+	var content = __webpack_require__(352);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14018,7 +14067,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 351:
+/***/ 352:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14029,7 +14078,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 352:
+/***/ 353:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14048,7 +14097,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesToolsScss = __webpack_require__(353);
+	var _stylesToolsScss = __webpack_require__(354);
 
 	var Tools = (function (_Component) {
 	    _inherits(Tools, _Component);
@@ -14070,13 +14119,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 353:
+/***/ 354:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(354);
+	var content = __webpack_require__(355);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14097,7 +14146,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 354:
+/***/ 355:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14105,7 +14154,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 355:
+/***/ 356:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14128,15 +14177,15 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _componentsSprintList = __webpack_require__(356);
+	var _componentsSprintList = __webpack_require__(357);
 
-	var _componentsAddSprint = __webpack_require__(357);
+	var _componentsAddSprint = __webpack_require__(358);
 
 	var _actionsSprint = __webpack_require__(329);
 
 	var actionCreators = _interopRequireWildcard(_actionsSprint);
 
-	var _stylesSprintScss = __webpack_require__(364);
+	var _stylesSprintScss = __webpack_require__(365);
 
 	var Sprints = (function (_Component) {
 	    _inherits(Sprints, _Component);
@@ -14186,24 +14235,26 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 356:
+/***/ 357:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	exports.__esModule = true;
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(27);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(206);
 
 	var SprintList = (function (_Component) {
 	    _inherits(SprintList, _Component);
@@ -14223,30 +14274,30 @@ webpackJsonp([0],{
 
 	        var sprints = this.props.sprints;
 
-	        return _react2["default"].createElement(
-	            "div",
+	        return _react2['default'].createElement(
+	            'div',
 	            null,
 	            sprints.map(function (item, index) {
-	                return _react2["default"].createElement(
-	                    "div",
-	                    { className: "row", key: index },
-	                    _react2["default"].createElement(
-	                        "div",
-	                        { className: "sprint" },
-	                        _react2["default"].createElement(
-	                            "span",
-	                            null,
-	                            "" + item.nome
+	                return _react2['default'].createElement(
+	                    'div',
+	                    { className: 'row', key: index },
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'sprint' },
+	                        _react2['default'].createElement(
+	                            _reactRouter.Link,
+	                            { to: '/sprint/' + item._id },
+	                            '' + item.nome
 	                        ),
-	                        _react2["default"].createElement(
-	                            "button",
-	                            { className: "btn add-option pull-right", onClick: _this.handleOnEnd.bind(_this, item._id) },
-	                            _react2["default"].createElement(
-	                                "span",
+	                        _react2['default'].createElement(
+	                            'button',
+	                            { className: 'btn btn-danger add-option pull-right', onClick: _this.handleOnEnd.bind(_this, item._id) },
+	                            _react2['default'].createElement(
+	                                'span',
 	                                null,
-	                                "Encerrar "
+	                                'Encerrar '
 	                            ),
-	                            _react2["default"].createElement("i", { className: "fa fa-close" })
+	                            _react2['default'].createElement('i', { className: 'fa fa-close' })
 	                        )
 	                    )
 	                );
@@ -14255,9 +14306,9 @@ webpackJsonp([0],{
 	    };
 
 	    _createClass(SprintList, null, [{
-	        key: "propTypes",
+	        key: 'propTypes',
 	        value: {
-	            sprints: _react2["default"].PropTypes.array
+	            sprints: _react2['default'].PropTypes.array
 	        },
 	        enumerable: true
 	    }]);
@@ -14266,11 +14317,11 @@ webpackJsonp([0],{
 	})(_react.Component);
 
 	exports.SprintList = SprintList;
-	exports["default"] = SprintList;
+	exports['default'] = SprintList;
 
 /***/ },
 
-/***/ 357:
+/***/ 358:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14291,11 +14342,11 @@ webpackJsonp([0],{
 
 	var _reduxForm = __webpack_require__(286);
 
-	var _modulesValidate = __webpack_require__(358);
+	var _modulesValidate = __webpack_require__(359);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _componentsTextbox = __webpack_require__(362);
+	var _componentsTextbox = __webpack_require__(363);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -14371,14 +14422,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 358:
+/***/ 359:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _validateJs = __webpack_require__(359);
+	var _validateJs = __webpack_require__(360);
 
 	_validateJs.validate.options = { fullMessages: false };
 	_validateJs.validate.validators.presence.options = { message: 'Campo obrigatório.' };
@@ -14393,7 +14444,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 362:
+/***/ 363:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14414,7 +14465,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(363);
+	var _classnames = __webpack_require__(364);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -14479,13 +14530,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 364:
+/***/ 365:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(365);
+	var content = __webpack_require__(366);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14506,18 +14557,387 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 365:
+/***/ 366:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
 	exports.locals = {
 	  "styles": "_2qMzoArJrKwrT6LfLghXGS"
 	};
-	exports.push([module.id, "._2qMzoArJrKwrT6LfLghXGS {\n  color: #444444;\n  padding: 10px; }\n  ._2qMzoArJrKwrT6LfLghXGS h3 {\n    font-size: 24px; }\n  ._2qMzoArJrKwrT6LfLghXGS .sprint {\n    padding: 15px;\n    line-height: 30px;\n    width: 100%;\n    border-bottom: 2px dashed #9b9b9b; }\n  ._2qMzoArJrKwrT6LfLghXGS .add-sprint {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n", ""]);
+	exports.push([module.id, "._2qMzoArJrKwrT6LfLghXGS {\n  color: #444444;\n  padding: 10px; }\n  ._2qMzoArJrKwrT6LfLghXGS h3 {\n    font-size: 24px; }\n  ._2qMzoArJrKwrT6LfLghXGS .sprint {\n    margin: 5px;\n    background-color: white;\n    padding: 15px;\n    line-height: 30px;\n    width: 100%;\n    border-bottom: 2px dashed #9b9b9b; }\n    ._2qMzoArJrKwrT6LfLghXGS .sprint a {\n      color: #444444;\n      text-decoration: none; }\n  ._2qMzoArJrKwrT6LfLghXGS .add-sprint {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n", ""]);
 
 /***/ },
 
-/***/ 366:
+/***/ 367:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(27);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _redux = __webpack_require__(191);
+
+	var _reactRedux = __webpack_require__(185);
+
+	var _componentsVotacaoList = __webpack_require__(368);
+
+	var _componentsAddEstoria = __webpack_require__(369);
+
+	var _actionsVotacao = __webpack_require__(370);
+
+	var actionCreators = _interopRequireWildcard(_actionsVotacao);
+
+	var _stylesSprintScss = __webpack_require__(365);
+
+	var Votacao = (function (_Component) {
+	    _inherits(Votacao, _Component);
+
+	    function Votacao() {
+	        _classCallCheck(this, _Votacao);
+
+	        _Component.apply(this, arguments);
+	    }
+
+	    Votacao.prototype.componentDidMount = function componentDidMount() {
+	        this.props.carregarVotacao();
+	    };
+
+	    Votacao.prototype.render = function render() {
+	        var estorias = this.props.estorias;
+
+	        return _react2['default'].createElement(
+	            'section',
+	            { className: '' + _stylesSprintScss.styles },
+	            _react2['default'].createElement(
+	                'span',
+	                null,
+	                this.props.params.sprintId
+	            ),
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'container' },
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'row' },
+	                    _react2['default'].createElement(_componentsVotacaoList.VotacaoList, this.props),
+	                    _react2['default'].createElement(_componentsAddEstoria.AddEstoria, this.props)
+	                )
+	            )
+	        );
+	    };
+
+	    var _Votacao = Votacao;
+	    Votacao = _reactRedux.connect(function (state) {
+	        return {
+	            estorias: state.votacao.estorias
+	        };
+	    }, function (dispatch) {
+	        return _redux.bindActionCreators(actionCreators, dispatch);
+	    })(Votacao) || Votacao;
+	    return Votacao;
+	})(_react.Component);
+
+	exports.Votacao = Votacao;
+	exports['default'] = Votacao;
+
+/***/ },
+
+/***/ 368:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(27);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var VotacaoList = (function (_Component) {
+	    _inherits(VotacaoList, _Component);
+
+	    function VotacaoList() {
+	        _classCallCheck(this, VotacaoList);
+
+	        _Component.apply(this, arguments);
+	    }
+
+	    VotacaoList.prototype.render = function render() {
+	        var estorias = this.props.estorias;
+
+	        return _react2["default"].createElement(
+	            "div",
+	            null,
+	            estorias.map(function (item, index) {
+	                return _react2["default"].createElement(
+	                    "div",
+	                    { className: "row", key: index },
+	                    _react2["default"].createElement(
+	                        "div",
+	                        { className: "estoria" },
+	                        _react2["default"].createElement(
+	                            "span",
+	                            null,
+	                            "" + item.nome
+	                        ),
+	                        _react2["default"].createElement(
+	                            "div",
+	                            { className: "pull-right" },
+	                            _react2["default"].createElement(
+	                                "span",
+	                                null,
+	                                "12 "
+	                            ),
+	                            _react2["default"].createElement("i", { className: "fa fa-terminal" })
+	                        )
+	                    )
+	                );
+	            })
+	        );
+	    };
+
+	    _createClass(VotacaoList, null, [{
+	        key: "propTypes",
+	        value: {
+	            estorias: _react2["default"].PropTypes.array
+	        },
+	        enumerable: true
+	    }]);
+
+	    return VotacaoList;
+	})(_react.Component);
+
+	exports.VotacaoList = VotacaoList;
+	exports["default"] = VotacaoList;
+
+	// {item.estorias.map((item, index) =>
+	//     <div className="tarefa">
+	//         <span>
+	//             {`${item.nome}`}
+	//         </span>
+	//         <div className="pull-right">
+	//             <span>12&nbsp;</span>
+	//             <i className="fa fa-terminal"></i>
+	//         </div>
+	//     </div>
+	// )}
+
+/***/ },
+
+/***/ 369:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(27);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reduxForm = __webpack_require__(286);
+
+	var _modulesValidate = __webpack_require__(359);
+
+	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
+
+	var _componentsTextbox = __webpack_require__(363);
+
+	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
+
+	var AddEstoria = (function (_Component) {
+	    _inherits(AddEstoria, _Component);
+
+	    _createClass(AddEstoria, null, [{
+	        key: 'propTypes',
+	        value: {
+	            dispatch: _react2['default'].PropTypes.func,
+	            fields: _react2['default'].PropTypes.object.isRequired,
+	            sprints: _react2['default'].PropTypes.array,
+	            addEstoria: _react2['default'].PropTypes.func
+	        },
+	        enumerable: true
+	    }]);
+
+	    function AddEstoria(props) {
+	        var _this = this;
+
+	        _classCallCheck(this, _AddEstoria);
+
+	        _Component.call(this, props);
+
+	        this.onAdd = function (event) {
+	            if (_this.props.values.nome) {
+	                _this.props.addEstoria(_this.props.params.sprintId, _this.props.values);
+	                _this.props.dispatch(_reduxForm.reset('addEstoria'));
+	            }
+	            event.preventDefault();
+	        };
+	    }
+
+	    AddEstoria.prototype.render = function render() {
+	        var nome = this.props.fields.nome;
+
+	        return _react2['default'].createElement(
+	            'form',
+	            { onSubmit: this.onAdd },
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'input-group add-sprint' },
+	                _react2['default'].createElement(_componentsTextbox2['default'], {
+	                    field: nome,
+	                    className: 'form-control',
+	                    placeholder: 'Incluir nova estória',
+	                    label: ''
+	                }),
+	                _react2['default'].createElement(
+	                    'span',
+	                    { className: 'input-group-btn' },
+	                    _react2['default'].createElement(
+	                        'a',
+	                        { className: 'btn add-option', onClick: this.onAdd },
+	                        _react2['default'].createElement('i', { className: 'fa fa-plus' })
+	                    )
+	                )
+	            )
+	        );
+	    };
+
+	    var _AddEstoria = AddEstoria;
+	    AddEstoria = _reduxForm.reduxForm({
+	        form: 'addEstoria',
+	        fields: ['nome'],
+	        destroyOnUnmount: false
+	    })(AddEstoria) || AddEstoria;
+	    return AddEstoria;
+	})(_react.Component);
+
+	exports.AddEstoria = AddEstoria;
+	exports['default'] = AddEstoria;
+
+/***/ },
+
+/***/ 370:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	exports.carregarVotacao = carregarVotacao;
+	exports.addEstoria = addEstoria;
+	exports.addTarefa = addTarefa;
+	exports.addVoto = addVoto;
+	exports.endSprint = endSprint;
+	exports.removerSprintLista = removerSprintLista;
+
+	var _modulesApi = __webpack_require__(330);
+
+	var _reduxRouter = __webpack_require__(273);
+
+	var SPRINT_ADD = 'SPRINT_ADD';
+	exports.SPRINT_ADD = SPRINT_ADD;
+	var SPRINT_END = 'SPRINT_END';
+	exports.SPRINT_END = SPRINT_END;
+	var SPRINT_LIST_SET = 'SPRINT_LIST_SET';
+
+	exports.SPRINT_LIST_SET = SPRINT_LIST_SET;
+
+	function carregarVotacao() {
+	    return function (dispatch) {
+	        return _modulesApi.get('votacao').then(function (lista) {
+	            dispatch(setarVotacao(lista));
+	        });
+	    };
+	}
+
+	function addEstoria(sprintId, dados) {
+	    dados.sprint_id = sprintId;
+	    return function (dispatch) {
+	        return _modulesApi.post('estorias', dados).then(function () {
+	            dispatch(_reduxRouter.pushState(null, '/sprints'));
+	        });
+	    };
+	}
+
+	function addTarefa(estoriaId, dados) {
+	    dados.estoria_id = estoriaId;
+	    return function (dispatch) {
+	        return _modulesApi.post('estorias', dados).then(function () {
+	            dispatch(_reduxRouter.pushState(null, '/sprints'));
+	        });
+	    };
+	}
+
+	function addVoto(dados) {
+	    return function (dispatch) {
+	        return _modulesApi.post('voto', dados).then(function () {
+	            dispatch(_reduxRouter.pushState(null, '/sprints'));
+	        });
+	    };
+	}
+
+	function endSprint(id) {
+	    return function (dispatch) {
+	        return _modulesApi.del('votacao/' + id).then(function () {
+	            dispatch(_reduxRouter.pushState(null, '/votacao'));
+	        });
+	    };
+	}
+
+	function removerSprintLista(index) {
+	    debugger;
+	    return {
+	        type: SPRINT_END,
+	        index: index
+	    };
+	}
+
+	function setarVotacao(lista) {
+	    return {
+	        type: SPRINT_LIST_SET,
+	        lista: lista
+	    };
+	}
+
+	function addEstoriaLista(dados) {
+	    debugger;
+	    return {
+	        type: SPRINT_ADD,
+	        dados: dados
+	    };
+	}
+
+/***/ },
+
+/***/ 371:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14536,7 +14956,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesTesteScss = __webpack_require__(367);
+	var _stylesTesteScss = __webpack_require__(372);
 
 	var Teste = (function (_Component) {
 	    _inherits(Teste, _Component);
@@ -14578,13 +14998,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 367:
+/***/ 372:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(368);
+	var content = __webpack_require__(373);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14605,7 +15025,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 368:
+/***/ 373:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14616,7 +15036,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 369:
+/***/ 374:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14635,7 +15055,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTextbox = __webpack_require__(362);
+	var _componentsTextbox = __webpack_require__(363);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -14643,11 +15063,11 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _actionsLogin = __webpack_require__(336);
+	var _actionsLogin = __webpack_require__(337);
 
 	var _reduxForm = __webpack_require__(286);
 
-	var _stylesContaScss = __webpack_require__(370);
+	var _stylesContaScss = __webpack_require__(375);
 
 	var Login = (function (_Component) {
 	    _inherits(Login, _Component);
@@ -14740,13 +15160,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 370:
+/***/ 375:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(371);
+	var content = __webpack_require__(376);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14767,7 +15187,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 371:
+/***/ 376:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14775,7 +15195,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 372:
+/***/ 377:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14794,7 +15214,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTextbox = __webpack_require__(362);
+	var _componentsTextbox = __webpack_require__(363);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -14802,15 +15222,15 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _actionsConta = __webpack_require__(373);
+	var _actionsConta = __webpack_require__(378);
 
 	var _reduxForm = __webpack_require__(286);
 
-	var _modulesValidate = __webpack_require__(358);
+	var _modulesValidate = __webpack_require__(359);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _stylesContaScss = __webpack_require__(370);
+	var _stylesContaScss = __webpack_require__(375);
 
 	var Conta = (function (_Component) {
 	    _inherits(Conta, _Component);
@@ -14912,7 +15332,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 373:
+/***/ 378:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14924,7 +15344,7 @@ webpackJsonp([0],{
 
 	var _modulesApi = __webpack_require__(330);
 
-	var _login = __webpack_require__(336);
+	var _login = __webpack_require__(337);
 
 	function criarConta(dados) {
 	    return function (dispatch) {
