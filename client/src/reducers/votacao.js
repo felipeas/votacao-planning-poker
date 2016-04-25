@@ -5,7 +5,7 @@ import {
 } from '../actions/sprint';
 
 const initialState = {
-    estorias: [],
+    estorias: [{nome: "1 - LALALAL", tarefas: [{nome: "tarefa 1"},{nome: "tarefa 2"}]}],
 };
 
 export default function(state = initialState, action) {
