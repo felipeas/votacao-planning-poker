@@ -5,7 +5,20 @@ import {
 } from '../actions/votacao';
 
 const initialState = {
-    estorias: [{nome: "1 - LALALAL", tarefas: [{nome: "tarefa 1"},{nome: "tarefa 2"}]}],
+    estorias: [
+        {nome: "1 - LALALAL", 
+            tarefas: [
+                {nome: "tarefa 1"},
+                {nome: "tarefa 2"}
+            ]
+        },
+        {nome: "2 - Heheheh",
+            tarefas: [
+                {nome: "123cc"},
+                {nome: "123cC"}
+            ]    
+        }
+    ],
 };
 
 export default function(state = initialState, action) {

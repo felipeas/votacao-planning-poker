@@ -5,15 +5,6 @@ export class VotacaoList extends Component {
     static propTypes = {
         estorias: React.PropTypes.array,
     }
-    
-    criarEstoria(item, index) {
-        return (
-            <Estoria 
-                key={index}
-                nome={item.nome}
-                tarefas={item.tarefas}
-            />);
-    }
        
     render() {
         const { estorias } = this.props;
@@ -21,7 +12,14 @@ export class VotacaoList extends Component {
         debugger;
         return (
             <div>
-                {estorias.map(function(item, index) {return criarEstoria(item, index)})}               
+                {estorias.map((item, index) => {
+                    return (
+                        <Estoria 
+                            nome={item.nome}
+                            tarefas={item.tarefas}
+                        />    
+                    );
+                })}
             </div>
         );
     }
