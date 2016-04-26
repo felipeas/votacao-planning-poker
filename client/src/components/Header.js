@@ -22,9 +22,9 @@ export class Header extends Component {
 
     iconeLogin(){
         if (this.props.usuario){
-            return "nav-icon fa fa-user pull-right logado"
+            return "nav-icon fa fa-user pull-right fa-2 logado"
         } else {
-            return "nav-icon fa fa-user pull-right"
+            return "nav-icon fa fa-user pull-right fa-2"
         }
     }
 
@@ -36,10 +36,10 @@ export class Header extends Component {
                 <div className="container">
                     <div className="row">
                         <Link to="/home">
-                            <i className="nav-icon fa fa-bullseye pull-left"></i>
+                            <i className="nav-icon fa fa-hand-spock-o pull-left fa-2"></i>
                         </Link>
                         <Link to="/home">
-                            <span className="titulo">Planning Poker</span>
+                            <span className="pull-left">Planning Poker</span>
                         </Link>
                         <div className="dropdown pull-right">
                             <a type="button" id="menu1" data-toggle="dropdown">
