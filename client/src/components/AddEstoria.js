@@ -36,7 +36,7 @@ export class AddEstoria extends Component {
 
         return (
             <form onSubmit={this.onAdd}>
-                <div className="input-group add-sprint">
+                <div className="input-group add-estoria">
                     <Textbox
                         field={nome}
                         className='form-control'

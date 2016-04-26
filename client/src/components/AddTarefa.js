@@ -28,6 +28,7 @@ export class AddTarefa extends Component {
         }
         event.preventDefault();
     };
+    
 
     render(){
         const {
@@ -36,11 +37,11 @@ export class AddTarefa extends Component {
 
         return (
             <form onSubmit={this.onAdd}>
-                <div className="input-group add-sprint">
+                <div className="input-group add-tarefa">
                     <Textbox
                         field={nome}
                         className='form-control'
-                        placeholder='Incluir nova sprint'
+                        placeholder='Incluir nova tarefa'
                         label=''
                     />
                     <span className="input-group-btn">

@@ -5,7 +5,7 @@ import { VotacaoList } from '../components/VotacaoList';
 import { AddEstoria } from '../components/AddEstoria';
 import * as actionCreators from '../actions/votacao';
 
-import { styles } from '../styles/Sprint.scss';
+import { styles } from '../styles/Votacao.scss';
 
 @connect(
     state => ({
@@ -24,9 +24,6 @@ export class Votacao extends Component {
 
         return (
             <section className={`${styles}`}>
-                <span>
-                    {this.props.params.sprintId}
-                </span>
                 <div className="container">
                     <div className="row">
                         <VotacaoList {...this.props}/>
