@@ -12,21 +12,19 @@ export class SprintList extends Component {
 
     render() {
         const { sprints } = this.props;
-
+        
         return (
             <div>
                 {sprints.map((item, index) =>
-                    <div className="row" key={index}>
-                        <div className="sprint">
-                            <Link to={`/sprint/${item._id}`}>
-                                {`${item.nome}`}
-                            </Link>
-                            
-                            <button className="btn btn-danger add-option pull-right" onClick={this.handleOnEnd.bind(this,item._id)}>
-                                <span>Encerrar&nbsp;</span>
-                                <i className="fa fa-close"></i>
-                            </button>
-                        </div>
+                    <div className="sprint row" key={index}>
+                        <Link to={`/sprint/${item._id}`}>
+                            {`${item.nome}`}
+                        </Link>
+                        
+                        <button className="btn btn-danger add-option pull-right" onClick={this.handleOnEnd.bind(this,item._id)}>
+                            <span>Encerrar&nbsp;</span>
+                            <i className="fa fa-close"></i>
+                        </button>
                     </div>
                 )}
             </div>

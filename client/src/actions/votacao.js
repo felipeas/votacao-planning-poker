@@ -1,6 +1,6 @@
-export const SPRINT_ADD = 'SPRINT_ADD';
-export const SPRINT_END = 'SPRINT_END';
-export const SPRINT_LIST_SET = 'SPRINT_LIST_SET';
+export const VOTACAO_ESTORIA_ADD = 'VOTACAO_ESTORIA_ADD';
+export const VOTACAO_TAREFA_ADD = 'VOTACAO_TAREFA_ADD';
+export const VOTACAO_SET = 'VOTACAO_SET';
 
 import { get, post, put, del } from '../modules/api';
 import { pushState } from 'redux-router';
@@ -47,7 +47,7 @@ export function removerSprintLista(index) {
 
 function setarVotacao(lista) {
     return {
-        type: SPRINT_LIST_SET,
+        type: VOTACAO_SET,
         lista
     };
 }
@@ -55,7 +55,7 @@ function setarVotacao(lista) {
 function addEstoriaLista(dados) {
     debugger;
     return {
-        type: SPRINT_ADD,
+        type: VOTACAO_ESTORIA_ADD,
         dados
     };
 }

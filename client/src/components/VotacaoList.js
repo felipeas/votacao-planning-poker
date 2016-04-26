@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Estoria } from '../components/Estoria';
+import Estoria from '../components/Estoria';
 
 export class VotacaoList extends Component {
     static propTypes = {
@@ -9,18 +9,19 @@ export class VotacaoList extends Component {
     criarEstoria(item, index) {
         return (
             <Estoria 
-                    nome={item.nome}
-                    tarefas={item.tarefas}
+                key={index}
+                nome={item.nome}
+                tarefas={item.tarefas}
             />);
     }
        
     render() {
         const { estorias } = this.props;
         const { criarEstoria } = this;
-        
+        debugger;
         return (
             <div>
-                {estorias.map(function(item, index) {criarEstoria(item, index)})}               
+                {estorias.map(function(item, index) {return criarEstoria(item, index)})}               
             </div>
         );
     }

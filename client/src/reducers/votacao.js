@@ -1,8 +1,8 @@
 import {
-  SPRINT_ADD,
-  SPRINT_END,
-  SPRINT_LIST_SET,
-} from '../actions/sprint';
+  VOTACAO_ESTORIA_ADD,
+  VOTACAO_TAREFA_ADD,
+  VOTACAO_SET,
+} from '../actions/votacao';
 
 const initialState = {
     estorias: [{nome: "1 - LALALAL", tarefas: [{nome: "tarefa 1"},{nome: "tarefa 2"}]}],
@@ -10,24 +10,20 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case SPRINT_LIST_SET:
+        case VOTACAO_SET:
             return Object.assign({}, state, {
                 estorias: action.estorias
               });
-        case SPRINT_ADD:
-            debugger;
+        case VOTACAO_ESTORIA_ADD:
+            
             return Object.assign({}, state, {
-                estorias: [...state.estorias, action.sprint]
+                estorias: [...state.estorias, action.votacao]
             });
 
-        case SPRINT_END:
-            return {
-                ...state,
-                estorias: [
-                    ...state.estorias.slice(0, action.index),
-                    ...state.estorias.slice(+action.index + 1),
-                ],
-            };
+        case VOTACAO_TAREFA_ADD:
+             return Object.assign({}, state, {
+                estorias: [...state.estorias, action.votacao]
+            });
 
         default:
             return state;
