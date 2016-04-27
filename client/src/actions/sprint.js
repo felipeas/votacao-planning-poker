@@ -12,15 +12,17 @@ export function carregarLista() {
 }
 
 export function addSprint(dados) {
+    
     return dispatch => post('sprints', dados).then(() => {
-        dispatch(pushState(null, '/sprints'));
+        return dispatch(addSprintLista(dados));
+        //dispatch(pushState(null, '/sprints'));
     });
 }
 
 export function endSprint(id) {
     return dispatch => del(`sprints/${id}`).then(() => {
-        dispatch(setarSprints(lista));
-        dispatch(pushState(null, '/sprints'));
+        return dispatch(carregarLista());
+        //dispatch(pushState(null, '/sprints'));
     });
 }
 

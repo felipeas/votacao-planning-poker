@@ -15,9 +15,8 @@ export default function(state = initialState, action) {
                 lista: action.lista
               });
         case SPRINT_ADD:
-            debugger;
             return Object.assign({}, state, {
-                lista: [...state.lista, action.sprint]
+                lista: [...state.lista, action.dados]
             });
 
         case SPRINT_END:

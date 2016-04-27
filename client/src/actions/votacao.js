@@ -7,21 +7,21 @@ import { pushState } from 'redux-router';
 
 export function carregarVotacao() {
     return dispatch => get('votacao').then(lista => {
-        dispatch(setarVotacao(lista));
+        return dispatch(setarVotacao(lista));
     });
 }
 
 export function addEstoria(sprintId, dados) {
     dados.sprint_id = sprintId;
     return dispatch => post('estorias', dados).then(() => {
-        dispatch(pushState(null, '/sprints'));
+        return dispatch(pushState(null, '/sprints'));
     });
 }
 
 export function addTarefa(estoriaId, dados) {
     dados.estoria_id = estoriaId;
     return dispatch => post('estorias', dados).then(() => {
-        dispatch(pushState(null, '/sprints'));
+        return dispatch(pushState(null, '/sprints'));
     });
 }
 
@@ -31,19 +31,6 @@ export function addVoto(dados) {
     });
 }
 
-export function endSprint(id) {
-    return dispatch => del(`votacao/${id}`).then(() => {
-        dispatch(pushState(null, '/votacao'));
-    });
-}
-
-export function removerSprintLista(index) {
-    debugger;
-    return {
-        type: SPRINT_END,
-        index,
-    };
-}
 
 function setarVotacao(lista) {
     return {
@@ -52,6 +39,7 @@ function setarVotacao(lista) {
     };
 }
 
+
 function addEstoriaLista(dados) {
     debugger;
     return {
@@ -59,3 +47,13 @@ function addEstoriaLista(dados) {
         dados
     };
 }
+
+
+function addTarefaLista(dados) {
+    debugger;
+    return {
+        type: VOTACAO_TAREFA_ADD,
+        dados
+    };
+}
+
