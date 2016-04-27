@@ -14,9 +14,14 @@ import { styles } from '../styles/Sprint.scss';
     dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Sprints extends Component {
+    constructor(props) {
+        super(props);
+    }
+    
     componentDidMount() {
         this.props.carregarLista();
     }
+    
     render() {
         const {
             sprints,

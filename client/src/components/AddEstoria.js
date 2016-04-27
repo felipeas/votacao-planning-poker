@@ -23,8 +23,8 @@ export class AddEstoria extends Component {
 
     onAdd = (event) => {
         if (this.props.values.nome) {
-          this.props.addEstoria(this.props.params.sprintId, this.props.values);
-          this.props.dispatch(reset('addEstoria'));
+            this.props.addEstoria(this.props.params.sprintId, this.props.values);
+            this.props.dispatch(reset('addEstoria'));
         }
         event.preventDefault();
     };

@@ -19,27 +19,19 @@ export function addSprint(dados) {
 
 export function endSprint(id) {
     return dispatch => del(`sprints/${id}`).then(() => {
+        dispatch(setarSprints(lista));
         dispatch(pushState(null, '/sprints'));
     });
 }
 
-export function removerSprintLista(index) {
-    debugger;
-    return {
-        type: SPRINT_END,
-        index,
-    };
-}
-
-function setarSprints(lista) {
+export function setarSprints(lista) {
     return {
         type: SPRINT_LIST_SET,
         lista
     };
 }
 
-function addSprintLista(dados) {
-    debugger;
+export function addSprintLista(dados) {
     return {
         type: SPRINT_ADD,
         dados
