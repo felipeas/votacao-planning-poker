@@ -23,12 +23,12 @@ export class AddTarefa extends Component {
 
     onAdd = (event) => {
         if (this.props.values.nome) {
-          this.props.addTarefa(this.props.values);
-          this.props.dispatch(reset('addTarefa'));
+            this.props.addTarefa(this.props.values);
+            this.props.dispatch(reset('addTarefa'));
         }
         event.preventDefault();
     };
-    s
+    
 
     render(){
         const {

@@ -5,8 +5,8 @@ export const VOTACAO_SET = 'VOTACAO_SET';
 import { get, post, put, del } from '../modules/api';
 import { pushState } from 'redux-router';
 
-export function carregarVotacao() {
-    return dispatch => get('votacao').then(lista => {
+export function carregarVotacao(sprintId) {
+    return dispatch => get(`votacao/${sprintId}`).then(lista => {
         return dispatch(setarVotacao(lista));
     });
 }

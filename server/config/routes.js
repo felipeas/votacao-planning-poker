@@ -2,6 +2,7 @@ var path = require('path');
 var util = require('util');
 var express = require('express');
 var votacao = require('../controllers/votacao');
+
 var auth = require('../auth');
 var usuarios = require('../controllers/usuario');
 var sprints = require('../controllers/sprint');
@@ -33,8 +34,18 @@ module.exports = function(app, io) {
     api.get('/sprints', auth(), sprints.get);
     api.get('/sprints/all', auth(), sprints.all);
     api.post('/sprints', auth(), sprints.add);
-
     api.delete('/sprints/:id', auth(), sprints.encerrar);
+    
+    api.get('/votacao/:id', auth(), vocatao.getVotacao);
+    
+    api.post('/estoria', auth(), vocatao.addEstoria);
+    api.delete('/estoria/:id', auth(), vocatao.remEstoria);
+    
+    api.post('/tarefa', auth(), vocatao.addTarefa);
+    api.delete('/tarefa/:id', auth(), vocatao.remVoto);
+    
+    api.post('/voto', auth(), vocatao.addVoto);
+    api.delete('/voto/:id', auth(), vocatao.remVoto);    
 
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));

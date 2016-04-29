@@ -9,7 +9,7 @@ class Estoria extends Component {
     
     render() {
         const { tarefas } = this.props;
-        
+        debugger;
         return (
             <div className="estoria row">
                 
@@ -23,7 +23,7 @@ class Estoria extends Component {
                         />    
                     );
                 })}
-                <AddTarefa {...this.props}/>
+                <AddTarefa formKey=this.paras  {...this.props}/>
             </div>
         );
     }
