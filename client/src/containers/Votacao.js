@@ -9,21 +9,25 @@ import { styles } from '../styles/Votacao.scss';
 
 @connect(
     state => ({
-        estorias: state.votacao.estorias
+        sprint: state.votacao.sprint
     }),
     dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Votacao extends Component {
     componentDidMount() {
-        this.props.carregarVotacao();
+        const {sprintId} = this.props.routeParams;
+         
+        this.props.carregarVotacao(sprintId);
     }
+    
     render() {
         const {
-            estorias,
+            sprint,
         } = this.props;
-
+        
         return (
             <section className={`${styles}`}>
+                <span>{sprint.nome}</span>
                 <div className="container">
                     <div className="row">
                         <VotacaoList {...this.props}/>

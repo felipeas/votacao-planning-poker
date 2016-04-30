@@ -5,37 +5,28 @@ import {
 } from '../actions/votacao';
 
 const initialState = {
-    estorias: [
-        {nome: "1 - LALALAL", 
-            tarefas: [
-                {nome: "tarefa 1"},
-                {nome: "tarefa 2"}
-            ]
-        },
-        {nome: "2 - Heheheh",
-            tarefas: [
-                {nome: "123cc"},
-                {nome: "123cC"}
-            ]    
-        }
-    ],
+    sprint: {
+        nome: '',
+        estorias: [],
+    }
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
         case VOTACAO_SET:
+         
             return Object.assign({}, state, {
-                estorias: action.estorias
+                sprint: action.sprint
               });
         case VOTACAO_ESTORIA_ADD:
             
             return Object.assign({}, state, {
-                estorias: [...state.estorias, action.votacao]
+                sprint: [...state.sprint, action.votacao]
             });
 
         case VOTACAO_TAREFA_ADD:
              return Object.assign({}, state, {
-                estorias: [...state.estorias, action.votacao]
+                sprint: [...state.estorias, action.votacao]
             });
 
         default:

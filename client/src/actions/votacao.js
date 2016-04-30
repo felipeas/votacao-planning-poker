@@ -6,20 +6,21 @@ import { get, post, put, del } from '../modules/api';
 import { pushState } from 'redux-router';
 
 export function carregarVotacao(sprintId) {
-    return dispatch => get(`votacao/${sprintId}`).then(lista => {
-        return dispatch(setarVotacao(lista));
+    return dispatch => get(`votacao/${sprintId}`).then(sprint => {
+        alert(JSON.stringify(sprint,true,2));
+        return dispatch(setarVotacao(sprint));
     });
 }
 
 export function addEstoria(sprintId, dados) {
-    dados.sprint_id = sprintId;
+    dados.sprint = sprintId;
     return dispatch => post('estorias', dados).then(() => {
         return dispatch(pushState(null, '/sprints'));
     });
 }
 
 export function addTarefa(estoriaId, dados) {
-    dados.estoria_id = estoriaId;
+    dados.estoria = estoriaId;
     return dispatch => post('estorias', dados).then(() => {
         return dispatch(pushState(null, '/sprints'));
     });
@@ -32,10 +33,10 @@ export function addVoto(dados) {
 }
 
 
-function setarVotacao(lista) {
+function setarVotacao(votacao) {
     return {
         type: VOTACAO_SET,
-        lista
+        votacao
     };
 }
 

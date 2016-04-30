@@ -3,11 +3,11 @@ import Estoria from '../components/Estoria';
 
 export class VotacaoList extends Component {
     static propTypes = {
-        estorias: React.PropTypes.array,
+        sprint: React.PropTypes.Object,
     }
        
     render() {
-        const { estorias } = this.props;
+        const { estorias } = this.props.sprint;
                 
         return (
             <div>

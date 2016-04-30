@@ -36,16 +36,19 @@ module.exports = function(app, io) {
     api.post('/sprints', auth(), sprints.add);
     api.delete('/sprints/:id', auth(), sprints.encerrar);
     
-    api.get('/votacao/:id', auth(), vocatao.getVotacao);
+    api.get('/votacao/:id', auth(), votacao.getVotacao);
     
-    api.post('/estoria', auth(), vocatao.addEstoria);
-    api.delete('/estoria/:id', auth(), vocatao.remEstoria);
     
-    api.post('/tarefa', auth(), vocatao.addTarefa);
-    api.delete('/tarefa/:id', auth(), vocatao.remVoto);
+    // TODO: DELETES
+    // TODO: VOTO
+    api.post('/estorias', auth(), votacao.addEstoria);
+    // api.delete('/estoria/:id', auth(), votacao.remEstoria);
     
-    api.post('/voto', auth(), vocatao.addVoto);
-    api.delete('/voto/:id', auth(), vocatao.remVoto);    
+    api.post('/tarefas', auth(), votacao.addTarefa);
+    // api.delete('/tarefa/:id', auth(), votacao.remVoto);
+    
+    // api.post('/votos', auth(), votacao.addVoto);
+    // api.delete('/voto/:id', auth(), votacao.remVoto);    
 
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
