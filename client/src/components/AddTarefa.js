@@ -23,7 +23,9 @@ export class AddTarefa extends Component {
 
     onAdd = (event) => {
         if (this.props.values.nome) {
-            this.props.addTarefa(this.props.values);
+            const estoriaId = this.props.dataId;
+            
+            this.props.addTarefa(estoriaId, this.props.values);
             this.props.dispatch(reset('addTarefa'));
         }
         event.preventDefault();

@@ -5,10 +5,6 @@ class Card extends Component {
         super(props);
     }
 
-    componentDidMount () {
-
-    }
-
     render() {
         return (
             <div className={this.props.className ? this.props.className : ''}>

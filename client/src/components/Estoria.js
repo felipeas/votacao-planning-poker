@@ -8,22 +8,30 @@ class Estoria extends Component {
     }
     
     render() {
-        const { tarefas, nome } = this.props;
+        const { nome, ordem, tarefas, dataId } = this.props;
+        const numero = ordem + 1;
         
         return (
             <div className="estoria row">
+                <div className="estoria-numero">
+                    <span>{numero}</span>
+                    <span>{nome}</span>
+                </div>
+                <div className="estoria-tarefas">
+                    {tarefas.map((item, index) => {
+                        return (
+                            <Tarefa 
+                                key={index}
+                                estoria={ordem}
+                                ordem={index}
+                                dataId={item._id}
+                                nome={item.nome}
+                            />    
+                        );
+                    })}
+                    <AddTarefa formKey={dataId} {...this.props}/>
+                </div>
                 
-                <a>{nome}</a>
-                
-                {tarefas.map((item, index) => {
-                    return (
-                        <Tarefa 
-                            key={index}
-                            nome={item.nome}
-                        />    
-                    );
-                })}
-                <AddTarefa formKey={nome}  {...this.props}/>
             </div>
         );
     }

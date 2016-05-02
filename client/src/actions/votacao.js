@@ -7,7 +7,7 @@ import { pushState } from 'redux-router';
 
 export function carregarVotacao(sprintId) {
     return dispatch => get(`votacao/${sprintId}`).then(sprint => {
-        alert(JSON.stringify(sprint,true,2));
+        // alert(JSON.stringify(sprint,true,2));
         return dispatch(setarVotacao(sprint));
     });
 }
@@ -15,14 +15,14 @@ export function carregarVotacao(sprintId) {
 export function addEstoria(sprintId, dados) {
     dados.sprint = sprintId;
     return dispatch => post('estorias', dados).then(() => {
-        return dispatch(pushState(null, '/sprints'));
+        return dispatch(carregarVotacao(sprintId));
     });
 }
 
 export function addTarefa(estoriaId, dados) {
     dados.estoria = estoriaId;
-    return dispatch => post('estorias', dados).then(() => {
-        return dispatch(pushState(null, '/sprints'));
+    return dispatch => post('tarefas', dados).then(() => {
+        return dispatch(carregarVotacao('57276f1abbe23a8c0f3764e4'));
     });
 }
 

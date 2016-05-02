@@ -9,13 +9,13 @@ import { styles } from '../styles/Votacao.scss';
 
 @connect(
     state => ({
-        sprint: state.votacao.sprint
+        sprint: state.votacao
     }),
     dispatch => bindActionCreators(actionCreators, dispatch)
 )
 export class Votacao extends Component {
     componentDidMount() {
-        const {sprintId} = this.props.routeParams;
+        const { sprintId } = this.props.routeParams;
          
         this.props.carregarVotacao(sprintId);
     }

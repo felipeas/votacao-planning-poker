@@ -13,15 +13,17 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
+       
         case VOTACAO_SET:
-         
+        
             return Object.assign({}, state, {
-                sprint: action.sprint
+                sprint: action.votacao
               });
+           
         case VOTACAO_ESTORIA_ADD:
             
             return Object.assign({}, state, {
-                sprint: [...state.sprint, action.votacao]
+                sprint: [...state.sprint.estorias, action.estoria]
             });
 
         case VOTACAO_TAREFA_ADD:

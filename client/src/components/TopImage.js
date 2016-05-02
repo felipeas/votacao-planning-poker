@@ -8,15 +8,7 @@ export class TopImage extends Component {
   constructor(props) {
     super(props);
   }
-
-  componentDidMount() {
-
-  }
-
-  componentWillUnmount() {
-
-  }
-
+  
   render() {
     return (
       <section className={`${styles}`}>

@@ -8,14 +8,21 @@ var Sprints = mongoose.model('Sprint');
 
 exports.getVotacao = function(req, res) {
     var id = req.params.id;
-    console.log(id);
-    
+    console.log('listando votacao: ' + id);
+
     Sprints
     .findById(id)
-    .populate('estorias')
-    .exec(function(err, sprint){
+    .populate({  
+        path: 'estorias',
+        model: 'Estoria',
+        populate: {
+            path: 'tarefas',
+            model: 'Tarefa'
+        }
+    })    
+    .exec(function(err, sprint){      
         if(!err) {
-            console.log('votacao ' + util.inspect(sprint));
+            console.log('sprint: ' + util.inspect(sprint));
             res.json(sprint);
         } else {
             console.log('deu pau');
@@ -33,7 +40,7 @@ exports.addEstoria = function(req, res) {
     .findById(id)
     .exec(function(err, sprint){
         if(!err) {
-            console.log('encountrou sprint ' + util.inspect(sprint));
+            
             req.body.sprint = sprint._id;
             Estoria.create(req.body, function (err, estoria) {
                 if (err) {
@@ -56,27 +63,39 @@ exports.addEstoria = function(req, res) {
             return res.status(400).send(err);
         }
     });
-
 };
 
 exports.addTarefa = function(req, res) {
-    Tarefa.findOne({nome: req.body.nome, estoriaId: req.body.estoriaId}, function(err, existente) {
-        if (err) {
-            console.log('erro incluir tarefa');
-            return res.status(500).send(err);
-        };
-        if(existente) {
-            console.log('existente');
+    var id = req.body.estoria;
+    console.log(id);
+    
+    Estoria
+    .findById(id)
+    .exec(function(err, estoria){
+        if(!err) {
+            console.log('encountrou estoria ' + util.inspect(estoria));
+            req.body.estoria = estoria._id;
+            Tarefa.create(req.body, function (err, tarefa) {
+                if (err) {
+                    console.log(err);
+                    return res.status(400).send(err);
+                }
+                console.log('incluida tarefa: ' + id + ' = ' + req.body.nome);
+                
+                estoria.tarefas.push(tarefa);
+                
+                estoria.save(function(err,doc){
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    }
+                });
+    
+                return res.status(201).send();
+            });
+        } else {
+            console.log('deu pau');
             return res.status(400).send(err);
-        };
-
-        Tarefa.create(req.body, function (err) {
-            if (err) {
-                console.log(err);
-                return res.status(400).send(err);
-            }
-            console.log('incluida tarefa: ' + req.body.nome);
-            return res.status(201).send();
-        });
+        }
     });
 };
