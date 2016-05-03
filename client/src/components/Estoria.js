@@ -16,18 +16,21 @@ class Estoria extends Component {
         const numero = ordem + 1;
         
         return (
-            <div className="estoria row">
-                <div className="estoria-numero">
-                    <span>{numero}</span>
-                    <span>{nome}</span>
-                </div>
-                <div className="estoria-dados">
-                    <button className="btn btn-blue pull-right" onClick={this.handleOnEnd.bind(this,numero)}>
-                        <span>Remover&nbsp;</span>
-                        <i className="fa fa-close"></i>
-                    </button>
-                </div>
-               
+            <div className="estoria">
+                <div className="estoria-dados row">
+                    <div className="estoria-numero">
+                        <span>{numero}</span>
+                    </div>
+                    <div className="estoria-titulo">
+                        <span>{nome}</span>
+                    </div>
+                    <div className="estoria-opcoes">
+                        <button id='excluir' className="btn blue" onClick={this.handleOnEnd.bind(this,numero)}>                            
+                            <i className="fa fa-close"></i>
+                        </button>
+                    </div>
+                </div>  
+            
                 <div className="estoria-tarefas">
                     {tarefas.map((item, index) => {
                         return (
@@ -42,8 +45,7 @@ class Estoria extends Component {
                     })}
                     <AddTarefa formKey={dataId} {...this.props}/>
                 </div>
-                
-            </div>
+            </div>  
         );
     }
 }

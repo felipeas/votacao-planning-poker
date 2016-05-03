@@ -24,15 +24,13 @@ export class Votacao extends Component {
         const {
             sprint,
         } = this.props;
-        
+                
         return (
             <section className={`${styles}`}>
-                <span>{sprint.nome}</span>
                 <div className="container">
-                    <div className="row">
-                        <VotacaoList {...this.props}/>
-                        <AddEstoria {...this.props}/>
-                    </div>
+                    <h3>{sprint.sprint.nome}</h3>
+                    <VotacaoList {...this.props}/>
+                    <AddEstoria {...this.props}/>
                 </div>
             </section>
         );

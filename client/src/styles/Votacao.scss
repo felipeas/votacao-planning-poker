@@ -1,43 +1,49 @@
 :local(.styles) {
     color: rgb(68, 68, 68);
-    padding: 10px;
-
+    
     h3 {
-        font-size: 24px;
+        font-size: 18px;
     }
+    
     .estoria {
-        display: flex;
-        flex-direction: row;
-        .estoria-numero {
-            span:first-of-type {
-                font-size: 36px !important; 
+        background-color: white;
+        padding: 5px;  
+        margin-bottom: 10px;  
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .05), 
+                    0 1px 4px 0 rgba(0, 0, 0, .08),
+                    0 3px 1px -2px rgba(0, 0, 0, .2);
+        
+        .estoria-dados {
+            padding-bottom: 10px;    
+            margin-left:5px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            
+            .estoria-numero {     
+                flex:0;
+                font-size: 30px !important; 
                 text-align: left;
                 color: rgb(220, 220, 220);
-                margin-right: 40px;
             }
-            
-            color: rgb(68, 68, 68);
-            font-size: 18px;
-            
+            .estoria-titulo {
+                flex:1;
+                margin-left:10px;
+                color: rgb(68, 68, 68);
+                font-size: 12px;
+            }
+            .estoria-opcoes {
+                margin-right:20px;
+                flex:0; 
+            }
         }
-        .estoria-dados {
-            
-            
-            margin-left: 10px;
-            
-        }
-        .estoria-tarefas{
-            margin-left: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-        margin:10px;
-        background-color: white;
-        padding:30px;
+    }
+    
+    .estoria-tarefas{
+        display: flex;
+        flex-direction: column;
         
-        line-height: 30px;
-        width: 100%;
-        border-bottom: 2px dashed rgb(155, 155, 155);
     }
     
     .add-estoria {
@@ -46,25 +52,34 @@
         margin-top: 15px;
     }
     
-    .tarefa {
-        display: flex;
-        flex-direction: row;
-        font-size: 36px !important;
-        color: rgb(220, 220, 220);
-        text-align: left;
-        padding:15px;
-        
+    .tarefa {                
+        padding-right: 10px;  
+        margin: 5px;  
+        background-color: beige;
         .tarefa-dados {
-            margin-left: 10px;
-            font-size: 18px;
-            color: rgb(68, 68, 68);
+            padding: 10px;
+            margin-left:15px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            .tarefa-numero {
+                flex:0;
+                font-size: 30px !important; 
+                text-align: left;
+                color: rgb(220, 220, 220);
+            }
+            .tarefa-titulo {
+                flex:1;
+                margin-left:10px;
+                color: rgb(68, 68, 68);
+                font-size: 12px;
+            }
+            .tarefa-opcoes {
+                margin-right:5px;
+                flex:0; 
+            }
         }
-       
-        background-color: white;
-        padding-top:10px;
-        line-height: 30px;
-        width: 100%;
-        border-bottom: 2px dotted lightgray;
     }
     
     .add-tarefa {
@@ -73,4 +88,5 @@
         margin-top: 15px;
         margin-left: 15px;
     }
+
 }

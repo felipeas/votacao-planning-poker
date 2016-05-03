@@ -17,7 +17,7 @@ export class VotacaoList extends Component {
         const { estorias } = this.props.sprint.sprint;
         
         return (
-            <div>          
+            <div>      
                 {estorias.map((item, index) => {
                     return (
                         <Estoria 
