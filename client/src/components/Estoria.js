@@ -7,6 +7,10 @@ class Estoria extends Component {
         tarefas: React.PropTypes.array,
     }
     
+    handleOnEnd(id) {
+        this.props.endSprint(id);
+    }
+    
     render() {
         const { nome, ordem, tarefas, dataId } = this.props;
         const numero = ordem + 1;
@@ -17,6 +21,13 @@ class Estoria extends Component {
                     <span>{numero}</span>
                     <span>{nome}</span>
                 </div>
+                <div className="estoria-dados">
+                    <button className="btn btn-blue pull-right" onClick={this.handleOnEnd.bind(this,numero)}>
+                        <span>Remover&nbsp;</span>
+                        <i className="fa fa-close"></i>
+                    </button>
+                </div>
+               
                 <div className="estoria-tarefas">
                     {tarefas.map((item, index) => {
                         return (
