@@ -21,7 +21,17 @@ Estoria = mongoose.model('Estoria', EstoriaSchema);
 var TarefaSchema = new mongoose.Schema({
     estoria : { type: Schema.Types.ObjectId, ref: 'Estoria' },
     nome: String,
-    ordem: {type: Number, default: 0}
+    ordem: {type: Number, default: 0},
+    votos: [{ type: Schema.Types.ObjectId, ref: 'Voto' }]
+    pontos: Number
 });
 
 Tarefa = mongoose.model('Tarefa', TarefaSchema);
+
+var VotoSchema = new mongoose.Schema({
+    tarefa : { type: Schema.Types.ObjectId, ref: 'tarefa' },
+    usuario : { type: Schema.Types.ObjectId, ref: 'usuario' },
+    voto: {type: Number, default: 0}
+});
+
+Voto = mongoose.model('Voto', VotoSchema);
