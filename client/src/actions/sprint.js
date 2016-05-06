@@ -12,7 +12,6 @@ export function carregarLista() {
 }
 
 export function addSprint(dados) {
-    
     return dispatch => post('sprints', dados).then(() => {
         return dispatch(addSprintLista(dados));
         //dispatch(pushState(null, '/sprints'));

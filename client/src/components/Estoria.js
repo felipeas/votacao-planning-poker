@@ -8,7 +8,7 @@ class Estoria extends Component {
     }
     
     handleOnEnd(id) {
-        this.props.endSprint(id);
+        this.props.remEstoria(id);
     }
     
     render() {
@@ -25,7 +25,7 @@ class Estoria extends Component {
                         <span>{nome}</span>
                     </div>
                     <div className="estoria-opcoes">
-                        <button id='excluir' className="btn blue" onClick={this.handleOnEnd.bind(this,numero)}>                            
+                        <button id='excluir' className="btn blue" onClick={this.handleOnEnd.bind(this,dataId)}>                            
                             <i className="fa fa-close"></i>
                         </button>
                     </div>

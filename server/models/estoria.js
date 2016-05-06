@@ -22,8 +22,8 @@ var TarefaSchema = new mongoose.Schema({
     estoria : { type: Schema.Types.ObjectId, ref: 'Estoria' },
     nome: String,
     ordem: {type: Number, default: 0},
-    votos: [{ type: Schema.Types.ObjectId, ref: 'Voto' }]
-    pontos: Number
+    votos: [{ type: Schema.Types.ObjectId, ref: 'Voto' }],
+    pontos: {type: Number, default: 0},
 });
 
 Tarefa = mongoose.model('Tarefa', TarefaSchema);

@@ -31,7 +31,6 @@ exports.getVotacao = function(req, res) {
     });
 };
 
-
 exports.addEstoria = function(req, res) {
     var id = req.body.sprint;
     console.log(id);
@@ -85,6 +84,39 @@ exports.addTarefa = function(req, res) {
                 estoria.tarefas.push(tarefa);
                 
                 estoria.save(function(err,doc){
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    }
+                });
+    
+                return res.status(201).send();
+            });
+        } else {
+            console.log('deu pau');
+            return res.status(400).send(err);
+        }
+    });
+};
+
+exports.remEstoria = function(req, res) {
+    var id = req.body.sprint;
+    console.log(id);
+    
+    Estoria
+    .findById(id)
+    .exec(function(err, sprint){
+        if(!err) {
+            
+            req.body.sprint = sprint._id;
+            Estoria.create(req.body, function (err, estoria) {
+                if (err) {
+                    console.log(err);
+                    return res.status(400).send(err);
+                }
+                console.log('incluida estoria: ' + req.body.nome);
+                sprint.estorias.push(estoria);
+                sprint.save(function(err,doc){
                     if (err) {
                         console.log(err);
                         return res.status(400).send(err);

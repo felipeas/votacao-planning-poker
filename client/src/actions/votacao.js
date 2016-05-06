@@ -19,12 +19,27 @@ export function addEstoria(sprintId, dados) {
     });
 }
 
+export function remEstoria(sprintId, estoriaId) {
+    return dispatch => del(`estorias/${estoriaId}`).then(() => {
+        return dispatch(carregarVotacao(sprintId));
+        //dispatch(pushState(null, '/sprints'));
+    });
+}
+
 export function addTarefa(estoriaId, dados) {
     dados.estoria = estoriaId;
     return dispatch => post('tarefas', dados).then(() => {
-        return dispatch(carregarVotacao('57276f1abbe23a8c0f3764e4'));
+        return dispatch(carregarVotacaoEstoria('57276f1abbe23a8c0f3764e4'));
     });
 }
+
+export function remTarefa(sprintId, tarefaId) {
+    return dispatch => del(`tarefas/${tarefaId}`).then(() => {
+        return dispatch(carregarVotacao(sprintId));
+        //dispatch(pushState(null, '/sprints'));
+    });
+}
+
 
 export function addVoto(dados) {
     return dispatch => post('voto', dados).then(() => {

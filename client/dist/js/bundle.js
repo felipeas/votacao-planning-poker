@@ -13139,7 +13139,6 @@ webpackJsonp([0],{
 	}
 
 	function addSprint(dados) {
-
 	    return function (dispatch) {
 	        return _modulesApi.post('sprints', dados).then(function () {
 	            return dispatch(addSprintLista(dados));
@@ -13338,7 +13337,9 @@ webpackJsonp([0],{
 	exports.__esModule = true;
 	exports.carregarVotacao = carregarVotacao;
 	exports.addEstoria = addEstoria;
+	exports.remEstoria = remEstoria;
 	exports.addTarefa = addTarefa;
+	exports.remTarefa = remTarefa;
 	exports.addVoto = addVoto;
 
 	var _modulesApi = __webpack_require__(330);
@@ -13371,11 +13372,29 @@ webpackJsonp([0],{
 	    };
 	}
 
+	function remEstoria(sprintId, estoriaId) {
+	    return function (dispatch) {
+	        return _modulesApi.del('estorias/' + estoriaId).then(function () {
+	            return dispatch(carregarVotacao(sprintId));
+	            //dispatch(pushState(null, '/sprints'));
+	        });
+	    };
+	}
+
 	function addTarefa(estoriaId, dados) {
 	    dados.estoria = estoriaId;
 	    return function (dispatch) {
 	        return _modulesApi.post('tarefas', dados).then(function () {
-	            return dispatch(carregarVotacao('57276f1abbe23a8c0f3764e4'));
+	            return dispatch(carregarVotacaoEstoria('57276f1abbe23a8c0f3764e4'));
+	        });
+	    };
+	}
+
+	function remTarefa(sprintId, tarefaId) {
+	    return function (dispatch) {
+	        return _modulesApi.del('tarefas/' + tarefaId).then(function () {
+	            return dispatch(carregarVotacao(sprintId));
+	            //dispatch(pushState(null, '/sprints'));
 	        });
 	    };
 	}
@@ -14848,7 +14867,7 @@ webpackJsonp([0],{
 	    }
 
 	    Estoria.prototype.handleOnEnd = function handleOnEnd(id) {
-	        this.props.endSprint(id);
+	        this.props.remEstoria(id);
 	    };
 
 	    Estoria.prototype.render = function render() {
@@ -14889,7 +14908,7 @@ webpackJsonp([0],{
 	                    { className: 'estoria-opcoes' },
 	                    _react2['default'].createElement(
 	                        'button',
-	                        { id: 'excluir', className: 'btn blue', onClick: this.handleOnEnd.bind(this, numero) },
+	                        { id: 'excluir', className: 'btn blue', onClick: this.handleOnEnd.bind(this, dataId) },
 	                        _react2['default'].createElement('i', { className: 'fa fa-close' })
 	                    )
 	                )
