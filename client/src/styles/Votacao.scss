@@ -51,11 +51,20 @@
         height: 30px;
         margin-top: 15px;
     }
+    .corSim {
+        background-color: #f1f1f1;
+    }
+    
+    .corNao {
+        background-color: #F4F4F4 ;
+    }
+    .tarefa:hover {
+        background-color: lightblue;
+    }
     
     .tarefa {                
         padding-right: 10px;  
         margin: 5px;  
-        background-color: beige;
         .tarefa-dados {
             padding: 10px;
             margin-left:15px;

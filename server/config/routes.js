@@ -37,7 +37,7 @@ module.exports = function(app, io) {
     api.delete('/sprints/:id', auth(), sprints.encerrar);
     
     api.get('/votacao/:id', auth(), votacao.getVotacao);
-   
+    api.get('/estorias/:id', auth(), votacao.getEstoria);
     // TODO: DELETES
     // TODO: VOTO
     api.post('/estorias', auth(), votacao.addEstoria);

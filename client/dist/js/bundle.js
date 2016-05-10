@@ -13336,6 +13336,7 @@ webpackJsonp([0],{
 
 	exports.__esModule = true;
 	exports.carregarVotacao = carregarVotacao;
+	exports.carregarVotacaoEstoria = carregarVotacaoEstoria;
 	exports.addEstoria = addEstoria;
 	exports.remEstoria = remEstoria;
 	exports.addTarefa = addTarefa;
@@ -13357,6 +13358,15 @@ webpackJsonp([0],{
 	function carregarVotacao(sprintId) {
 	    return function (dispatch) {
 	        return _modulesApi.get('votacao/' + sprintId).then(function (sprint) {
+	            // alert(JSON.stringify(sprint,true,2));
+	            return dispatch(setarVotacao(sprint));
+	        });
+	    };
+	}
+
+	function carregarVotacaoEstoria(estoriaId) {
+	    return function (dispatch) {
+	        return _modulesApi.get('estorias/' + estoriaId).then(function (sprint) {
 	            // alert(JSON.stringify(sprint,true,2));
 	            return dispatch(setarVotacao(sprint));
 	        });
@@ -13385,7 +13395,7 @@ webpackJsonp([0],{
 	    dados.estoria = estoriaId;
 	    return function (dispatch) {
 	        return _modulesApi.post('tarefas', dados).then(function () {
-	            return dispatch(carregarVotacaoEstoria('57276f1abbe23a8c0f3764e4'));
+	            return dispatch(carregarVotacaoEstoria(estoriaId));
 	        });
 	    };
 	}
@@ -14949,15 +14959,15 @@ webpackJsonp([0],{
 /***/ 371:
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	exports.__esModule = true;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(27);
 
@@ -14973,7 +14983,14 @@ webpackJsonp([0],{
 	    }
 
 	    Tarefa.prototype.handleOnEnd = function handleOnEnd(id) {
-	        this.props.endSprint(id);
+	        this.props.remTarefa(this.props.estoria, id);
+	    };
+
+	    Tarefa.prototype.classeCor = function classeCor(ordem) {
+	        if (ordem % 2) {
+	            return "corSim";
+	        }
+	        return "corNao";
 	    };
 
 	    Tarefa.prototype.render = function render() {
@@ -14984,37 +15001,38 @@ webpackJsonp([0],{
 	        var dataId = _props.dataId;
 
 	        var numero = estoria + 1 + '.' + (ordem + 1);
-	        return _react2['default'].createElement(
-	            'div',
-	            { className: 'tarefa' },
-	            _react2['default'].createElement(
-	                'div',
-	                { className: 'tarefa-dados row' },
-	                _react2['default'].createElement(
-	                    'div',
-	                    { className: 'tarefa-numero' },
-	                    _react2['default'].createElement(
-	                        'span',
+	        var classeCor = this.classeCor(ordem);
+	        return _react2["default"].createElement(
+	            "div",
+	            { className: classeCor + ' tarefa' },
+	            _react2["default"].createElement(
+	                "div",
+	                { className: "tarefa-dados row" },
+	                _react2["default"].createElement(
+	                    "div",
+	                    { className: "tarefa-numero" },
+	                    _react2["default"].createElement(
+	                        "span",
 	                        null,
 	                        numero
 	                    )
 	                ),
-	                _react2['default'].createElement(
-	                    'div',
-	                    { className: 'tarefa-titulo' },
-	                    _react2['default'].createElement(
-	                        'span',
+	                _react2["default"].createElement(
+	                    "div",
+	                    { className: "tarefa-titulo" },
+	                    _react2["default"].createElement(
+	                        "span",
 	                        null,
 	                        nome
 	                    )
 	                ),
-	                _react2['default'].createElement(
-	                    'div',
-	                    { className: 'tarefa-opcoes' },
-	                    _react2['default'].createElement(
-	                        'button',
-	                        { id: 'excluir', className: 'btn blue', onClick: this.handleOnEnd.bind(this, numero) },
-	                        _react2['default'].createElement('i', { className: 'fa fa-close' })
+	                _react2["default"].createElement(
+	                    "div",
+	                    { className: "tarefa-opcoes" },
+	                    _react2["default"].createElement(
+	                        "button",
+	                        { id: "excluir", className: "btn blue", onClick: this.handleOnEnd.bind(this, numero) },
+	                        _react2["default"].createElement("i", { className: "fa fa-close" })
 	                    )
 	                )
 	            )
@@ -15024,8 +15042,8 @@ webpackJsonp([0],{
 	    return Tarefa;
 	})(_react.Component);
 
-	exports['default'] = Tarefa;
-	module.exports = exports['default'];
+	exports["default"] = Tarefa;
+	module.exports = exports["default"];
 
 /***/ },
 
@@ -15267,7 +15285,7 @@ webpackJsonp([0],{
 	exports.locals = {
 	  "styles": "_1LrDsHdaZqtB8ZTtaXCnfU"
 	};
-	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    padding: 5px;\n    margin-bottom: 10px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px;\n    margin: 5px;\n    background-color: beige; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
+	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    padding: 5px;\n    margin-bottom: 10px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px;\n    margin: 5px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
 
 /***/ },
 

@@ -12,6 +12,13 @@ export function carregarVotacao(sprintId) {
     });
 }
 
+export function carregarVotacaoEstoria(estoriaId) {
+    return dispatch => get(`estorias/${estoriaId}`).then(sprint => {
+        // alert(JSON.stringify(sprint,true,2));
+        return dispatch(setarVotacao(sprint));
+    });
+}
+
 export function addEstoria(sprintId, dados) {
     dados.sprint = sprintId;
     return dispatch => post('estorias', dados).then(() => {
@@ -29,7 +36,7 @@ export function remEstoria(sprintId, estoriaId) {
 export function addTarefa(estoriaId, dados) {
     dados.estoria = estoriaId;
     return dispatch => post('tarefas', dados).then(() => {
-        return dispatch(carregarVotacaoEstoria('57276f1abbe23a8c0f3764e4'));
+        return dispatch(carregarVotacaoEstoria(estoriaId));
     });
 }
 
@@ -39,7 +46,6 @@ export function remTarefa(sprintId, tarefaId) {
         //dispatch(pushState(null, '/sprints'));
     });
 }
-
 
 export function addVoto(dados) {
     return dispatch => post('voto', dados).then(() => {
