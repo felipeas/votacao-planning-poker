@@ -13,6 +13,16 @@ export class VotacaoList extends Component {
         );
     }
     
+    remEstoria(id){
+        const { sprintId } = this.props.routeParams;
+        this.props.remEstoria(sprintId,id);
+    }
+    
+    remTarefa(id){
+        const { sprintId } = this.props.routeParams;
+        this.props.remTarefa(sprintId,id);
+    }
+    
     renderEstorias() {
         const { estorias } = this.props.sprint.sprint;
         
@@ -27,6 +37,8 @@ export class VotacaoList extends Component {
                             dataId={item._id}
                             tarefas={item.tarefas}
                             addTarefa={this.props.addTarefa}
+                            remEstoria={this.remEstoria.bind(this)}
+                            remTarefa={this.remTarefa.bind(this)}
                         />    
                     );
                 })}

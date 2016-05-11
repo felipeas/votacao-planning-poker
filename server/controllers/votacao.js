@@ -17,7 +17,9 @@ getVotacao = function(req, res) {
         model: 'Estoria',
         populate: {
             path: 'tarefas',
-            model: 'Tarefa'
+            model: 'Tarefa',
+            populate 'votos',
+            model: 'Voto'
         }
     })    
     .exec(function(err, sprint){      
@@ -39,7 +41,7 @@ getEstoria = function(req, res) {
     .findById(id)    
     .exec(function(err, estoria){      
         if(!err) {
-            console.log('estoria: ' + util.inspect(estoria));
+            // console.log('estoria: ' + util.inspect(estoria));
             req.params.id = estoria.sprint;
             return getVotacao(req,res);
         } else {
@@ -57,7 +59,6 @@ addEstoria = function(req, res) {
     .findById(id)
     .exec(function(err, sprint){
         if(!err) {
-            
             req.body.sprint = sprint._id;
             Estoria.create(req.body, function (err, estoria) {
                 if (err) {
@@ -117,27 +118,64 @@ addTarefa = function(req, res) {
     });
 };
 
+addVoto = function(req, res) {
+    var id = req.body.tarefa;
+    console.log(id);
+    
+    Tarefa
+    .findById(id)
+    .exec(function(err, tarefa){
+        if(!err) {
+            console.log('encountrou tarefa ' + util.inspect(tarefa));
+            req.body.tarefa = tarefa._id;
+            Voto.create(req.body, function (err, voto) {
+                if (err) {
+                    console.log(err);
+                    return res.status(400).send(err);
+                }
+                console.log('incluida voto: ' + id + ' = ' + req.body.nome);
+                
+                tarefa.votos.push(voto);
+                
+                tarefa.save(function(err,doc){
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    }
+                });
+    
+                return res.status(201).send();
+            });
+        } else {
+            console.log('deu pau');
+            return res.status(400).send(err);
+        }
+    });
+};
+
 remEstoria = function(req, res) {
-    var query = { id: req.body.id };
+    var query = { _id: req.params.id };
     Estoria.findOneAndRemove(query, function(err, data) {
         if(err) console.log('Error on delete');
-        res.status(200).send('Estoria Excluida');
+        console.log('estoria excluida: ' + req.params.id);
+        res.status(201).send('Estoria Excluida');
     });
 };  
 
 remTarefa = function(req, res) {
-    var query = { id: req.body.id };
+    var query = { _id: req.params.id };
     Tarefa.findOneAndRemove(query, function(err, data) {
         if(err) console.log('Error on delete');
-        res.status(200).send('Tarefa Excluida');
+        console.log('tarefa excluida: ' + req.params.id);
+        res.status(201).send('Tarefa Excluida');
     });
 };
 
 remVoto = function(req, res) {
-    var query = { id: req.body.id };
+    var query = { _id: req.params.id };
     Voto.findOneAndRemove(query, function(err, data) {
         if(err) console.log('Error on delete');
-        res.status(200).send('Voto Excluido');
+        res.status(201).send('Voto Excluido');
     });
 };
 

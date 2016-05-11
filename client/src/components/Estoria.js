@@ -40,6 +40,7 @@ class Estoria extends Component {
                                 ordem={index}
                                 dataId={item._id}
                                 nome={item.nome}
+                                remTarefa={this.props.remTarefa}
                             />    
                         );
                     })}

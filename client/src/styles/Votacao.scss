@@ -43,7 +43,6 @@
     .estoria-tarefas{
         display: flex;
         flex-direction: column;
-        
     }
     
     .add-estoria {
@@ -87,6 +86,15 @@
             .tarefa-opcoes {
                 margin-right:5px;
                 flex:0; 
+                
+                .tarefa-opcoes-votar {
+                    flex:1;
+                    
+                }
+                .tarefa-opcoes-excluir {
+                    padding-top: 5px;
+                    
+                }
             }
         }
     }

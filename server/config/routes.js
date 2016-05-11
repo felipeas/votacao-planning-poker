@@ -41,13 +41,13 @@ module.exports = function(app, io) {
     // TODO: DELETES
     // TODO: VOTO
     api.post('/estorias', auth(), votacao.addEstoria);
-    // api.delete('/estoria/:id', auth(), votacao.remEstoria);
+    api.delete('/estorias/:id', auth(), votacao.remEstoria);
     
     api.post('/tarefas', auth(), votacao.addTarefa);
-    // api.delete('/tarefa/:id', auth(), votacao.remVoto);
+    api.delete('/tarefas/:id', auth(), votacao.remTarefa);
     
-    // api.post('/votos', auth(), votacao.addVoto);
-    // api.delete('/voto/:id', auth(), votacao.remVoto);    
+    api.post('/votos', auth(), votacao.addVoto);
+    api.delete('/votos/:id', auth(), votacao.remVoto);    
 
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
