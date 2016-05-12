@@ -18,8 +18,10 @@ getVotacao = function(req, res) {
         populate: {
             path: 'tarefas',
             model: 'Tarefa',
-            populate 'votos',
-            model: 'Voto'
+            populate: {
+                path: 'votos',
+                model: 'Voto',   
+            }
         }
     })    
     .exec(function(err, sprint){      

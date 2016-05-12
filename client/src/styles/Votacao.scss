@@ -63,7 +63,7 @@
     
     .tarefa {                
         padding-right: 10px;  
-        margin: 5px;  
+          
         .tarefa-dados {
             padding: 10px;
             margin-left:15px;
@@ -72,10 +72,14 @@
             flex-direction: row;
             align-items: baseline;
             .tarefa-numero {
-                flex:0;
-                font-size: 30px !important; 
-                text-align: left;
                 color: rgb(220, 220, 220);
+                p:first-of-type {
+                    color: red;
+                }
+                flex:0;
+                font-size: 24px !important; 
+                text-align: left;
+                
             }
             .tarefa-titulo {
                 flex:1;

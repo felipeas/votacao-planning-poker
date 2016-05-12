@@ -47,9 +47,9 @@ export function remTarefa(sprintId, tarefaId) {
     });
 }
 
-export function addVoto(dados) {
-    return dispatch => post('voto', dados).then(() => {
-        dispatch(pushState(null, '/sprints'));
+export function addVoto(tarefaId, dados) {
+    return dispatch => post('votos', dados).then(() => {
+        return dispatch(carregarVotacaoTarefa(tarefaId));
     });
 }
 

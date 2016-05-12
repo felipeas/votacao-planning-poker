@@ -46,7 +46,7 @@ module.exports = function(app, io) {
     api.post('/tarefas', auth(), votacao.addTarefa);
     api.delete('/tarefas/:id', auth(), votacao.remTarefa);
     
-    api.post('/votos', auth(), votacao.addVoto);
+    //api.post('/votos', auth(), votacao.addVoto);
     api.delete('/votos/:id', auth(), votacao.remVoto);    
 
     app.get('*', function (req, res) {

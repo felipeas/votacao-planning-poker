@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import Cartas from '../components/Cartas';
 
 class Tarefa extends Component {
     handleOnEnd(id) {
         this.props.remTarefa(id);
+    }
+    
+    handleVoto(voto) {        
+        debugger;
     }
     
     classeCor(ordem) {
@@ -22,8 +27,8 @@ class Tarefa extends Component {
             <div className={classeCor + ' tarefa'}>
                 <div className="tarefa-dados row">
                     <div className="tarefa-numero">
-                        <span>{numero}</span>
-                        <span>{pontos}</span>
+                        <p>{numero}</p>
+                        <p>{pontos}</p>
                     </div>
                     <div className="tarefa-titulo">
                         <p>{nome}</p>
@@ -36,8 +41,17 @@ class Tarefa extends Component {
                  
                     <div className="tarefa-opcoes">
                         <div className="tarefa-opcoes-votar">
-                            <button id='votar' className="btn" onClick={this.handleOnEnd.bind(this,dataId)}>                            
-                                <i className="fa fa-bullhorn fa-2x"></i>
+                            <button id='votar' className="btn">                            
+                                <div className="dropdown pull-right">
+                                    <a type="button" id="votacao" data-toggle="dropdown">
+                                        <i className="fa fa-bullhorn fa-2x"></i>
+                                    </a>
+                                    
+                                    <Cartas 
+                                        key={dataId}
+                                        onVoto={this.handleVoto.bind(this)}
+                                    />
+                                </div>
                             </button>
                         </div>
                         <div className="tarefa-opcoes-excluir">
