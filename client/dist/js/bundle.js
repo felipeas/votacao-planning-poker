@@ -15017,11 +15017,12 @@ webpackJsonp([0],{
 	        var estoria = _props.estoria;
 	        var ordem = _props.ordem;
 	        var dataId = _props.dataId;
+	        var votos = _props.votos;
 
 	        var numero = estoria + 1 + '.' + (ordem + 1);
 	        var classeCor = this.classeCor(ordem);
 	        var pontos = '1';
-	        var votos = [4, 3, 2, 1];
+
 	        return _react2["default"].createElement(
 	            "div",
 	            { className: classeCor + ' tarefa' },

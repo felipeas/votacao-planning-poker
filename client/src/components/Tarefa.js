@@ -13,11 +13,11 @@ class Tarefa extends Component {
     }
     
     render() {
-        const { nome, estoria, ordem, dataId } = this.props;
+        const { nome, estoria, ordem, dataId, votos } = this.props;
         const numero = (estoria + 1) + '.' + (ordem + 1);
         const classeCor = this.classeCor(ordem);
         const pontos = '1';
-        const votos = [4, 3, 2, 1];
+       
         return (            
             <div className={classeCor + ' tarefa'}>
                 <div className="tarefa-dados row">
