@@ -26,6 +26,9 @@
                 font-size: 30px !important; 
                 text-align: left;
                 color: rgb(220, 220, 220);
+                p:last-of-type {
+                    color: lightsalmon;
+                }
             }
             .estoria-titulo {
                 flex:1;
@@ -89,11 +92,10 @@
             }
             .tarefa-opcoes {
                 margin-right:5px;
-                flex:0; 
+                flex-direction: row;                
                 
                 .tarefa-opcoes-votar {
                     flex:1;
-                    
                 }
                 .tarefa-opcoes-excluir {
                     padding-top: 5px;

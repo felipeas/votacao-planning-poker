@@ -34,6 +34,7 @@ export class VotacaoList extends Component {
                             key={index}
                             ordem={index}
                             nome={item.nome}
+                            pontos={item.pontos}
                             dataId={item._id}
                             tarefas={item.tarefas}
                             addTarefa={this.props.addTarefa}

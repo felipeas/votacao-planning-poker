@@ -12,14 +12,15 @@ class Estoria extends Component {
     }
 
     render() {
-        const { nome, ordem, tarefas, dataId } = this.props;
+        const { nome, ordem, pontos, tarefas, dataId } = this.props;
         const numero = ordem + 1;
 
         return (
             <div className="estoria">
                 <div className="estoria-dados row">
                     <div className="estoria-numero">
-                        <span>{numero}</span>
+                        <p>{numero}</p>
+                        <p>{pontos}</p>
                     </div>
                     <div className="estoria-titulo">
                         <span>{nome}</span>

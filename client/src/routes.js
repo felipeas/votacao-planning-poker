@@ -13,7 +13,7 @@ import { Conta } from './containers/Conta';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={Home} />
+    <Index component={Home} />
     <Route path="sprints" component={Sprints} />
     <Route path="/sprint/:sprintId" component={Votacao}/>
     <Route path="home" component={Home} />

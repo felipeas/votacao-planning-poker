@@ -28,7 +28,12 @@ getVotacao = function (req, res) {
         })
         .exec(function (err, sprint) {
             if (!err) {
-                // console.log('sprint: ' + util.inspect(sprint));
+                
+                sprint.estorias.forEach(function (estoria, index, array) {
+                    // console.log('estoria: ' + util.inspect(estoria));
+                    estoria.pontos = getPontos(estoria);
+                });
+                console.log('sprint: ' + util.inspect(sprint));
                 res.json(sprint);
             } else {
                 console.log('deu pau');
@@ -47,6 +52,28 @@ getEstoria = function (req, res) {
             if (!err) {
                 // console.log('estoria: ' + util.inspect(estoria));
                 req.params.id = estoria.sprint;
+                // console.log(getPontos(estoria));
+                return getVotacao(req, res);
+            } else {
+                console.log('deu pau');
+                return res.status(400).send(err);
+            }
+        });
+};
+
+getTarefa = function (req, res) {
+    var id = req.params.id;
+    console.log('listando tarefa: ' + id);
+
+    Tarefa
+        .findById(id)
+        .populate({
+            path: 'estoria',
+            model: 'Estoria',
+        })
+        .exec(function (err, tarefa) {
+            if (!err) {
+                req.params.id = tarefa.estoria.sprint;
                 return getVotacao(req, res);
             } else {
                 console.log('deu pau');
@@ -122,33 +149,8 @@ addTarefa = function (req, res) {
         });
 };
 
-getUsuario = function (req) {
-    var uuu = basicAuth(req);
-
-    if (!uuu || !uuu.name || !uuu.pass) {
-        return null;
-    }
-
-    Usuario.findOne({ email: uuu.name, senha: uuu.pass }, function (qqq, usu) {
-        if (err) {
-            console.log(err);
-            return null;
-        }
-        if (usu) {
-            return usu;
-        }
-
-        return null;
-    });
-};
-
-
-
 addVoto = function (req, res) {
     var id = req.body.tarefa;
-    var usuario = getUsuario(req);
-    console.log('encountrou usu ' + util.inspect(usuario));
-
     console.log(id);
 
     Tarefa
@@ -157,7 +159,7 @@ addVoto = function (req, res) {
             if (!err) {
                 console.log('encountrou tarefa ' + util.inspect(tarefa));
                 req.body.tarefa = tarefa._id;
-                req.body.usuario = usuario;
+                req.body.usuario = req.user;
                 Voto.create(req.body, function (err, voto) {
                     if (err) {
                         console.log(err);
@@ -208,10 +210,25 @@ remVoto = function (req, res) {
         res.status(201).send('Voto Excluido');
     });
 };
+   
+var getPontos = function (estoria) {
+    var soma = 0;
+    if (estoria) {
+        estoria.tarefas.forEach(function (tarefa, index, array) {
+            soma += tarefa.pontos;
+            // console.log('estoria: ' + util.inspect(estoria));
+        });
+        console.log(soma);
+        return soma;
+    }
+
+    return 0;
+};
 
 module.exports = {
     getVotacao: getVotacao,
     getEstoria: getEstoria,
+    getTarefa: getTarefa,
     addEstoria: addEstoria,
     addTarefa: addTarefa,
     addVoto: addVoto,

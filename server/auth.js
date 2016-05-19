@@ -13,14 +13,13 @@ module.exports = function (options) {
             return unauthorized(res, next);
         }
 
-        Usuario.findOne({email: user.name, senha: user.pass}, function(err, logou) {
+        Usuario.findOne({email: user.name, senha: user.pass}, function(err, autorizou) {
             if (err) {
                 console.log(err);
                 return res.status(500).send(err);
             }
-            if (logou) {
-                console.log('usuario: ' + user.name + ' - autorizado');
-                req.user = logou
+            if (autorizou) {
+                req.user = autorizou
                 return next();
             }
 

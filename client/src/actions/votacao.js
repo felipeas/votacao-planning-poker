@@ -7,13 +7,18 @@ import { pushState } from 'redux-router';
 
 export function carregarVotacao(sprintId) {
     return dispatch => get(`votacao/${sprintId}`).then(sprint => {
-        // alert(JSON.stringify(sprint,true,2));
         return dispatch(setarVotacao(sprint));
     });
 }
 
 export function carregarVotacaoEstoria(estoriaId) {
     return dispatch => get(`estorias/${estoriaId}`).then(sprint => {
+        return dispatch(setarVotacao(sprint));
+    });
+}
+
+export function carregarVotacaoTarefa(tarefaId) {
+    return dispatch => get(`tarefas/${tarefaId}`).then(sprint => {
         // alert(JSON.stringify(sprint,true,2));
         return dispatch(setarVotacao(sprint));
     });
@@ -29,7 +34,6 @@ export function addEstoria(sprintId, dados) {
 export function remEstoria(sprintId, estoriaId) {
     return dispatch => del(`estorias/${estoriaId}`).then(() => {
         return dispatch(carregarVotacao(sprintId));
-        //dispatch(pushState(null, '/sprints'));
     });
 }
 
@@ -43,14 +47,12 @@ export function addTarefa(estoriaId, dados) {
 export function remTarefa(sprintId, tarefaId) {
     return dispatch => del(`tarefas/${tarefaId}`).then(() => {
         return dispatch(carregarVotacao(sprintId));
-        //dispatch(pushState(null, '/sprints'));
     });
 }
 
 export function addVoto(tarefaId, dados) {
     return dispatch => post('votos', dados).then(() => {
-        alert('foi');
-        //return dispatch(carregarVotacaoTarefa(tarefaId));
+        return dispatch(carregarVotacaoTarefa(tarefaId));
     });
 }
 

@@ -4,7 +4,8 @@ var SprintSchema = new mongoose.Schema({
     nome: String,
     criacao: { type: Date, default: Date.now },
     encerrada:  {type: Boolean, default: false},
-    estorias : [{ type: Schema.Types.ObjectId, ref: 'Estoria' }]
+    estorias : [{ type: Schema.Types.ObjectId, ref: 'Estoria' }],
+    pontos: {type: Number, default: 0},
 });
 
 Sprint = mongoose.model('Sprint', SprintSchema);
@@ -13,7 +14,8 @@ var EstoriaSchema = new mongoose.Schema({
     sprint : { type: Schema.Types.ObjectId, ref: 'Sprint' },
     nome: String,
     ordem: {type: Number, default: 0},
-    tarefas : [{ type: Schema.Types.ObjectId, ref: 'Tarefa' }]
+    tarefas : [{ type: Schema.Types.ObjectId, ref: 'Tarefa' }],
+    pontos: {type: Number, default: 0},
 });
 
 Estoria = mongoose.model('Estoria', EstoriaSchema);
@@ -23,7 +25,7 @@ var TarefaSchema = new mongoose.Schema({
     nome: String,
     ordem: {type: Number, default: 0},
     votos: [{ type: Schema.Types.ObjectId, ref: 'Voto' }],
-    pontos: {type: Number, default: 0},
+    pontos: {type: Number, default: 1},
 });
 
 Tarefa = mongoose.model('Tarefa', TarefaSchema);

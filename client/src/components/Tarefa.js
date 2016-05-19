@@ -41,17 +41,18 @@ class Tarefa extends Component {
                     </div>
                  
                     <div className="tarefa-opcoes">
-                        <div className="tarefa-opcoes-votar dropdown pull-right">           
-                       
+                        <div className="tarefa-opcoes-votar"> 
+                            <div className="dropdown pull-right">          
                             <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
-                                <i className="fa fa-bullhorn fa-2x"></i>
-                            </button>
-                                
-                            <Cartas 
-                                key={dataId}
-                                dataId={dataId}
-                                onVoto={this.handleVoto.bind(this)}
-                            />
+                                    <i className="fa fa-bullhorn fa-2x"></i>
+                                </button>
+                                    
+                                <Cartas 
+                                    key={dataId}
+                                    dataId={dataId}
+                                    onVoto={this.handleVoto.bind(this)}
+                                />
+                            </div>
                         </div>
                         <div className="tarefa-opcoes-excluir">
                             <button id='excluir' className="btn pull-right" onClick={this.handleOnEnd.bind(this,dataId)}>                            

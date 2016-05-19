@@ -38,6 +38,7 @@ module.exports = function(app, io) {
     
     api.get('/votacao/:id', auth(), votacao.getVotacao);
     api.get('/estorias/:id', auth(), votacao.getEstoria);
+    api.get('/tarefas/:id', auth(), votacao.getTarefa);
     // TODO: DELETES
     // TODO: VOTO
     api.post('/estorias', auth(), votacao.addEstoria);
