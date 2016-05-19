@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
+import Cartas from '../components/Cartas';
 
 class Tarefa extends Component {
     handleOnEnd(id) {
         this.props.remTarefa(id);
+    }
+    
+    handleVoto(id, valor) {         
+        const voto = {
+            'tarefa': id, 
+            'voto': valor,
+        };
+        
+        this.props.addVoto(id, voto);      
     }
     
     classeCor(ordem) {
@@ -22,23 +32,26 @@ class Tarefa extends Component {
             <div className={classeCor + ' tarefa'}>
                 <div className="tarefa-dados row">
                     <div className="tarefa-numero">
-                        <span>{numero}</span>
-                        <span>{pontos}</span>
+                        <p>{numero}</p>
+                        <p>{pontos}</p>
                     </div>
                     <div className="tarefa-titulo">
                         <p>{nome}</p>
-                        {votos.map((item, index) => {
-                            return (
-                                <span>{item}&nbsp;</span>   
-                            )
-                        })}
+                        {votos ? renderVotos() : null}
                     </div>
                  
                     <div className="tarefa-opcoes">
-                        <div className="tarefa-opcoes-votar">
-                            <button id='votar' className="btn" onClick={this.handleOnEnd.bind(this,dataId)}>                            
+                        <div className="tarefa-opcoes-votar dropdown pull-right">           
+                       
+                            <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
                                 <i className="fa fa-bullhorn fa-2x"></i>
                             </button>
+                                
+                            <Cartas 
+                                key={dataId}
+                                dataId={dataId}
+                                onVoto={this.handleVoto.bind(this)}
+                            />
                         </div>
                         <div className="tarefa-opcoes-excluir">
                             <button id='excluir' className="btn pull-right" onClick={this.handleOnEnd.bind(this,dataId)}>                            
@@ -48,6 +61,20 @@ class Tarefa extends Component {
                     </div>
                 </div>
             </div>
+        );
+    }
+    
+    renderVotos() {
+        const { votos } = this.props;
+        return (
+            <div>
+                {votos.map((item, index) => {
+                    return (
+                        <span>{item}&nbsp;</span>   
+                    )
+                })}
+            </div>
+            
         );
     }
 }

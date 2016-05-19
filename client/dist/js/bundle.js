@@ -12696,21 +12696,18 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _history = __webpack_require__(265);
-
-	var _store = __webpack_require__(269);
+	var _store = __webpack_require__(265);
 
 	var _store2 = _interopRequireDefault(_store);
 
-	var _routes = __webpack_require__(336);
+	var _routes = __webpack_require__(332);
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _actionsLogin = __webpack_require__(338);
+	var _actionsLogin = __webpack_require__(334);
 
-	var _actionsSprint = __webpack_require__(329);
+	var _actionsSprint = __webpack_require__(325);
 
-	var history = _reactRouter.useRouterHistory(_history.createHashHistory)({ queryKey: false });
 	var store = _store2['default']();
 
 	var credentials = localStorage.getItem('credentials');
@@ -12727,12 +12724,12 @@ webpackJsonp([0],{
 	_reactDom2['default'].render(_react2['default'].createElement(
 	    _reactRedux.Provider,
 	    { store: store },
-	    _react2['default'].createElement(_reactRouter.Router, { routes: _routes2['default'], history: history })
+	    _react2['default'].createElement(_reactRouter.Router, { routes: _routes2['default'], history: _reactRouter.browserHistory })
 	), document.getElementById('root'));
 
 /***/ },
 
-/***/ 269:
+/***/ 265:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -12744,15 +12741,15 @@ webpackJsonp([0],{
 
 	var _redux = __webpack_require__(191);
 
-	var _reduxThunk = __webpack_require__(270);
+	var _reduxThunk = __webpack_require__(266);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
-	var _reduxLogger = __webpack_require__(271);
+	var _reduxLogger = __webpack_require__(267);
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
-	var _reducers = __webpack_require__(272);
+	var _reducers = __webpack_require__(268);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -12775,7 +12772,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 271:
+/***/ 267:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -12973,7 +12970,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 272:
+/***/ 268:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12984,19 +12981,19 @@ webpackJsonp([0],{
 
 	var _redux = __webpack_require__(191);
 
-	var _reduxRouter = __webpack_require__(273);
+	var _reduxRouter = __webpack_require__(269);
 
-	var _reduxForm = __webpack_require__(286);
+	var _reduxForm = __webpack_require__(282);
 
-	var _app = __webpack_require__(326);
+	var _app = __webpack_require__(322);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _sprints = __webpack_require__(328);
+	var _sprints = __webpack_require__(324);
 
 	var _sprints2 = _interopRequireDefault(_sprints);
 
-	var _votacao = __webpack_require__(334);
+	var _votacao = __webpack_require__(330);
 
 	var _votacao2 = _interopRequireDefault(_votacao);
 
@@ -13013,14 +13010,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 326:
+/***/ 322:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _actionsApp = __webpack_require__(327);
+	var _actionsApp = __webpack_require__(323);
 
 	var initialState = {
 	    usuario: null
@@ -13043,7 +13040,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 327:
+/***/ 323:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -13063,7 +13060,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 328:
+/***/ 324:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13072,7 +13069,7 @@ webpackJsonp([0],{
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _actionsSprint = __webpack_require__(329);
+	var _actionsSprint = __webpack_require__(325);
 
 	var initialState = {
 	    lista: []
@@ -13106,7 +13103,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 329:
+/***/ 325:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13118,9 +13115,9 @@ webpackJsonp([0],{
 	exports.setarSprints = setarSprints;
 	exports.addSprintLista = addSprintLista;
 
-	var _modulesApi = __webpack_require__(330);
+	var _modulesApi = __webpack_require__(326);
 
-	var _reduxRouter = __webpack_require__(273);
+	var _reduxRouter = __webpack_require__(269);
 
 	var SPRINT_ADD = 'SPRINT_ADD';
 	exports.SPRINT_ADD = SPRINT_ADD;
@@ -13173,7 +13170,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 330:
+/***/ 326:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13187,11 +13184,11 @@ webpackJsonp([0],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _isomorphicFetch = __webpack_require__(331);
+	var _isomorphicFetch = __webpack_require__(327);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
-	var _qsDistQs = __webpack_require__(333);
+	var _qsDistQs = __webpack_require__(329);
 
 	var _qsDistQs2 = _interopRequireDefault(_qsDistQs);
 
@@ -13283,14 +13280,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 334:
+/***/ 330:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _actionsVotacao = __webpack_require__(335);
+	var _actionsVotacao = __webpack_require__(331);
 
 	var initialState = {
 	    sprint: {
@@ -13330,7 +13327,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 335:
+/***/ 331:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13344,9 +13341,9 @@ webpackJsonp([0],{
 	exports.remTarefa = remTarefa;
 	exports.addVoto = addVoto;
 
-	var _modulesApi = __webpack_require__(330);
+	var _modulesApi = __webpack_require__(326);
 
-	var _reduxRouter = __webpack_require__(273);
+	var _reduxRouter = __webpack_require__(269);
 
 	var VOTACAO_ESTORIA_ADD = 'VOTACAO_ESTORIA_ADD';
 	exports.VOTACAO_ESTORIA_ADD = VOTACAO_ESTORIA_ADD;
@@ -13410,10 +13407,11 @@ webpackJsonp([0],{
 	    };
 	}
 
-	function addVoto(dados) {
+	function addVoto(tarefaId, dados) {
 	    return function (dispatch) {
-	        return _modulesApi.post('voto', dados).then(function () {
-	            dispatch(_reduxRouter.pushState(null, '/sprints'));
+	        return _modulesApi.post('votos', dados).then(function () {
+	            alert('foi');
+	            //return dispatch(carregarVotacaoTarefa(tarefaId));
 	        });
 	    };
 	}
@@ -13443,7 +13441,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 336:
+/***/ 332:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13460,19 +13458,19 @@ webpackJsonp([0],{
 
 	/* containers */
 
-	var _containersApp = __webpack_require__(337);
+	var _containersApp = __webpack_require__(333);
 
-	var _containersHome = __webpack_require__(350);
+	var _containersHome = __webpack_require__(346);
 
-	var _containersSprints = __webpack_require__(357);
+	var _containersSprints = __webpack_require__(353);
 
-	var _containersVotacao = __webpack_require__(368);
+	var _containersVotacao = __webpack_require__(364);
 
-	var _containersTeste = __webpack_require__(376);
+	var _containersTeste = __webpack_require__(373);
 
-	var _containersLogin = __webpack_require__(379);
+	var _containersLogin = __webpack_require__(376);
 
-	var _containersConta = __webpack_require__(382);
+	var _containersConta = __webpack_require__(379);
 
 	exports['default'] = _react2['default'].createElement(
 	  _reactRouter.Route,
@@ -13489,7 +13487,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 337:
+/***/ 333:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13510,15 +13508,15 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _actionsLogin = __webpack_require__(338);
+	var _actionsLogin = __webpack_require__(334);
 
-	var _componentsHeader = __webpack_require__(339);
+	var _componentsHeader = __webpack_require__(335);
 
-	var _componentsNav = __webpack_require__(342);
+	var _componentsNav = __webpack_require__(338);
 
-	var _componentsFooter = __webpack_require__(345);
+	var _componentsFooter = __webpack_require__(341);
 
-	__webpack_require__(348);
+	__webpack_require__(344);
 
 	var App = (function (_Component) {
 	    _inherits(App, _Component);
@@ -13573,7 +13571,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 338:
+/***/ 334:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13582,18 +13580,21 @@ webpackJsonp([0],{
 	exports.fazerLogin = fazerLogin;
 	exports.fazerLogout = fazerLogout;
 
-	var _reduxRouter = __webpack_require__(273);
+	var _reactRouter = __webpack_require__(206);
 
-	var _modulesApi = __webpack_require__(330);
+	var _reduxRouter = __webpack_require__(269);
 
-	var _app = __webpack_require__(327);
+	var _modulesApi = __webpack_require__(326);
+
+	var _app = __webpack_require__(323);
 
 	function fazerLogin(email, senha) {
 	    return function (dispatch) {
 	        return _modulesApi.post('login', { email: email, senha: senha }).then(function (usuario) {
 	            localStorage.setItem('credentials', btoa(email + ':' + senha));
 	            dispatch(_app.setUsuario(usuario));
-	            return dispatch(_reduxRouter.pushState(null, '/sprints'));
+	            var path = '/home/';
+	            _reactRouter.browserHistory.push(path);
 	        });
 	    };
 	}
@@ -13602,13 +13603,14 @@ webpackJsonp([0],{
 	    return function (dispatch) {
 	        localStorage.removeItem('credentials');
 	        dispatch(_app.setUsuario(null));
-	        return dispatch(_reduxRouter.pushState(null, '/home'));
+	        var path = '/home/';
+	        _reactRouter.browserHistory.push(path);
 	    };
 	}
 
 /***/ },
 
-/***/ 339:
+/***/ 335:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13629,9 +13631,9 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _stylesHeaderScss = __webpack_require__(340);
+	var _stylesHeaderScss = __webpack_require__(336);
 
-	var _componentsHeader = __webpack_require__(339);
+	var _componentsHeader = __webpack_require__(335);
 
 	var Header = (function (_Component) {
 	    _inherits(Header, _Component);
@@ -13770,13 +13772,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 340:
+/***/ 336:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(341);
+	var content = __webpack_require__(337);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13797,7 +13799,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 341:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13808,7 +13810,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 342:
+/***/ 338:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13827,7 +13829,7 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _stylesNavScss = __webpack_require__(343);
+	var _stylesNavScss = __webpack_require__(339);
 
 	var Nav = (function (_Component) {
 	    _inherits(Nav, _Component);
@@ -13879,13 +13881,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 343:
+/***/ 339:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(344);
+	var content = __webpack_require__(340);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13906,7 +13908,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 344:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -13917,7 +13919,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 345:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13936,7 +13938,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesFooterScss = __webpack_require__(346);
+	var _stylesFooterScss = __webpack_require__(342);
 
 	var Footer = (function (_Component) {
 	    _inherits(Footer, _Component);
@@ -13966,13 +13968,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 346:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(347);
+	var content = __webpack_require__(343);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -13993,7 +13995,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 347:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14004,13 +14006,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 348:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(349);
+	var content = __webpack_require__(345);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14031,7 +14033,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 349:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14039,7 +14041,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 350:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14058,9 +14060,9 @@ webpackJsonp([0],{
 
 	/* components */
 
-	var _componentsTopImage = __webpack_require__(351);
+	var _componentsTopImage = __webpack_require__(347);
 
-	var _componentsTools = __webpack_require__(354);
+	var _componentsTools = __webpack_require__(350);
 
 	var Home = (function (_Component) {
 	    _inherits(Home, _Component);
@@ -14087,7 +14089,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 351:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14106,7 +14108,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesTopImageScss = __webpack_require__(352);
+	var _stylesTopImageScss = __webpack_require__(348);
 
 	var TopImage = (function (_Component) {
 	  _inherits(TopImage, _Component);
@@ -14148,13 +14150,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 352:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(353);
+	var content = __webpack_require__(349);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14175,7 +14177,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 353:
+/***/ 349:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14186,7 +14188,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 354:
+/***/ 350:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14205,7 +14207,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesToolsScss = __webpack_require__(355);
+	var _stylesToolsScss = __webpack_require__(351);
 
 	var Tools = (function (_Component) {
 	    _inherits(Tools, _Component);
@@ -14227,13 +14229,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 355:
+/***/ 351:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(356);
+	var content = __webpack_require__(352);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14254,7 +14256,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 356:
+/***/ 352:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14262,7 +14264,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 357:
+/***/ 353:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14285,15 +14287,15 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _componentsSprintList = __webpack_require__(358);
+	var _componentsSprintList = __webpack_require__(354);
 
-	var _componentsAddSprint = __webpack_require__(359);
+	var _componentsAddSprint = __webpack_require__(355);
 
-	var _actionsSprint = __webpack_require__(329);
+	var _actionsSprint = __webpack_require__(325);
 
 	var actionCreators = _interopRequireWildcard(_actionsSprint);
 
-	var _stylesSprintScss = __webpack_require__(366);
+	var _stylesSprintScss = __webpack_require__(362);
 
 	var Sprints = (function (_Component) {
 	    _inherits(Sprints, _Component);
@@ -14343,7 +14345,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 358:
+/***/ 354:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14429,7 +14431,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 359:
+/***/ 355:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14448,13 +14450,13 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reduxForm = __webpack_require__(286);
+	var _reduxForm = __webpack_require__(282);
 
-	var _modulesValidate = __webpack_require__(360);
+	var _modulesValidate = __webpack_require__(356);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _componentsTextbox = __webpack_require__(364);
+	var _componentsTextbox = __webpack_require__(360);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -14500,7 +14502,7 @@ webpackJsonp([0],{
 	                _react2['default'].createElement(_componentsTextbox2['default'], {
 	                    field: nome,
 	                    className: 'form-control',
-	                    placeholder: 'Incluir nova sprint',
+	                    placeholder: 'Nova sprint',
 	                    label: ''
 	                }),
 	                _react2['default'].createElement(
@@ -14530,14 +14532,14 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 360:
+/***/ 356:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	exports.__esModule = true;
 
-	var _validateJs = __webpack_require__(361);
+	var _validateJs = __webpack_require__(357);
 
 	_validateJs.validate.options = { fullMessages: false };
 	_validateJs.validate.validators.presence.options = { message: 'Campo obrigatório.' };
@@ -14552,7 +14554,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 364:
+/***/ 360:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14573,7 +14575,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(365);
+	var _classnames = __webpack_require__(361);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -14638,13 +14640,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 366:
+/***/ 362:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(367);
+	var content = __webpack_require__(363);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -14665,7 +14667,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 367:
+/***/ 363:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -14676,7 +14678,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 368:
+/***/ 364:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14699,15 +14701,15 @@ webpackJsonp([0],{
 
 	var _reactRedux = __webpack_require__(185);
 
-	var _componentsVotacaoList = __webpack_require__(369);
+	var _componentsVotacaoList = __webpack_require__(365);
 
-	var _componentsAddEstoria = __webpack_require__(373);
+	var _componentsAddEstoria = __webpack_require__(370);
 
-	var _actionsVotacao = __webpack_require__(335);
+	var _actionsVotacao = __webpack_require__(331);
 
 	var actionCreators = _interopRequireWildcard(_actionsVotacao);
 
-	var _stylesVotacaoScss = __webpack_require__(374);
+	var _stylesVotacaoScss = __webpack_require__(371);
 
 	var Votacao = (function (_Component) {
 	    _inherits(Votacao, _Component);
@@ -14760,7 +14762,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 369:
+/***/ 365:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14777,7 +14779,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsEstoria = __webpack_require__(370);
+	var _componentsEstoria = __webpack_require__(366);
 
 	var _componentsEstoria2 = _interopRequireDefault(_componentsEstoria);
 
@@ -14828,6 +14830,7 @@ webpackJsonp([0],{
 	                    dataId: item._id,
 	                    tarefas: item.tarefas,
 	                    addTarefa: _this.props.addTarefa,
+	                    addVoto: _this.props.addVoto,
 	                    remEstoria: _this.remEstoria.bind(_this),
 	                    remTarefa: _this.remTarefa.bind(_this)
 	                });
@@ -14855,7 +14858,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 370:
+/***/ 366:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14876,11 +14879,11 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTarefa = __webpack_require__(371);
+	var _componentsTarefa = __webpack_require__(367);
 
 	var _componentsTarefa2 = _interopRequireDefault(_componentsTarefa);
 
-	var _componentsAddTarefa = __webpack_require__(372);
+	var _componentsAddTarefa = __webpack_require__(369);
 
 	var Estoria = (function (_Component) {
 	    _inherits(Estoria, _Component);
@@ -14950,7 +14953,8 @@ webpackJsonp([0],{
 	                        ordem: index,
 	                        dataId: item._id,
 	                        nome: item.nome,
-	                        remTarefa: _this.props.remTarefa
+	                        remTarefa: _this.props.remTarefa,
+	                        addVoto: _this.props.addVoto
 	                    });
 	                }),
 	                _react2['default'].createElement(_componentsAddTarefa.AddTarefa, _extends({ formKey: dataId }, this.props))
@@ -14974,22 +14978,26 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 371:
+/***/ 367:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	exports.__esModule = true;
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(27);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _componentsCartas = __webpack_require__(368);
+
+	var _componentsCartas2 = _interopRequireDefault(_componentsCartas);
 
 	var Tarefa = (function (_Component) {
 	    _inherits(Tarefa, _Component);
@@ -15002,6 +15010,15 @@ webpackJsonp([0],{
 
 	    Tarefa.prototype.handleOnEnd = function handleOnEnd(id) {
 	        this.props.remTarefa(id);
+	    };
+
+	    Tarefa.prototype.handleVoto = function handleVoto(id, valor) {
+	        var voto = {
+	            'tarefa': id,
+	            'voto': valor
+	        };
+
+	        this.props.addVoto(id, voto);
 	    };
 
 	    Tarefa.prototype.classeCor = function classeCor(ordem) {
@@ -15023,62 +15040,60 @@ webpackJsonp([0],{
 	        var classeCor = this.classeCor(ordem);
 	        var pontos = '1';
 
-	        return _react2["default"].createElement(
-	            "div",
+	        return _react2['default'].createElement(
+	            'div',
 	            { className: classeCor + ' tarefa' },
-	            _react2["default"].createElement(
-	                "div",
-	                { className: "tarefa-dados row" },
-	                _react2["default"].createElement(
-	                    "div",
-	                    { className: "tarefa-numero" },
-	                    _react2["default"].createElement(
-	                        "span",
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'tarefa-dados row' },
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'tarefa-numero' },
+	                    _react2['default'].createElement(
+	                        'p',
 	                        null,
 	                        numero
 	                    ),
-	                    _react2["default"].createElement(
-	                        "span",
+	                    _react2['default'].createElement(
+	                        'p',
 	                        null,
 	                        pontos
 	                    )
 	                ),
-	                _react2["default"].createElement(
-	                    "div",
-	                    { className: "tarefa-titulo" },
-	                    _react2["default"].createElement(
-	                        "p",
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'tarefa-titulo' },
+	                    _react2['default'].createElement(
+	                        'p',
 	                        null,
 	                        nome
 	                    ),
-	                    votos.map(function (item, index) {
-	                        return _react2["default"].createElement(
-	                            "span",
-	                            null,
-	                            item,
-	                            " "
-	                        );
-	                    })
+	                    votos ? renderVotos() : null
 	                ),
-	                _react2["default"].createElement(
-	                    "div",
-	                    { className: "tarefa-opcoes" },
-	                    _react2["default"].createElement(
-	                        "div",
-	                        { className: "tarefa-opcoes-votar" },
-	                        _react2["default"].createElement(
-	                            "button",
-	                            { id: "votar", className: "btn", onClick: this.handleOnEnd.bind(this, dataId) },
-	                            _react2["default"].createElement("i", { className: "fa fa-bullhorn fa-2x" })
-	                        )
+	                _react2['default'].createElement(
+	                    'div',
+	                    { className: 'tarefa-opcoes' },
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'tarefa-opcoes-votar dropdown pull-right' },
+	                        _react2['default'].createElement(
+	                            'button',
+	                            { type: 'button', 'class': 'btn btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
+	                            _react2['default'].createElement('i', { className: 'fa fa-bullhorn fa-2x' })
+	                        ),
+	                        _react2['default'].createElement(_componentsCartas2['default'], {
+	                            key: dataId,
+	                            dataId: dataId,
+	                            onVoto: this.handleVoto.bind(this)
+	                        })
 	                    ),
-	                    _react2["default"].createElement(
-	                        "div",
-	                        { className: "tarefa-opcoes-excluir" },
-	                        _react2["default"].createElement(
-	                            "button",
-	                            { id: "excluir", className: "btn pull-right", onClick: this.handleOnEnd.bind(this, dataId) },
-	                            _react2["default"].createElement("i", { className: "fa fa-close " })
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'tarefa-opcoes-excluir' },
+	                        _react2['default'].createElement(
+	                            'button',
+	                            { id: 'excluir', className: 'btn pull-right', onClick: this.handleOnEnd.bind(this, dataId) },
+	                            _react2['default'].createElement('i', { className: 'fa fa-close ' })
 	                        )
 	                    )
 	                )
@@ -15086,15 +15101,99 @@ webpackJsonp([0],{
 	        );
 	    };
 
+	    Tarefa.prototype.renderVotos = function renderVotos() {
+	        var votos = this.props.votos;
+
+	        return _react2['default'].createElement(
+	            'div',
+	            null,
+	            votos.map(function (item, index) {
+	                return _react2['default'].createElement(
+	                    'span',
+	                    null,
+	                    item,
+	                    ' '
+	                );
+	            })
+	        );
+	    };
+
 	    return Tarefa;
 	})(_react.Component);
 
-	exports["default"] = Tarefa;
-	module.exports = exports["default"];
+	exports['default'] = Tarefa;
+	module.exports = exports['default'];
 
 /***/ },
 
-/***/ 372:
+/***/ 368:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(27);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Card = (function (_Component) {
+	    _inherits(Card, _Component);
+
+	    function Card(props) {
+	        _classCallCheck(this, Card);
+
+	        _Component.call(this, props);
+	    }
+
+	    Card.prototype.handleVoto = function handleVoto(id, valor) {
+	        this.props.onVoto(id, valor);
+	    };
+
+	    Card.prototype.render = function render() {
+	        var cards = [{ nome: '0', valor: 0 }, { nome: '1/2', valor: 0.5 }, { nome: '3', valor: 3 }, { nome: '5', valor: 5 }, { nome: '8', valor: 8 }, { nome: '13', valor: 13 }, { nome: '20', valor: 20 }, { nome: '40', valor: 40 }];
+
+	        var dataId = this.props.dataId;
+	        var handleVoto = this.handleVoto;
+
+	        var voto = this;
+	        //'1/2':0.5,'1':1,'3':3,'5':5,'8':8,'13':13,'20':20,'40':40};
+	        //const cards = [0,0.5,1,3,5,8,13,20,40];
+
+	        return _react2['default'].createElement(
+	            'ul',
+	            { className: 'dropdown-menu pull-right' },
+	            cards.map(function (carta) {
+	                return _react2['default'].createElement(
+	                    'li',
+	                    null,
+	                    _react2['default'].createElement(
+	                        'a',
+	                        { onClick: handleVoto.bind(voto, dataId, carta.valor) },
+	                        carta.nome,
+	                        '|',
+	                        carta.valor
+	                    )
+	                );
+	            })
+	        );
+	    };
+
+	    return Card;
+	})(_react.Component);
+
+	exports['default'] = Card;
+	module.exports = exports['default'];
+
+/***/ },
+
+/***/ 369:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15113,13 +15212,13 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reduxForm = __webpack_require__(286);
+	var _reduxForm = __webpack_require__(282);
 
-	var _modulesValidate = __webpack_require__(360);
+	var _modulesValidate = __webpack_require__(356);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _componentsTextbox = __webpack_require__(364);
+	var _componentsTextbox = __webpack_require__(360);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -15167,7 +15266,7 @@ webpackJsonp([0],{
 	                _react2['default'].createElement(_componentsTextbox2['default'], {
 	                    field: nome,
 	                    className: 'form-control',
-	                    placeholder: 'Incluir nova tarefa',
+	                    placeholder: 'Nova tarefa',
 	                    label: ''
 	                }),
 	                _react2['default'].createElement(
@@ -15197,7 +15296,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 373:
+/***/ 370:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15216,13 +15315,13 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reduxForm = __webpack_require__(286);
+	var _reduxForm = __webpack_require__(282);
 
-	var _modulesValidate = __webpack_require__(360);
+	var _modulesValidate = __webpack_require__(356);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _componentsTextbox = __webpack_require__(364);
+	var _componentsTextbox = __webpack_require__(360);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -15268,7 +15367,7 @@ webpackJsonp([0],{
 	                _react2['default'].createElement(_componentsTextbox2['default'], {
 	                    field: nome,
 	                    className: 'form-control',
-	                    placeholder: 'Incluir nova estória',
+	                    placeholder: 'Nova estória',
 	                    label: ''
 	                }),
 	                _react2['default'].createElement(
@@ -15298,13 +15397,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 374:
+/***/ 371:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(375);
+	var content = __webpack_require__(372);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -15325,18 +15424,18 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 375:
+/***/ 372:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
 	exports.locals = {
 	  "styles": "_1LrDsHdaZqtB8ZTtaXCnfU"
 	};
-	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    padding: 5px;\n    margin-bottom: 10px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px;\n    margin: 5px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        flex: 0; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-votar {\n          flex: 1; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-excluir {\n          padding-top: 5px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
+	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    padding: 5px;\n    margin-bottom: 10px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        color: gainsboro;\n        flex: 0;\n        font-size: 24px !important;\n        text-align: left; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        flex: 0; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-votar {\n          flex: 1; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-excluir {\n          padding-top: 5px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
 
 /***/ },
 
-/***/ 376:
+/***/ 373:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15355,7 +15454,7 @@ webpackJsonp([0],{
 
 	/* component styles */
 
-	var _stylesTesteScss = __webpack_require__(377);
+	var _stylesTesteScss = __webpack_require__(374);
 
 	var Teste = (function (_Component) {
 	    _inherits(Teste, _Component);
@@ -15397,13 +15496,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 377:
+/***/ 374:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(378);
+	var content = __webpack_require__(375);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -15424,7 +15523,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 378:
+/***/ 375:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -15435,7 +15534,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 379:
+/***/ 376:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15454,7 +15553,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTextbox = __webpack_require__(364);
+	var _componentsTextbox = __webpack_require__(360);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -15462,11 +15561,11 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _actionsLogin = __webpack_require__(338);
+	var _actionsLogin = __webpack_require__(334);
 
-	var _reduxForm = __webpack_require__(286);
+	var _reduxForm = __webpack_require__(282);
 
-	var _stylesContaScss = __webpack_require__(380);
+	var _stylesContaScss = __webpack_require__(377);
 
 	var Login = (function (_Component) {
 	    _inherits(Login, _Component);
@@ -15559,13 +15658,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 380:
+/***/ 377:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(381);
+	var content = __webpack_require__(378);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(11)(content, {});
@@ -15586,7 +15685,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 381:
+/***/ 378:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -15594,7 +15693,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 382:
+/***/ 379:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15613,7 +15712,7 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _componentsTextbox = __webpack_require__(364);
+	var _componentsTextbox = __webpack_require__(360);
 
 	var _componentsTextbox2 = _interopRequireDefault(_componentsTextbox);
 
@@ -15621,15 +15720,15 @@ webpackJsonp([0],{
 
 	var _reactRouter = __webpack_require__(206);
 
-	var _actionsConta = __webpack_require__(383);
+	var _actionsConta = __webpack_require__(380);
 
-	var _reduxForm = __webpack_require__(286);
+	var _reduxForm = __webpack_require__(282);
 
-	var _modulesValidate = __webpack_require__(360);
+	var _modulesValidate = __webpack_require__(356);
 
 	var _modulesValidate2 = _interopRequireDefault(_modulesValidate);
 
-	var _stylesContaScss = __webpack_require__(380);
+	var _stylesContaScss = __webpack_require__(377);
 
 	var Conta = (function (_Component) {
 	    _inherits(Conta, _Component);
@@ -15731,7 +15830,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 383:
+/***/ 380:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15739,17 +15838,18 @@ webpackJsonp([0],{
 	exports.__esModule = true;
 	exports.criarConta = criarConta;
 
-	var _reduxRouter = __webpack_require__(273);
+	var _reduxRouter = __webpack_require__(269);
 
-	var _modulesApi = __webpack_require__(330);
+	var _modulesApi = __webpack_require__(326);
 
-	var _login = __webpack_require__(338);
+	var _login = __webpack_require__(334);
 
 	function criarConta(dados) {
 	    return function (dispatch) {
 	        return _modulesApi.post('conta', dados).then(function () {
 	            dispatch(_login.fazerLogin(dados.email, dados.senha));
-	            dispatch(_reduxRouter.pushState(null, '/'));
+	            var path = '/home/';
+	            browserHistory.push(path);
 	        });
 	    };
 	}

@@ -37,6 +37,7 @@ export class VotacaoList extends Component {
                             dataId={item._id}
                             tarefas={item.tarefas}
                             addTarefa={this.props.addTarefa}
+                            addVoto={this.props.addVoto}
                             remEstoria={this.remEstoria.bind(this)}
                             remTarefa={this.remTarefa.bind(this)}
                         />    

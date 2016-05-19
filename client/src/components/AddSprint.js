@@ -40,7 +40,7 @@ export class AddSprint extends Component {
                     <Textbox
                         field={nome}
                         className='form-control'
-                        placeholder='Incluir nova sprint'
+                        placeholder='Nova sprint'
                         label=''
                     />
                     <span className="input-group-btn">

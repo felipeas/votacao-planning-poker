@@ -56,8 +56,6 @@ export class Header extends Component {
         );
     }
 
-
-
     renderNomeLogado () {
         return(
             <li>

@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, useRouterHistory } from 'react-router';
-import { createHashHistory } from 'history';
+import { Router, browserHistory  } from 'react-router';
 import configureStore from './store';
 import routes from './routes';
 import { fazerLogin } from './actions/login';
 import { carregarLista } from './actions/sprint';
 
-const history = useRouterHistory(createHashHistory)({ queryKey: false });
 const store = configureStore();
 
 const credentials = localStorage.getItem('credentials');
@@ -20,7 +18,7 @@ if (credentials) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router routes={routes} history={history} />
+        <Router routes={routes} history={browserHistory} />
     </Provider>,
     document.getElementById('root')
 );

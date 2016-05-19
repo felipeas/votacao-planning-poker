@@ -5,6 +5,7 @@ import { fazerLogin } from './login';
 export function criarConta(dados) {
     return dispatch => post('conta', dados).then(() => {
         dispatch(fazerLogin(dados.email, dados.senha));
-        dispatch(pushState(null, '/'));
+        const path = `/home/`;
+        browserHistory.push(path);
     });
 }

@@ -43,7 +43,7 @@ export class AddTarefa extends Component {
                     <Textbox
                         field={nome}
                         className='form-control'
-                        placeholder='Incluir nova tarefa'
+                        placeholder='Nova tarefa'
                         label=''
                     />
                     <span className="input-group-btn">

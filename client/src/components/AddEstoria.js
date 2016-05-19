@@ -40,7 +40,7 @@ export class AddEstoria extends Component {
                     <Textbox
                         field={nome}
                         className='form-control'
-                        placeholder='Incluir nova estória'
+                        placeholder='Nova estória'
                         label=''
                     />
                     <span className="input-group-btn">
