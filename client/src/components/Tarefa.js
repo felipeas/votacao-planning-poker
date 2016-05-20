@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Cartas from '../components/Cartas';
 
 class Tarefa extends Component {
+    static propTypes = {
+        votos: React.PropTypes.array,
+    }
+    
     handleOnEnd(id) {
         this.props.remTarefa(id);
     }
@@ -45,7 +49,7 @@ class Tarefa extends Component {
                     </div>
                     <div className="tarefa-titulo">
                         <p>{nome}</p>
-                        {votos ? renderVotos() : null}
+                        {votos.length > 0 ? this.renderVotos(votos) : null}
                     </div>
                  
                     <div className="tarefa-opcoes">
@@ -87,13 +91,13 @@ class Tarefa extends Component {
         );
     }
     
-    renderVotos() {
-        const { votos } = this.props;
+    renderVotos(votos) {
+        debugger;
         return (
             <div>
                 {votos.map((item, index) => {
                     return (
-                        <span>{item}&nbsp;</span>   
+                        <span>{item.voto}&nbsp;|&nbsp;</span>   
                     )
                 })}
             </div>

@@ -15149,6 +15149,7 @@ webpackJsonp([0],[
 	                        key: index,
 	                        estoria: ordem,
 	                        ordem: index,
+	                        votos: item.votos,
 	                        dataId: item._id,
 	                        nome: item.nome,
 	                        remTarefa: _this.props.remTarefa,
@@ -15182,6 +15183,8 @@ webpackJsonp([0],[
 	'use strict';
 
 	exports.__esModule = true;
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -15274,7 +15277,7 @@ webpackJsonp([0],[
 	                        null,
 	                        nome
 	                    ),
-	                    votos ? renderVotos() : null
+	                    votos.length > 0 ? this.renderVotos(votos) : null
 	                ),
 	                _react2['default'].createElement(
 	                    'div',
@@ -15329,9 +15332,8 @@ webpackJsonp([0],[
 	        );
 	    };
 
-	    Tarefa.prototype.renderVotos = function renderVotos() {
-	        var votos = this.props.votos;
-
+	    Tarefa.prototype.renderVotos = function renderVotos(votos) {
+	        debugger;
 	        return _react2['default'].createElement(
 	            'div',
 	            null,
@@ -15339,12 +15341,20 @@ webpackJsonp([0],[
 	                return _react2['default'].createElement(
 	                    'span',
 	                    null,
-	                    item,
-	                    ' '
+	                    item.voto,
+	                    ' | '
 	                );
 	            })
 	        );
 	    };
+
+	    _createClass(Tarefa, null, [{
+	        key: 'propTypes',
+	        value: {
+	            votos: _react2['default'].PropTypes.array
+	        },
+	        enumerable: true
+	    }]);
 
 	    return Tarefa;
 	})(_react.Component);
@@ -23063,7 +23073,7 @@ webpackJsonp([0],[
 	exports.locals = {
 	  "styles": "_1LrDsHdaZqtB8ZTtaXCnfU"
 	};
-	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    padding: 5px;\n    margin-bottom: 10px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        color: gainsboro;\n        flex: 0;\n        font-size: 24px !important;\n        text-align: left; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        display: flex;\n        flex-direction: row; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-votar {\n          flex: 1; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-excluir {\n          padding-top: 5px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
+	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    padding: 5px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        color: gainsboro;\n        flex: 0;\n        font-size: 24px !important;\n        text-align: left; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        display: flex;\n        flex-direction: row; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-votar {\n          flex: 1; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-excluir {\n          padding-top: 5px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
 
 /***/ },
 /* 413 */
