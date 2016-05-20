@@ -15150,6 +15150,7 @@ webpackJsonp([0],[
 	                        estoria: ordem,
 	                        ordem: index,
 	                        votos: item.votos,
+	                        pontos: item.pontos,
 	                        dataId: item._id,
 	                        nome: item.nome,
 	                        remTarefa: _this.props.remTarefa,
@@ -15243,11 +15244,11 @@ webpackJsonp([0],[
 	        var estoria = _props.estoria;
 	        var ordem = _props.ordem;
 	        var dataId = _props.dataId;
+	        var pontos = _props.pontos;
 	        var votos = _props.votos;
 
 	        var numero = estoria + 1 + '.' + (ordem + 1);
 	        var classeCor = this.classeCor(ordem);
-	        var pontos = '1';
 
 	        return _react2['default'].createElement(
 	            'div',
@@ -15291,7 +15292,7 @@ webpackJsonp([0],[
 	                            _react2['default'].createElement(
 	                                'button',
 	                                { type: 'button', 'class': 'btn btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
-	                                _react2['default'].createElement('i', { className: 'fa fa-flag-checkered  fa-2x' })
+	                                _react2['default'].createElement('i', { className: 'fa fa-flag-checkered fa-2x' })
 	                            ),
 	                            _react2['default'].createElement(_componentsCartas2['default'], {
 	                                key: dataId,
@@ -15308,7 +15309,7 @@ webpackJsonp([0],[
 	                            { className: 'dropdown pull-right' },
 	                            _react2['default'].createElement(
 	                                'button',
-	                                { type: 'button', 'class': 'btn btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
+	                                { type: 'button', 'class': 'btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
 	                                _react2['default'].createElement('i', { className: 'fa fa-bullhorn fa-2x' })
 	                            ),
 	                            _react2['default'].createElement(_componentsCartas2['default'], {
@@ -15323,8 +15324,8 @@ webpackJsonp([0],[
 	                        { className: 'tarefa-opcoes-excluir' },
 	                        _react2['default'].createElement(
 	                            'button',
-	                            { id: 'excluir', className: 'btn pull-right dropdown', onClick: this.handleOnEnd.bind(this, dataId) },
-	                            _react2['default'].createElement('i', { className: 'fa fa-close ' })
+	                            { id: 'excluir', className: 'btn btn-danger', onClick: this.handleOnEnd.bind(this, dataId) },
+	                            _react2['default'].createElement('i', { className: 'fa fa-close' })
 	                        )
 	                    )
 	                )
@@ -15333,7 +15334,6 @@ webpackJsonp([0],[
 	    };
 
 	    Tarefa.prototype.renderVotos = function renderVotos(votos) {
-	        debugger;
 	        return _react2['default'].createElement(
 	            'div',
 	            null,

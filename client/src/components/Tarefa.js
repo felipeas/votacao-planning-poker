@@ -35,10 +35,9 @@ class Tarefa extends Component {
     }
     
     render() {
-        const { nome, estoria, ordem, dataId, votos } = this.props;
+        const { nome, estoria, ordem, dataId, pontos, votos } = this.props;
         const numero = (estoria + 1) + '.' + (ordem + 1);
         const classeCor = this.classeCor(ordem);
-        const pontos = '1';
        
         return (            
             <div className={classeCor + ' tarefa'}>
@@ -56,7 +55,7 @@ class Tarefa extends Component {
                         <div className="tarefa-opcoes-pontos"> 
                             <div className="dropdown pull-right">          
                             <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
-                                    <i className="fa fa-flag-checkered  fa-2x"></i>
+                                    <i className="fa fa-flag-checkered fa-2x"></i>
                                 </button>
                                     
                                 <Cartas 
@@ -69,7 +68,7 @@ class Tarefa extends Component {
                     
                         <div className="tarefa-opcoes-votar"> 
                             <div className="dropdown pull-right">          
-                            <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
+                                <button type="button" class="btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
                                     <i className="fa fa-bullhorn fa-2x"></i>
                                 </button>
                                     
@@ -81,8 +80,8 @@ class Tarefa extends Component {
                             </div>
                         </div>
                         <div className="tarefa-opcoes-excluir">
-                            <button id='excluir' className="btn pull-right dropdown" onClick={this.handleOnEnd.bind(this,dataId)}>                            
-                                <i className="fa fa-close "></i>
+                            <button id='excluir' className="btn btn-danger" onClick={this.handleOnEnd.bind(this,dataId)}>                            
+                                <i className="fa fa-close"></i>
                             </button>
                         </div>
                     </div>
@@ -92,7 +91,6 @@ class Tarefa extends Component {
     }
     
     renderVotos(votos) {
-        debugger;
         return (
             <div>
                 {votos.map((item, index) => {
