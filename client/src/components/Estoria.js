@@ -39,6 +39,7 @@ class Estoria extends Component {
                                 key={index}
                                 estoria={ordem}
                                 ordem={index}
+                                votos={item.votos}
                                 dataId={item._id}
                                 nome={item.nome}
                                 remTarefa={this.props.remTarefa}
