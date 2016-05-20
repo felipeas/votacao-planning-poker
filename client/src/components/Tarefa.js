@@ -15,6 +15,14 @@ class Tarefa extends Component {
         this.props.addVoto(id, voto);      
     }
     
+    handlePontos(id, valor) {         
+        const voto = {
+            'pontos': valor,
+        };
+        
+        this.props.addTarefaPontos(id, voto);      
+    }
+    
     classeCor(ordem) {
         if (ordem % 2) {
             return "corSim";
@@ -41,6 +49,20 @@ class Tarefa extends Component {
                     </div>
                  
                     <div className="tarefa-opcoes">
+                        <div className="tarefa-opcoes-pontos"> 
+                            <div className="dropdown pull-right">          
+                            <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
+                                    <i className="fa fa-flag-checkered  fa-2x"></i>
+                                </button>
+                                    
+                                <Cartas 
+                                    key={dataId}
+                                    dataId={dataId}
+                                    onVoto={this.handlePontos.bind(this)}
+                                />
+                            </div>
+                        </div>
+                    
                         <div className="tarefa-opcoes-votar"> 
                             <div className="dropdown pull-right">          
                             <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
@@ -55,7 +77,7 @@ class Tarefa extends Component {
                             </div>
                         </div>
                         <div className="tarefa-opcoes-excluir">
-                            <button id='excluir' className="btn pull-right" onClick={this.handleOnEnd.bind(this,dataId)}>                            
+                            <button id='excluir' className="btn pull-right dropdown" onClick={this.handleOnEnd.bind(this,dataId)}>                            
                                 <i className="fa fa-close "></i>
                             </button>
                         </div>

@@ -23,7 +23,8 @@ export class Login extends Component {
     }
 
     handleSubmit(values, dispatch) {
-        return this.props.fazerLogin(values.email, values.senha);
+        const goHome = true;
+        return this.props.fazerLogin(values.email, values.senha, goHome);
     }
 
     handleCloseClick(e) {

@@ -13,7 +13,7 @@ const credentials = localStorage.getItem('credentials');
 
 if (credentials) {
     const [email, senha] = atob(credentials).split(':');
-    store.dispatch(fazerLogin(email, senha));
+    store.dispatch(fazerLogin(email, senha, false));
 }
 
 ReactDOM.render(

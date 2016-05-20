@@ -43,6 +43,7 @@ class Estoria extends Component {
                                 nome={item.nome}
                                 remTarefa={this.props.remTarefa}
                                 addVoto={this.props.addVoto}
+                                addTarefaPontos={this.props.addTarefaPontos}
                                 />
                         );
                     }) }

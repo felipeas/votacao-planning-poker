@@ -44,6 +44,12 @@ export function addTarefa(estoriaId, dados) {
     });
 }
 
+export function addTarefaPontos(tarefaId, pontos) {
+    return dispatch => post(`tarefas/${tarefaId}`, pontos).then(() => {
+        return dispatch(carregarVotacaoTarefa(tarefaId));
+    });
+}
+
 export function remTarefa(sprintId, tarefaId) {
     return dispatch => del(`tarefas/${tarefaId}`).then(() => {
         return dispatch(carregarVotacao(sprintId));

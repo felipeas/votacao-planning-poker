@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { VotacaoList } from '../components/VotacaoList';
 import { AddEstoria } from '../components/AddEstoria';
 import * as actionCreators from '../actions/votacao';
-
+import io from 'socket.io-client';
 import { styles } from '../styles/Votacao.scss';
 
 @connect(
@@ -16,8 +16,24 @@ import { styles } from '../styles/Votacao.scss';
 export class Votacao extends Component {
     componentDidMount() {
         const { sprintId } = this.props.routeParams;
+        const self = this.props;
          
-        this.props.carregarVotacao(sprintId);
+        self.carregarVotacao(sprintId);
+        
+        const socket = io.connect();
+
+        socket.on('voto', function (data) {
+            self.carregarVotacao(sprintId);
+            // self.carregarVotacaoTarefa(data.tarefa);
+        });
+        socket.on('tarefa', function (data) {
+            self.carregarVotacao(sprintId);
+            // self.carregarVotacaoTarefa(data._id);
+        });
+        socket.on('estoria', function (data) {
+            self.carregarVotacao(sprintId);
+            // self.carregarVotacaoEstoria(data._id);
+        });
     }
     
     render() {

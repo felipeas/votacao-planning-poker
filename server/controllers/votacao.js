@@ -36,7 +36,7 @@ getVotacao = function (req, res) {
                 console.log('sprint: ' + util.inspect(sprint));
                 res.json(sprint);
             } else {
-                console.log('deu pau');
+                console.log('erro desconhecido');
                 return res.status(400).send(err);
             }
         });
@@ -55,7 +55,7 @@ getEstoria = function (req, res) {
                 // console.log(getPontos(estoria));
                 return getVotacao(req, res);
             } else {
-                console.log('deu pau');
+                console.log('erro desconhecido');
                 return res.status(400).send(err);
             }
         });
@@ -76,13 +76,13 @@ getTarefa = function (req, res) {
                 req.params.id = tarefa.estoria.sprint;
                 return getVotacao(req, res);
             } else {
-                console.log('deu pau');
+                console.log('erro desconhecido');
                 return res.status(400).send(err);
             }
         });
 };
 
-addEstoria = function (req, res) {
+addEstoria = function (req, res, next) {
     var id = req.body.sprint;
     console.log(id);
 
@@ -105,10 +105,11 @@ addEstoria = function (req, res) {
                         }
                     });
 
+                    // io.emit('estoria', estoria);
                     return res.status(201).send();
                 });
             } else {
-                console.log('deu pau');
+                console.log('erro desconhecido');
                 return res.status(400).send(err);
             }
         });
@@ -139,11 +140,39 @@ addTarefa = function (req, res) {
                             return res.status(400).send(err);
                         }
                     });
-
+                    
+                    // io.emit('tarefa', tarefa);
                     return res.status(201).send();
                 });
             } else {
-                console.log('deu pau');
+                console.log('erro desconhecido');
+                return res.status(400).send(err);
+            }
+        });
+};
+
+addTarefaPontos = function (req, res) {
+    var id = req.params.id;
+    console.log(id);
+
+    Tarefa
+        .findById(id)
+        .exec(function (err, tarefa) {
+            if (!err) {
+                console.log('encountrou tarefa ' + util.inspect(tarefa));
+                tarefa.pontos = req.body.pontos;
+                
+                tarefa.save(function (err, doc) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    }
+                });
+                
+                return res.status(201).send();
+                
+            } else {
+                console.log('erro desconhecido');
                 return res.status(400).send(err);
             }
         });
@@ -152,6 +181,8 @@ addTarefa = function (req, res) {
 addVoto = function (req, res) {
     var id = req.body.tarefa;
     console.log(id);
+
+    //TODO: Apagar voto do usuário
 
     Tarefa
         .findById(id)
@@ -175,11 +206,12 @@ addVoto = function (req, res) {
                             return res.status(400).send(err);
                         }
                     });
-
+                    
+                    // io.emit('voto', voto);
                     return res.status(201).send();
                 });
             } else {
-                console.log('deu pau');
+                console.log('erro desconhecido');
                 return res.status(400).send(err);
             }
         });
@@ -231,6 +263,7 @@ module.exports = {
     getTarefa: getTarefa,
     addEstoria: addEstoria,
     addTarefa: addTarefa,
+    addTarefaPontos: addTarefaPontos,
     addVoto: addVoto,
     remEstoria: remEstoria,
     remTarefa: remTarefa,

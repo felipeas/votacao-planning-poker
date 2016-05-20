@@ -92,6 +92,7 @@
             }
             .tarefa-opcoes {
                 margin-right:5px;
+                display: flex;
                 flex-direction: row;                
                 
                 .tarefa-opcoes-votar {

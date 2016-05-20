@@ -2,7 +2,6 @@ var path = require('path');
 var util = require('util');
 var express = require('express');
 var votacao = require('../controllers/votacao');
-
 var auth = require('../auth');
 var usuarios = require('../controllers/usuario');
 var sprints = require('../controllers/sprint');
@@ -32,28 +31,57 @@ module.exports = function(app, io) {
     api.post('/conta', usuarios.add);
 
     api.get('/sprints', auth(), sprints.get);
-    api.get('/sprints/all', auth(), sprints.all);
+    
     api.post('/sprints', auth(), sprints.add);
-    api.delete('/sprints/:id', auth(), sprints.encerrar);
+    api.delete('/sprints/:id  ', auth(), sprints.encerrar);
     
     api.get('/votacao/:id', auth(), votacao.getVotacao);
     api.get('/estorias/:id', auth(), votacao.getEstoria);
     api.get('/tarefas/:id', auth(), votacao.getTarefa);
-    // TODO: DELETES
-    // TODO: VOTO
-    api.post('/estorias', auth(), votacao.addEstoria);
-    api.delete('/estorias/:id', auth(), votacao.remEstoria);
     
-    api.post('/tarefas', auth(), votacao.addTarefa);
-    api.delete('/tarefas/:id', auth(), votacao.remTarefa);
+    api.post('/estorias', auth(), function (req, res) {
+        votacao.addEstoria(req, res);
+        io.emit('estoria', 'estoriaId');
+    });
     
-    api.post('/votos', auth(), votacao.addVoto);
-    api.delete('/votos/:id', auth(), votacao.remVoto);    
-
+    // api.delete('/estorias/:id', auth(), votacao.remEstoria);
+    api.delete('/estorias/:id', auth(), function (req, res) {
+        votacao.remEstoria(req,res);
+        io.emit('estoria', 'estoriaId');
+    });
+    
+    // api.post('/tarefas', auth(), votacao.addTarefa);
+    // api.delete('/tarefas/:id', auth(), votacao.remTarefa);
+    
+    api.post('/tarefas', auth(), function (req, res) {
+        votacao.addTarefa(req, res);
+        io.emit('tarefa', 'tarefaId');
+    });
+    
+    api.post('/tarefas/:id', auth(), function (req, res) {
+        votacao.addTarefaPontos(req, res);
+        io.emit('tarefa', 'tarefaId');
+    });
+    
+     api.delete('/tarefas/:id', auth(), function (req, res) {
+        votacao.remTarefa(req, res);
+        io.emit('tarefa', 'tarefaId');
+    });
+    
+    //api.post('/votos', auth(), votacao.addVoto);
+    //api.delete('/votos/:id', auth(), votacao.remVoto);
+    
+    api.post('/votos', auth(), function (req, res) {
+        votacao.addVoto(req, res);
+        io.emit('voto', 'votoId');
+    });
+    
+    api.delete('/votos/:id', auth(), function (req, res) {
+        votacao.remVoto(req, res);
+        io.emit('voto', 'votoId');
+    });
+    
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
-
-    // app.get('/api/sprints', votacao.all);
-    // app.get('/api/sprints', votacao.add);
 }
