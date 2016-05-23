@@ -33,7 +33,7 @@ class Cartas extends Component {
                 {cards.map(function(carta) {
                         return (
                             <li>
-                                <a onClick={handleVoto.bind(voto, dataId, carta.valor)}>{carta.nome}|{carta.valor}</a>
+                                <a onClick={handleVoto.bind(voto, dataId, carta.valor)}>{carta.nome}</a>
                             </li>    
                         );
                 })}

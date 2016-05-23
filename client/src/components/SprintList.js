@@ -19,13 +19,15 @@ export class SprintList extends Component {
                     <div className="row" key={index}>
                         <div className="sprint">
                             <Link to={`/sprint/${item._id}`}>
-                                {`${item.nome}`}
+                                <div>
+                                    {`${item.nome}`}
+                                </div>
                             </Link>
-                            <button className="btn btn-danger add-option pull-right" onClick={this.handleOnEnd.bind(this,item._id)}>
+                            <button className="btn btn-danger add-option pull-right apagar" onClick={this.handleOnEnd.bind(this,item._id)}>
                                 <span>Encerrar&nbsp;</span>
                                 <i className="fa fa-lock"></i>
                             </button>
-                        </div>
+                        </div>                   
                     </div>
                 )}
             </div>

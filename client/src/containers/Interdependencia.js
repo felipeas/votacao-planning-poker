@@ -1,11 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { VotacaoList } from '../components/VotacaoList';
-import { AddEstoria } from '../components/AddEstoria';
 import * as actionCreators from '../actions/votacao';
 import io from 'socket.io-client';
-import { styles } from '../styles/Votacao.scss';
+import PieChart from 'react-chartjs';
 
 @connect(
     state => ({
@@ -13,13 +11,13 @@ import { styles } from '../styles/Votacao.scss';
     }),
     dispatch => bindActionCreators(actionCreators, dispatch)
 )
-export class Votacao extends Component {
+export class Interdependencia extends Component {
     componentDidMount() {
         const { sprintId } = this.props.routeParams;
         const self = this.props;
-     
+
         self.carregarVotacao(sprintId);
-        
+
         const socket = io.connect();
 
         socket.on('voto', function (data) {
@@ -35,23 +33,44 @@ export class Votacao extends Component {
             // self.carregarVotacaoEstoria(data._id);
         });
     }
+
+dadosGrafico(sprint) {
+    const dados = [];
     
-    render() {
-        const {
-            sprint,
-        } = this.props;
-                
-        return (
-            <section className={`${styles}`}>
-                <div className="container">
-                    <h3>{sprint.sprint.nome}</h3>
-                    <VotacaoList {...this.props}/>
-                    <AddEstoria {...this.props}/>
-                    <h3>{sprint.sprint.pontos}</h3>
-                </div>
-            </section>
-        );
-    }
+    sprint.estorias.forEach(function (estoria) {
+        const label = estoria.nome; 
+        const valor = estoria.pontos;
+        
+        dados.push({
+            value: valor,
+            label: label
+        });
+    });
+    
+    return dados;
 }
 
-export default Votacao;
+    render() {     
+        const { sprint } = this.props.sprint;
+        const { pontos }  = this.props.sprint.sprint;
+        const { dadosGrafico } = this;
+            
+        const opcoesGrafico = { 
+            responsive: true, 
+            showTooltips: true,
+            onAnimationComplete: function() {
+                this.showTooltip(this.segments, true);
+            }, 
+        };
+        
+        return (
+            <section>
+                <div className="container">
+                    <h3>Interdependência</h3>
+                    <PieChart.Pie data={dadosGrafico(sprint)} options={opcoesGrafico} width="600" height="400"/>
+                    <h3>Total = {pontos}</h3>
+                </div>
+            </section>
+        )
+    }
+}

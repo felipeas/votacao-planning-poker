@@ -70,7 +70,6 @@ function setarVotacao(votacao) {
     };
 }
 
-
 function addEstoriaLista(dados) {
     debugger;
     return {

@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import qs from 'qs/dist/qs';
+import { browserHistory } from 'react-router';
 
 const basePath = '/api/';
 
@@ -80,6 +81,10 @@ function handleResponse(resolve, reject) {
         response.json().then(reject);
       } else {
         response.text().then(error => reject({ _error: error }));
+      }
+      if (response.status === 401) {
+        const path = `/login/`;
+        browserHistory.push(path); 
       }
     }
   }

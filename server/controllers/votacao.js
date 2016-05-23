@@ -32,6 +32,7 @@ getVotacao = function (req, res) {
                 sprint.estorias.forEach(function (estoria, index, array) {
                     // console.log('estoria: ' + util.inspect(estoria));
                     estoria.pontos = getPontos(estoria);
+                    sprint.pontos += estoria.pontos;
                 });
                 console.log('sprint: ' + util.inspect(sprint));
                 res.json(sprint);
@@ -161,6 +162,7 @@ addTarefaPontos = function (req, res) {
             if (!err) {
                 console.log('encountrou tarefa ' + util.inspect(tarefa));
                 tarefa.pontos = req.body.pontos;
+                tarefa.travar = true;
                 
                 tarefa.save(function (err, doc) {
                     if (err) {

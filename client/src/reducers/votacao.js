@@ -8,20 +8,20 @@ const initialState = {
     sprint: {
         nome: '',
         estorias: [],
-    }
+    },
+    id: '',
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
        
         case VOTACAO_SET:
-        
             return Object.assign({}, state, {
-                sprint: action.votacao
+                sprint: action.votacao,
+                id: action.votacao._id
               });
            
         case VOTACAO_ESTORIA_ADD:
-            
             return Object.assign({}, state, {
                 sprint: [...state.sprint.estorias, action.estoria]
             });

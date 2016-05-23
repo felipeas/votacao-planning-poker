@@ -52,9 +52,9 @@ class Tarefa extends Component {
                     </div>
                  
                     <div className="tarefa-opcoes">
-                        <div className="tarefa-opcoes-pontos"> 
+                        <div className="tarefa-opcoes-pontos" title="Definir Pontuação"> 
                             <div className="dropdown pull-right">          
-                            <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
+                                <button type="button" class="btn btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
                                     <i className="fa fa-flag-checkered fa-2x"></i>
                                 </button>
                                     
@@ -67,7 +67,7 @@ class Tarefa extends Component {
                         </div>
                     
                         <div className="tarefa-opcoes-votar"> 
-                            <div className="dropdown pull-right">          
+                            <div className="dropdown pull-right" title="Votar">          
                                 <button type="button" class="btn-default dropdown-toggle" id="votacao" data-toggle="dropdown">
                                     <i className="fa fa-bullhorn fa-2x"></i>
                                 </button>
@@ -88,6 +88,14 @@ class Tarefa extends Component {
                 </div>
             </div>
         );
+    }
+    
+    renderVotar() {
+        
+    }
+    
+    renderDefinirPontos() {
+        
     }
     
     renderVotos(votos) {

@@ -9,6 +9,7 @@ import { Votacao } from './containers/Votacao';
 import { Teste } from './containers/Teste';
 import { Login } from './containers/Login';
 import { Conta } from './containers/Conta';
+import { Interdependencia } from './containers/Interdependencia';
 
 
 export default (
@@ -16,6 +17,7 @@ export default (
     <IndexRoute component={Home} />
     <Route path="sprints" component={Sprints} />
     <Route path="/sprint/:sprintId" component={Votacao}/>
+    <Route path="/interdependencia/:sprintId" component={Interdependencia}/>
     <Route path="home" component={Home} />
     <Route path="teste" component={Teste} />
     <Route path="login" component={Login} />

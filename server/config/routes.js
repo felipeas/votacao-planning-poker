@@ -33,7 +33,7 @@ module.exports = function(app, io) {
     api.get('/sprints', auth(), sprints.get);
     
     api.post('/sprints', auth(), sprints.add);
-    api.delete('/sprints/:id  ', auth(), sprints.encerrar);
+    api.delete('/sprints/:id', auth(), sprints.encerrar);
     
     api.get('/votacao/:id', auth(), votacao.getVotacao);
     api.get('/estorias/:id', auth(), votacao.getEstoria);
