@@ -8,9 +8,6 @@ export class Footer extends Component {
     render() {
         return (
             <footer className={`${styles}`}>
-                <span>
-                    [Footer]
-                </span>
             </footer>
         );
     }

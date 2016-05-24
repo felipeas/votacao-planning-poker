@@ -25,7 +25,7 @@
                 flex:0;
                 font-size: 30px !important; 
                 text-align: left;
-                color: rgb(220, 220, 220);
+                color: rgb(68, 68, 68);
                 p:last-of-type {
                     color: lightsalmon;
                 }
@@ -75,7 +75,7 @@
             flex-direction: row;
             align-items: baseline;
             .tarefa-numero {
-                color: rgb(220, 220, 220);
+                color: rgb(68, 68, 68);
                 p:last-of-type {
                     color: lightsalmon;
                 }
@@ -97,10 +97,16 @@
                 
                 .tarefa-opcoes-votar {
                     flex:1;
+                    padding-left: 5px;
+                    padding-right: 5px;
                 }
                 .tarefa-opcoes-excluir {
-                    padding-top: 5px;
-                    
+                    flex:1;
+                    padding-right: 5px;
+                }
+                .tarefa-opcoes-destravar {
+                    flex:1;
+                    padding-right: 5px;
                 }
             }
         }

@@ -67,7 +67,7 @@ dadosGrafico(sprint) {
             <section>
                 <div className="container">
                     <h3>Interdependência</h3>
-                    <PieChart.Pie data={dadosGrafico(sprint)} options={opcoesGrafico} width="600" height="400"/>
+                    <PieChart.Pie data={dadosGrafico(sprint)} options={opcoesGrafico} width="250" height="200"/>
                     <h3>Total = {pontos}</h3>
                 </div>
             </section>

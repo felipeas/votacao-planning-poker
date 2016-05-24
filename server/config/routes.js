@@ -63,7 +63,12 @@ module.exports = function(app, io) {
         io.emit('tarefa', 'tarefaId');
     });
     
-     api.delete('/tarefas/:id', auth(), function (req, res) {
+     api.delete('/tarefasPontos/:id', auth(), function (req, res) {
+        votacao.remTarefaPontos(req, res);
+        io.emit('tarefa', 'tarefaId');
+    });
+    
+    api.delete('/tarefas/:id', auth(), function (req, res) {
         votacao.remTarefa(req, res);
         io.emit('tarefa', 'tarefaId');
     });

@@ -50,6 +50,12 @@ export function addTarefaPontos(tarefaId, pontos) {
     });
 }
 
+export function remTarefaPontos(tarefaId) {
+    return dispatch => del(`tarefasPontos/${tarefaId}`).then(() => {
+        return dispatch(carregarVotacaoTarefa(tarefaId));
+    });
+}
+
 export function remTarefa(sprintId, tarefaId) {
     return dispatch => del(`tarefas/${tarefaId}`).then(() => {
         return dispatch(carregarVotacao(sprintId));

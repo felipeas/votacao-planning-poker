@@ -29,10 +29,10 @@ class Cartas extends Component {
         //const cards = [0,0.5,1,3,5,8,13,20,40];
         
         return (
-            <ul className="dropdown-menu pull-right">
-                {cards.map(function(carta) {
+            <ul className="dropdown-menu">
+                {cards.map(function(carta, index) {
                         return (
-                            <li>
+                            <li key={index}>
                                 <a onClick={handleVoto.bind(voto, dataId, carta.valor)}>{carta.nome}</a>
                             </li>    
                         );

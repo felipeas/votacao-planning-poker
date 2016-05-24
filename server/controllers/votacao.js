@@ -28,7 +28,7 @@ getVotacao = function (req, res) {
         })
         .exec(function (err, sprint) {
             if (!err) {
-                
+
                 sprint.estorias.forEach(function (estoria, index, array) {
                     // console.log('estoria: ' + util.inspect(estoria));
                     estoria.pontos = getPontos(estoria);
@@ -141,7 +141,7 @@ addTarefa = function (req, res) {
                             return res.status(400).send(err);
                         }
                     });
-                    
+
                     // io.emit('tarefa', tarefa);
                     return res.status(201).send();
                 });
@@ -163,16 +163,16 @@ addTarefaPontos = function (req, res) {
                 console.log('encountrou tarefa ' + util.inspect(tarefa));
                 tarefa.pontos = req.body.pontos;
                 tarefa.travar = true;
-                
+
                 tarefa.save(function (err, doc) {
                     if (err) {
                         console.log(err);
                         return res.status(400).send(err);
                     }
                 });
-                
+
                 return res.status(201).send();
-                
+
             } else {
                 console.log('erro desconhecido');
                 return res.status(400).send(err);
@@ -208,7 +208,7 @@ addVoto = function (req, res) {
                             return res.status(400).send(err);
                         }
                     });
-                    
+
                     // io.emit('voto', voto);
                     return res.status(201).send();
                 });
@@ -230,6 +230,7 @@ remEstoria = function (req, res) {
 
 remTarefa = function (req, res) {
     var query = { _id: req.params.id };
+    
     Tarefa.findOneAndRemove(query, function (err, data) {
         if (err) console.log('Error on delete');
         console.log('tarefa excluida: ' + req.params.id);
@@ -237,14 +238,42 @@ remTarefa = function (req, res) {
     });
 };
 
+remTarefaPontos = function (req, res) {
+    var id = req.params.id;
+    Tarefa
+        .findById(id)
+        .exec(function (err, tarefa) {
+            if (!err) {
+                console.log('encountrou tarefa ' + util.inspect(tarefa));
+                tarefa.pontos = 0;
+                tarefa.travar = false;
+
+                tarefa.save(function (err, doc) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).send(err);
+                    }
+                });
+
+                return res.status(201).send();
+
+            } else {
+                console.log('erro desconhecido');
+                return res.status(400).send(err);
+            }
+        });
+}
+
 remVoto = function (req, res) {
     var query = { _id: req.params.id };
+
     Voto.findOneAndRemove(query, function (err, data) {
         if (err) console.log('Error on delete');
         res.status(201).send('Voto Excluido');
     });
+
 };
-   
+
 var getPontos = function (estoria) {
     var soma = 0;
     if (estoria) {
@@ -266,6 +295,7 @@ module.exports = {
     addEstoria: addEstoria,
     addTarefa: addTarefa,
     addTarefaPontos: addTarefaPontos,
+    remTarefaPontos: remTarefaPontos,
     addVoto: addVoto,
     remEstoria: remEstoria,
     remTarefa: remTarefa,

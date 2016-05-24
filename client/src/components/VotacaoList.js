@@ -42,6 +42,7 @@ export class VotacaoList extends Component {
                             addTarefaPontos={this.props.addTarefaPontos}
                             remEstoria={this.remEstoria.bind(this)}
                             remTarefa={this.remTarefa.bind(this)}
+                            remTarefaPontos={this.props.remTarefaPontos}
                         />    
                     );
                 })}
@@ -51,7 +52,7 @@ export class VotacaoList extends Component {
     renderVazio() {
         return (
             <div>
-                <span>VAZIO</span>
+                <span>Nenhuma Estória Ainda</span>
             </div>
         );
     }

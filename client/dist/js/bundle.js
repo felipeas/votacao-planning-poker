@@ -13601,6 +13601,7 @@ webpackJsonp([0],[
 	exports.remEstoria = remEstoria;
 	exports.addTarefa = addTarefa;
 	exports.addTarefaPontos = addTarefaPontos;
+	exports.remTarefaPontos = remTarefaPontos;
 	exports.remTarefa = remTarefa;
 	exports.addVoto = addVoto;
 
@@ -13670,6 +13671,14 @@ webpackJsonp([0],[
 	function addTarefaPontos(tarefaId, pontos) {
 	    return function (dispatch) {
 	        return _modulesApi.post('tarefas/' + tarefaId, pontos).then(function () {
+	            return dispatch(carregarVotacaoTarefa(tarefaId));
+	        });
+	    };
+	}
+
+	function remTarefaPontos(tarefaId) {
+	    return function (dispatch) {
+	        return _modulesApi.del('tarefasPontos/' + tarefaId).then(function () {
 	            return dispatch(carregarVotacaoTarefa(tarefaId));
 	        });
 	    };
@@ -14237,15 +14246,7 @@ webpackJsonp([0],[
 	    }
 
 	    Footer.prototype.render = function render() {
-	        return _react2['default'].createElement(
-	            'footer',
-	            { className: '' + _stylesFooterScss.styles },
-	            _react2['default'].createElement(
-	                'span',
-	                null,
-	                '[Footer]'
-	            )
-	        );
+	        return _react2['default'].createElement('footer', { className: '' + _stylesFooterScss.styles });
 	    };
 
 	    return Footer;
@@ -14287,7 +14288,7 @@ webpackJsonp([0],[
 	exports.locals = {
 	  "styles": "_3zbkDFm3n07AYcwo3nsA6h"
 	};
-	exports.push([module.id, "._3zbkDFm3n07AYcwo3nsA6h {\n  width: 100%;\n  border-top: 2px solid #444444;\n  background-color: #eeeeee;\n  display: flex;\n  text-align: center;\n  flex-flow: row wrap;\n  justify-content: center;\n  margin-bottom: 0; }\n  ._3zbkDFm3n07AYcwo3nsA6h span {\n    height: 50px;\n    padding-bottom: 25px;\n    color: #444444;\n    font-size: 18px; }\n", ""]);
+	exports.push([module.id, "._3zbkDFm3n07AYcwo3nsA6h {\n  width: 100%;\n  border-top: 2px solid #444444;\n  background-color: #eeeeee;\n  display: flex;\n  text-align: center;\n  flex-flow: row wrap;\n  justify-content: center;\n  margin-bottom: 0; }\n  ._3zbkDFm3n07AYcwo3nsA6h span {\n    height: 10px;\n    padding-bottom: 25px;\n    color: #444444;\n    font-size: 18px; }\n", ""]);
 
 /***/ },
 /* 341 */
@@ -15059,7 +15060,8 @@ webpackJsonp([0],[
 	                    addVoto: _this.props.addVoto,
 	                    addTarefaPontos: _this.props.addTarefaPontos,
 	                    remEstoria: _this.remEstoria.bind(_this),
-	                    remTarefa: _this.remTarefa.bind(_this)
+	                    remTarefa: _this.remTarefa.bind(_this),
+	                    remTarefaPontos: _this.props.remTarefaPontos
 	                });
 	            })
 	        );
@@ -15072,7 +15074,7 @@ webpackJsonp([0],[
 	            _react2['default'].createElement(
 	                'span',
 	                null,
-	                'VAZIO'
+	                'Nenhuma Estória Ainda'
 	            )
 	        );
 	    };
@@ -15187,9 +15189,11 @@ webpackJsonp([0],[
 	                        pontos: item.pontos,
 	                        dataId: item._id,
 	                        nome: item.nome,
+	                        travar: item.travar,
 	                        remTarefa: _this.props.remTarefa,
 	                        addVoto: _this.props.addVoto,
-	                        addTarefaPontos: _this.props.addTarefaPontos
+	                        addTarefaPontos: _this.props.addTarefaPontos,
+	                        remTarefaPontos: _this.props.remTarefaPontos
 	                    });
 	                }),
 	                _react2['default'].createElement(_componentsAddTarefa.AddTarefa, _extends({ formKey: dataId }, this.props))
@@ -15265,6 +15269,10 @@ webpackJsonp([0],[
 	        this.props.addTarefaPontos(id, voto);
 	    };
 
+	    Tarefa.prototype.handleDestravar = function handleDestravar(id) {
+	        this.props.remTarefaPontos(id);
+	    };
+
 	    Tarefa.prototype.classeCor = function classeCor(ordem) {
 	        if (ordem % 2) {
 	            return "corSim";
@@ -15280,6 +15288,7 @@ webpackJsonp([0],[
 	        var dataId = _props.dataId;
 	        var pontos = _props.pontos;
 	        var votos = _props.votos;
+	        var travar = _props.travar;
 
 	        var numero = estoria + 1 + '.' + (ordem + 1);
 	        var classeCor = this.classeCor(ordem);
@@ -15317,42 +15326,8 @@ webpackJsonp([0],[
 	                _react2['default'].createElement(
 	                    'div',
 	                    { className: 'tarefa-opcoes' },
-	                    _react2['default'].createElement(
-	                        'div',
-	                        { className: 'tarefa-opcoes-pontos', title: 'Definir Pontuação' },
-	                        _react2['default'].createElement(
-	                            'div',
-	                            { className: 'dropdown pull-right' },
-	                            _react2['default'].createElement(
-	                                'button',
-	                                { type: 'button', 'class': 'btn btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
-	                                _react2['default'].createElement('i', { className: 'fa fa-flag-checkered fa-2x' })
-	                            ),
-	                            _react2['default'].createElement(_componentsCartas2['default'], {
-	                                key: dataId,
-	                                dataId: dataId,
-	                                onVoto: this.handlePontos.bind(this)
-	                            })
-	                        )
-	                    ),
-	                    _react2['default'].createElement(
-	                        'div',
-	                        { className: 'tarefa-opcoes-votar' },
-	                        _react2['default'].createElement(
-	                            'div',
-	                            { className: 'dropdown pull-right', title: 'Votar' },
-	                            _react2['default'].createElement(
-	                                'button',
-	                                { type: 'button', 'class': 'btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
-	                                _react2['default'].createElement('i', { className: 'fa fa-bullhorn fa-2x' })
-	                            ),
-	                            _react2['default'].createElement(_componentsCartas2['default'], {
-	                                key: dataId,
-	                                dataId: dataId,
-	                                onVoto: this.handleVoto.bind(this)
-	                            })
-	                        )
-	                    ),
+	                    travar ? this.renderDestravar(dataId) : this.renderDefinirPontos(dataId),
+	                    !travar ? this.renderVotar(dataId) : null,
 	                    _react2['default'].createElement(
 	                        'div',
 	                        { className: 'tarefa-opcoes-excluir' },
@@ -15367,9 +15342,59 @@ webpackJsonp([0],[
 	        );
 	    };
 
-	    Tarefa.prototype.renderVotar = function renderVotar() {};
+	    Tarefa.prototype.renderVotar = function renderVotar(dataId) {
+	        return _react2['default'].createElement(
+	            'div',
+	            { className: 'tarefa-opcoes-votar pull-right' },
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'btn-group', title: 'Votar' },
+	                _react2['default'].createElement(
+	                    'button',
+	                    { type: 'button', 'class': 'btn btn-secondary dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
+	                    _react2['default'].createElement('i', { className: 'fa fa-bullhorn fa-2x' })
+	                ),
+	                _react2['default'].createElement(_componentsCartas2['default'], {
+	                    key: dataId,
+	                    dataId: dataId,
+	                    onVoto: this.handleVoto.bind(this)
+	                })
+	            )
+	        );
+	    };
 
-	    Tarefa.prototype.renderDefinirPontos = function renderDefinirPontos() {};
+	    Tarefa.prototype.renderDestravar = function renderDestravar(dataId) {
+	        return _react2['default'].createElement(
+	            'div',
+	            { className: 'tarefa-opcoes-destravar', title: 'Remover' },
+	            _react2['default'].createElement(
+	                'button',
+	                { id: 'excluir', className: 'btn btn-danger', onClick: this.handleDestravar.bind(this, dataId) },
+	                _react2['default'].createElement('i', { className: 'fa fa-unlock' })
+	            )
+	        );
+	    };
+
+	    Tarefa.prototype.renderDefinirPontos = function renderDefinirPontos(dataId) {
+	        return _react2['default'].createElement(
+	            'div',
+	            { className: 'tarefa-opcoes-pontos', title: 'Definir Pontuação' },
+	            _react2['default'].createElement(
+	                'div',
+	                { className: 'dropdown pull-right' },
+	                _react2['default'].createElement(
+	                    'button',
+	                    { type: 'button', 'class': 'btn btn-default dropdown-toggle', id: 'votacao', 'data-toggle': 'dropdown' },
+	                    _react2['default'].createElement('i', { className: 'fa fa-flag-checkered fa-2x' })
+	                ),
+	                _react2['default'].createElement(_componentsCartas2['default'], {
+	                    key: dataId,
+	                    dataId: dataId,
+	                    onVoto: this.handlePontos.bind(this)
+	                })
+	            )
+	        );
+	    };
 
 	    Tarefa.prototype.renderVotos = function renderVotos(votos) {
 	        return _react2['default'].createElement(
@@ -15378,9 +15403,9 @@ webpackJsonp([0],[
 	            votos.map(function (item, index) {
 	                return _react2['default'].createElement(
 	                    'span',
-	                    null,
+	                    { key: index },
 	                    item.voto,
-	                    ' | '
+	                    '  |  '
 	                );
 	            })
 	        );
@@ -15443,11 +15468,11 @@ webpackJsonp([0],[
 
 	        return _react2['default'].createElement(
 	            'ul',
-	            { className: 'dropdown-menu pull-right' },
-	            cards.map(function (carta) {
+	            { className: 'dropdown-menu' },
+	            cards.map(function (carta, index) {
 	                return _react2['default'].createElement(
 	                    'li',
-	                    null,
+	                    { key: index },
 	                    _react2['default'].createElement(
 	                        'a',
 	                        { onClick: handleVoto.bind(voto, dataId, carta.valor) },
@@ -23109,7 +23134,7 @@ webpackJsonp([0],[
 	exports.locals = {
 	  "styles": "_1LrDsHdaZqtB8ZTtaXCnfU"
 	};
-	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    margin-top: 20px;\n    padding: 5px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: gainsboro; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        color: gainsboro;\n        flex: 0;\n        font-size: 24px !important;\n        text-align: left; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        display: flex;\n        flex-direction: row; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-votar {\n          flex: 1; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-excluir {\n          padding-top: 5px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
+	exports.push([module.id, "._1LrDsHdaZqtB8ZTtaXCnfU {\n  color: #444444; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU h3 {\n    font-size: 18px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria {\n    background-color: white;\n    margin-top: 20px;\n    padding: 5px;\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados {\n      padding-bottom: 10px;\n      margin-left: 5px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero {\n        flex: 0;\n        font-size: 30px !important;\n        text-align: left;\n        color: #444444; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .estoria .estoria-dados .estoria-opcoes {\n        margin-right: 20px;\n        flex: 0; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .estoria-tarefas {\n    display: flex;\n    flex-direction: column; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-estoria {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corSim {\n    background-color: #f1f1f1; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .corNao {\n    background-color: #F4F4F4; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa:hover {\n    background-color: lightblue; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa {\n    padding-right: 10px; }\n    ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados {\n      padding: 10px;\n      margin-left: 15px;\n      width: 100%;\n      display: flex;\n      flex-direction: row;\n      align-items: baseline; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero {\n        color: #444444;\n        flex: 0;\n        font-size: 24px !important;\n        text-align: left; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-numero p:last-of-type {\n          color: lightsalmon; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-titulo {\n        flex: 1;\n        margin-left: 10px;\n        color: #444444;\n        font-size: 15px; }\n      ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes {\n        margin-right: 5px;\n        display: flex;\n        flex-direction: row; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-votar {\n          flex: 1;\n          padding-left: 5px;\n          padding-right: 5px; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-excluir {\n          flex: 1;\n          padding-right: 5px; }\n        ._1LrDsHdaZqtB8ZTtaXCnfU .tarefa .tarefa-dados .tarefa-opcoes .tarefa-opcoes-destravar {\n          flex: 1;\n          padding-right: 5px; }\n  ._1LrDsHdaZqtB8ZTtaXCnfU .add-tarefa {\n    z-index: 0;\n    height: 30px;\n    margin-top: 15px;\n    margin-left: 15px; }\n", ""]);
 
 /***/ },
 /* 413 */
@@ -23557,7 +23582,7 @@ webpackJsonp([0],[
 
 	var _socketIoClient2 = _interopRequireDefault(_socketIoClient);
 
-	var _reactChartjs = __webpack_require__(426);
+	var _reactChartjs = __webpack_require__(422);
 
 	var _reactChartjs2 = _interopRequireDefault(_reactChartjs);
 
@@ -23633,7 +23658,7 @@ webpackJsonp([0],[
 	                    null,
 	                    'Interdependência'
 	                ),
-	                _react2['default'].createElement(_reactChartjs2['default'].Pie, { data: dadosGrafico(sprint), options: opcoesGrafico, width: '600', height: '400' }),
+	                _react2['default'].createElement(_reactChartjs2['default'].Pie, { data: dadosGrafico(sprint), options: opcoesGrafico, width: '250', height: '200' }),
 	                _react2['default'].createElement(
 	                    'h3',
 	                    null,
@@ -23658,35 +23683,31 @@ webpackJsonp([0],[
 	exports.Interdependencia = Interdependencia;
 
 /***/ },
-/* 422 */,
-/* 423 */,
-/* 424 */,
-/* 425 */,
-/* 426 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
-	  Bar: __webpack_require__(427),
-	  Doughnut: __webpack_require__(430),
-	  Line: __webpack_require__(431),
-	  Pie: __webpack_require__(432),
-	  PolarArea: __webpack_require__(433),
-	  Radar: __webpack_require__(434),
-	  createClass: __webpack_require__(428).createClass
+	  Bar: __webpack_require__(423),
+	  Doughnut: __webpack_require__(426),
+	  Line: __webpack_require__(427),
+	  Pie: __webpack_require__(428),
+	  PolarArea: __webpack_require__(429),
+	  Radar: __webpack_require__(430),
+	  createClass: __webpack_require__(424).createClass
 	};
 
 
 /***/ },
-/* 427 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vars = __webpack_require__(428);
+	var vars = __webpack_require__(424);
 
 	module.exports = vars.createClass('Bar', ['getBarsAtEvent']);
 
 
 /***/ },
-/* 428 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(27);
@@ -23745,7 +23766,7 @@ webpackJsonp([0],[
 	    };
 
 	    classData.initializeChart = function(nextProps) {
-	      var Chart = __webpack_require__(429);
+	      var Chart = __webpack_require__(425);
 	      var el = ReactDOM.findDOMNode(this);
 	      var ctx = el.getContext("2d");
 	      var chart = new Chart(ctx)[chartType](nextProps.data, nextProps.options || {});
@@ -23821,7 +23842,7 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 429 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -27563,46 +27584,46 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 430 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vars = __webpack_require__(428);
+	var vars = __webpack_require__(424);
 
 	module.exports = vars.createClass('Doughnut', ['getSegmentsAtEvent']);
 
 
 /***/ },
-/* 431 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vars = __webpack_require__(428);
+	var vars = __webpack_require__(424);
 
 	module.exports = vars.createClass('Line', ['getPointsAtEvent']);
 
 
 /***/ },
-/* 432 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vars = __webpack_require__(428);
+	var vars = __webpack_require__(424);
 
 	module.exports = vars.createClass('Pie', ['getSegmentsAtEvent']);
 
 
 /***/ },
-/* 433 */
+/* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vars = __webpack_require__(428);
+	var vars = __webpack_require__(424);
 
 	module.exports = vars.createClass('PolarArea', ['getSegmentsAtEvent']);
 
 
 /***/ },
-/* 434 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var vars = __webpack_require__(428);
+	var vars = __webpack_require__(424);
 
 	module.exports = vars.createClass('Radar', ['getPointsAtEvent']);
 
