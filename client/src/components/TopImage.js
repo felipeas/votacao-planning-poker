@@ -16,7 +16,7 @@ export class TopImage extends Component {
           <div className="row">
             <blockquote>
                 <p>
-                    "If there were such a thing as a soul, I think it would be behind the gallbladder but above the kidneys."
+                    "Don't just have an idea--have all of them."
                 </p>
             </blockquote>
           </div>

@@ -14,6 +14,7 @@ class Cartas extends Component {
         const cards = [
                 {nome: '0', valor :0}, 
                 {nome: '1/2', valor :0.5},
+                {nome: '1', valor :1},
                 {nome: '3', valor :3},
                 {nome: '5', valor :5},
                 {nome: '8', valor :8},
@@ -25,6 +26,7 @@ class Cartas extends Component {
         const { dataId } = this.props;
         const { handleVoto } = this;
         const voto = this;
+        
         //'1/2':0.5,'1':1,'3':3,'5':5,'8':8,'13':13,'20':20,'40':40};
         //const cards = [0,0.5,1,3,5,8,13,20,40];
         

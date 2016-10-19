@@ -66,9 +66,11 @@ dadosGrafico(sprint) {
         return (
             <section>
                 <div className="container">
-                    <h3>Interdependência</h3>
-                    <PieChart.Pie data={dadosGrafico(sprint)} options={opcoesGrafico} width="250" height="200"/>
-                    <h3>Total = {pontos}</h3>
+                    <div className="row">
+                        <h3>Interdependência</h3>
+                        <PieChart.Pie data={dadosGrafico(sprint)} options={opcoesGrafico} height="100"/>
+                        <h3>Total = {pontos}</h3>
+                    </div>
                 </div>
             </section>
         )

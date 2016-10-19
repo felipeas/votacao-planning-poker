@@ -35,6 +35,10 @@ export class Votacao extends Component {
             // self.carregarVotacaoEstoria(data._id);
         });
     }
+
+    handleExcel (sprintId) {
+        console.log(sprintId);
+    }
     
     render() {
         const {
@@ -48,6 +52,11 @@ export class Votacao extends Component {
                     <VotacaoList {...this.props}/>
                     <AddEstoria {...this.props}/>
                     <h3>{sprint.sprint.pontos}</h3>
+                    
+                    <button id='excel' className="btn btn-danger add-option pull-right" onClick={this.handleExcel.bind(this, sprint.sprintId) }>
+                        <span>Excel&nbsp;</span>
+                        <i className="fa fa-lock"></i>
+                    </button>
                 </div>
             </section>
         );
